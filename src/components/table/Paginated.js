@@ -1,5 +1,4 @@
 import React from 'react';
-import {} from '@tanstack/react-table';
 import { Table,
     Thead,
     Tbody,
@@ -12,14 +11,17 @@ import { Table,
     Text,
     Select,
     Input,
-    Flex
+    Flex,
+    IconButton
 } from "@chakra-ui/react";
+import {RepeatIcon} from '@chakra-ui/icons';
 import {
     useReactTable,
     flexRender,
     getCoreRowModel
 } from "@tanstack/react-table";
 
+import TableFilters from './TableFilters';
 import DebounceInput from '../input/DebounceInput';
 import {useGetDataQuery} from 'lib/redux/api/table.api.slice';
 const pageSizes = [
@@ -37,14 +39,19 @@ const Paginated = ({title,columns,route,customFilters}) => {
     });
 
     const [globalFilter,setGlobalFilter] = React.useState('')
+    const [columnFilters,setColumnFilters] = React.useState([])
 
-    const {data = []} = useGetDataQuery({
+    const {data = [],refetch,isLoading} = useGetDataQuery({
         route:route,
         query:{
             totalPage:page.pageSize,
             page:page.pageIndex,
             search:globalFilter,
-            ...customFilters
+            ...customFilters,
+            ...columnFilters.reduce((result,item) => {
+                result[item.id] = item.value instanceof Object && !Array.isArray(item.value)  ? item.value.value : item.value
+                return result
+            },{})
         }
     })
 
@@ -56,21 +63,49 @@ const Paginated = ({title,columns,route,customFilters}) => {
             pagination:{
                 ...page
             },
+            columnFilters,
             globalFilter    
         },
         manualPagination:true,
         manualFiltering:true,
         onPaginationChange:setPage,
+        onColumnFiltersChange: setColumnFilters,
         onGlobalFilterChange: setGlobalFilter,
         getCoreRowModel: getCoreRowModel(),
     })
+
+
+    React.useEffect(() => {
+        // console.log(columnFilters)
+        
+        // const filters = columnFilters.reduce((result,item) => {
+        //     result[item.id] = item.value instanceof Object && !Array.isArray(item.value)  ? item.value.value : item.value
+        //     return result
+            
+        // },{})
+
+        //console.log(filterObject)
+    },[columnFilters])
 
     return (
         <Box borderWidth={'1px'} rounded='sm'>
         <Box display={'flex'} p='1' flexDirection={'column'} gap='2'>
             <Box fontWeight={'semibold'} as='h4'>{title}</Box>
-            <Flex direction={'row'} justifyContent='space-between'>    
-                <DebounceInput value={globalFilter ?? ''} onChange={value => setGlobalFilter(String(value))} />
+            <Flex gap={1}>
+                {
+                    table.getHeaderGroups().map(headerGroup => 
+                        headerGroup.headers.map(header => {
+                            return (header.column.getCanFilter() ? <TableFilters key={header.column.id} column={header.column} table={table}/> : null)
+                            
+                        })
+                    )
+                }
+            </Flex>
+            <Flex direction={'row'} justifyContent='space-between'>   
+                <Flex gap={1}>
+                    <DebounceInput value={globalFilter ?? ''} onChange={value => setGlobalFilter(String(value))} />
+                    <IconButton icon={<RepeatIcon/>} size='sm' onClick={refetch} isLoading={isLoading}/>
+                </Flex> 
                 <Text fontSize={'small'}>Count: {data?.rows || 0}</Text>
             </Flex>  
         </Box>
@@ -138,6 +173,10 @@ const Paginated = ({title,columns,route,customFilters}) => {
         </Box>
     </Box>
     )
+}
+
+Paginated.defaultProps = {
+ 
 }
 
 export default Paginated

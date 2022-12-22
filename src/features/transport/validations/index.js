@@ -28,3 +28,7 @@ export const tariffICSchema = Yup.object().shape({
     rate:           Yup.number().min(1,"Enter rate greater than 1").required('Required').nullable(),
 })
 
+export const replanDraftBill = Yup.object().shape({
+    contract_type: Yup.object().required('Required').nullable(),
+    rdd: Yup.string().required('Required')
+})

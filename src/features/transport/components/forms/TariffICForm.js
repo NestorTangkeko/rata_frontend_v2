@@ -27,8 +27,6 @@ const TariffICForm = ({data}) => {
     })
   }
 
-  console.log(data)
-
   return (
     <Form 
       schema={tariffICSchema}

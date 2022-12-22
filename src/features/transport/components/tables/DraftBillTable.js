@@ -3,14 +3,17 @@ import {createColumnHelper} from '@tanstack/react-table';
 import {Button} from '@chakra-ui/react';
 import {Paginated} from 'components/table';
 
-const DraftBillTable = () => {
+const DraftBillTable = ({handleGetDetails}) => {
     const columnHelper = createColumnHelper();
     const columns = [
         columnHelper.accessor('draft_bill_no',{
             header:'Draft Bill',
             cell:props => {
                 const data = props.getValue();
-                return <Button variant='link' colorScheme={'blue'} size='xs'>{data}</Button>
+                const handleClick = () => {
+                    handleGetDetails(props.row.original)
+                }
+                return <Button variant='link' colorScheme={'blue'} size='xs' onClick={handleClick}>{data}</Button>
             }
         }),
         columnHelper.accessor('contract_type',{
@@ -79,7 +82,7 @@ const DraftBillTable = () => {
         <Paginated
             title='Draft Bill'
             columns={columns}
-            route={'/draft-bill'}
+            route={'/v2/draft-bill'}
         />
     )
 }

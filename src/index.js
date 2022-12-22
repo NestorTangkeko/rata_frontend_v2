@@ -10,7 +10,6 @@ import { mode } from '@chakra-ui/theme-tools';
 import {Provider} from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-
 import {persistor, store} from 'lib/redux';
 import router from 'lib/router';
 

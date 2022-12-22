@@ -9,6 +9,9 @@ const SchedulerDtlTable = ({scheduler_id}) => {
         columnHelper.accessor('scheduler_id',{
             header:'Scheduler ID'
         }),
+        columnHelper.accessor('job_id',{
+            header:'Job ID'
+        }),
         columnHelper.accessor('job_status',{
             header:'Job Status'
         }),

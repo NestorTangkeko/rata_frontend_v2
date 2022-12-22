@@ -1,11 +1,9 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {isRejectedWithValue} from '@reduxjs/toolkit';
 
-console.log(process.env.REACT_APP_API_DEV)
-
 const baseQuery = fetchBaseQuery({
     baseUrl:process.env.REACT_APP_API_DEV,
-    credentials:'include',
+    //credentials: process.env.NODE_ENV === 'development' ? undefined : 'include',
     prepareHeaders: (headers, {getState}) => {
         const token = getState().auth.token
         if(token) {
@@ -15,11 +13,10 @@ const baseQuery = fetchBaseQuery({
     }
 })
 
-
 export const apiSlice = createApi({
     reducerPath:'api',
     baseQuery: baseQuery,
-    tagTypes:['Pagination','Tariff'],
+    tagTypes:['Pagination','Tariff','Leak'],
     endpoints: builder => ({})
 })
 

@@ -1,7 +1,8 @@
 import {createBrowserRouter} from 'react-router-dom';
 import App from 'App';
 import {Login} from 'features/authentication';
-import {TransportContract,TransportTariffList,TransportTariff, TransportTariffUpdate, TransportDraftBill} from 'features/transport';
+import {TransportContract,TransportTariffList,TransportTariff, TransportTariffUpdate, TransportDraftBill, TransportRevenueLeak} from 'features/transport';
+import {Vendors,DataUpload} from 'features/data-management';
 import {Scheduler} from 'features/administration';
 import {Content} from 'layouts';
 
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/transport-revenue-leak',
-                element:<Content/>
+                element:<TransportRevenueLeak/>
             },
             {
                 path:'/transport-transmittal',
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
                         element:<TransportTariffUpdate/>
                     }
                 ]
+            },
+            {
+                path:'/vendors',
+                element:<Vendors/>
+            },
+            {
+                path:'/data-upload',
+                element:<DataUpload/>
             }
         ]
         // children:[

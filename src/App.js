@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 import {Header} from 'layouts';
 import { Box } from '@chakra-ui/react';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const token = useSelector(selectToken)
@@ -19,6 +21,7 @@ function App() {
       <Box display={'flex'} mt='20' mx='10' mb='5' rowGap='5' flexDirection={'column'}>
         <Outlet/>
       </Box>
+      <ToastContainer/>
     </>
   );
 }

@@ -119,6 +119,12 @@ const modules = [
                 id:'algorithm',
                 label:'Algorithm',
                 path:'/algorithm'
+            },
+            {
+                sequence:8,
+                id:'data_upload',
+                label:'Data Upload',
+                path:'/data-upload'
             }
         ]
     },
