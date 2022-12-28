@@ -11,10 +11,24 @@ export const schedulerSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Pagination']
+        }),
+        updateScheduler: builder.mutation({
+            query: (params) => ({
+                url:'/v2/scheduler',
+                method:'PUT',
+                params:{
+                    ...params.query
+                },
+                body:{
+                    data: params.data
+                }
+            }),
+            invalidatesTags:['Pagination']
         })
     })
 })
 
 export const {
-    useManualTriggerMutation
+    useManualTriggerMutation,
+    useUpdateSchedulerMutation
 } = schedulerSlice

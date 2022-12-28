@@ -12,7 +12,6 @@ import { Table as CTable,
     Select,
     Input,
     Flex,
-    // IconButton,
     Spacer
 } from "@chakra-ui/react";
 
@@ -35,7 +34,6 @@ import {
     50,
     100
 ]
-
 
 const Table = ({data,columns,title}) => {
     const table = useReactTable({
@@ -121,3 +119,4 @@ const Table = ({data,columns,title}) => {
 }
 
 export default Table
+

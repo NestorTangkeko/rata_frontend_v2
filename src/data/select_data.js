@@ -1,7 +1,7 @@
 export const  data_upload = [
     {
         label:'Vendor Upload',
-        value:'/data-upload/vendors'
+        value:'/data-upload/vendor'
     },
     {
         label:'Transport Tariff',
