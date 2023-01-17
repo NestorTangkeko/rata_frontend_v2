@@ -1,10 +1,21 @@
 import {createBrowserRouter} from 'react-router-dom';
 import App from 'App';
 import {Login} from 'features/authentication';
-import {TransportContract,TransportTariffList,TransportTariff, TransportTariffUpdate, TransportDraftBill, TransportRevenueLeak} from 'features/transport';
+import {
+    TransportContract,
+    TransportTariffList,
+    TransportTariff, 
+    TransportTariffUpdate, 
+    TransportDraftBill, 
+    TransportRevenueLeak, 
+    TransportTransmittal 
+} from 'features/transport';
 import {Vendors,DataUpload} from 'features/data-management';
+import {
+    WarehouseDraftBill,
+    WarehouseTransmittal
+} from 'features/warehouse';
 import {Scheduler} from 'features/administration';
-import {Content} from 'layouts';
 
 
 const router = createBrowserRouter([
@@ -26,7 +37,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/transport-transmittal',
-                element:<Content/>
+                element:<TransportTransmittal/>
             },
             {
                 path:'/transport-contract',
@@ -45,6 +56,14 @@ const router = createBrowserRouter([
                         element:<TransportTariffUpdate/>
                     }
                 ]
+            },
+            {
+                path:'/warehouse-draftbill',
+                element: <WarehouseDraftBill/>
+            },
+            {
+                path:'/warehouse-transmittal',
+                element: <WarehouseTransmittal/>
             },
             {
                 path:'/vendors',

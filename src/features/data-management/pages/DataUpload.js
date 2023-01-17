@@ -33,7 +33,7 @@ const DataUpload = () => {
 		if(!getConverted) return toast.error('File is Required!')
 
 		await uploadData({
-			route:'tariff',
+			route:uploadType?.value || null,
 			body:{
 				data: getConverted
 			}
@@ -48,7 +48,7 @@ const DataUpload = () => {
 	const handleDownload = async() => {
 		if(!uploadType) return toast.error('Upload Type is required!')
 		await getTemplate({
-			type:uploadType?.value.split('/')[2] || null,
+			type:uploadType?.value || null,
 		})
 	}
 
@@ -75,10 +75,12 @@ const DataUpload = () => {
 						onClear={()=>{setConvert(null)}}
 						isDisabled={uploadProps.isLoading}
 					/>
+					
 					<Flex justify={'space-between'}>
 						<Button colorScheme={'orange'} onClick={handleDownload} isLoading={getTemplateProps.isLoading}>Template</Button>
 						<Button colorScheme={'orange'} onClick={handleUpload} isLoading={uploadProps.isLoading}>Upload</Button>
 					</Flex>
+
 				</Flex>
 			</CUIContainer>
 		</Container>

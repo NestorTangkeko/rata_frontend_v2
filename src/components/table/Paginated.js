@@ -74,19 +74,6 @@ const Paginated = ({title,columns,route,customFilters}) => {
         getCoreRowModel: getCoreRowModel(),
     })
 
-
-    React.useEffect(() => {
-        // console.log(columnFilters)
-        
-        // const filters = columnFilters.reduce((result,item) => {
-        //     result[item.id] = item.value instanceof Object && !Array.isArray(item.value)  ? item.value.value : item.value
-        //     return result
-            
-        // },{})
-
-        //console.log(filterObject)
-    },[columnFilters])
-
     return (
         <Box borderWidth={'1px'} rounded='sm'>
         <Box display={'flex'} p='1' flexDirection={'column'} gap='2'>

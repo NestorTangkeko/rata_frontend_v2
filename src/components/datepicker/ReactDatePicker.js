@@ -45,7 +45,6 @@ const ReactDatePicker = ({
           className="react-datapicker__input-text"
           customInput={<CustomInput />}
           dateFormat="MM/dd/yyyy"
-          
           {...props}
         />
         <InputRightElement color="gray.500" children={icon} />

@@ -27,6 +27,8 @@ const Filter = ({column}) => {
 		case 'rdd': return <DateRangePicker handleChange={handleChange}/>
 
 		case 'delivery_date': return <DateRangePicker handleChange={handleChange}/>
+
+		case 'draft_bill_date': return <DateRangePicker handleChange={handleChange}/>
 		
 		default :
 		return null

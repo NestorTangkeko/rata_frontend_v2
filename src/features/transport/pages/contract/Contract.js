@@ -8,7 +8,9 @@ const Contract = () => {
         <SubHeader title={'Contracts'}>
             <Button colorScheme={'orange'} size='sm'>CREATE</Button>
         </SubHeader>
-        <Container></Container>
+        <Container>
+          
+        </Container>
     </>
   )
 }
