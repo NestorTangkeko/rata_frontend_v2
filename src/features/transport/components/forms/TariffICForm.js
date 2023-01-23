@@ -7,24 +7,37 @@ import {FormSelect} from 'components/select';
 
 import {useCreateTariffICMutation} from 'lib/redux/api/tariff.api.slice';
 
-const TariffICForm = ({data}) => {
+const TariffICForm = ({data,handleAdd}) => {
   const [createIC,{isLoading}] = useCreateTariffICMutation()
 
   const handleSubmit = async (values,{resetForm})=>{
-    await createIC({
-      tariff_id:    values.tariff_id,  
-      vendor_group: values.vendor_group.value, 
-      vehicle_type: data.vehicle_type,
-      uom:          values.uom.value,
-      min_value:    values.min_value,
-      max_value:    values.max_value,
-      rate:         values.rate,
-      algo_status:  'ACTIVE'
-    })
-    .unwrap()
-    .then(()=>{
-      resetForm()
-    })
+
+      handleAdd({
+        tariff_id:    values.tariff_id,  
+        vendor_group: values.vendor_group.value, 
+        vehicle_type: data.vehicle_type,
+        uom:          data.uom,
+        min_value:    values.min_value,
+        max_value:    values.max_value,
+        rate:         values.rate,
+        algo_status:  'ACTIVE'    
+      })
+
+      resetForm();
+    // await createIC({
+    //   tariff_id:    values.tariff_id,  
+    //   vendor_group: values.vendor_group.value, 
+    //   vehicle_type: data.vehicle_type,
+    //   uom:          data.uom,
+    //   min_value:    values.min_value,
+    //   max_value:    values.max_value,
+    //   rate:         values.rate,
+    //   algo_status:  'ACTIVE'
+    // })
+    // .unwrap()
+    // .then(()=>{
+    //   resetForm()
+    // })
   }
 
   return (
@@ -35,7 +48,7 @@ const TariffICForm = ({data}) => {
         tariff_id:data?.tariff_id || '',
         vendor_group:null,
         vehicle_type:data.vehicle_type,
-        uom:null,
+        uom:data.uom,
         min_value:0,
         max_value:0,
         rate:0
@@ -45,6 +58,7 @@ const TariffICForm = ({data}) => {
           <Flex direction={'column'} gap='2'>
             <Label label={'Tariff ID'} value={data?.tariff_id || ''}/>
             <Label label='Vehicle Type' value={data?.vehicle_type || ''}/> 
+            <Label label={'UOM'} value={data.uom}/>
             <FormSelect 
               label={'Vendor Location'} 
               name='vendor_group'  
@@ -59,7 +73,7 @@ const TariffICForm = ({data}) => {
                 error={errors.rate} touched={touched.rate}
               />
               <Flex gap='2'>
-                <FormSelect 
+                {/* <FormSelect 
                   label={'UOM'} 
                   name='uom'  
                   route='quick-code'
@@ -67,7 +81,7 @@ const TariffICForm = ({data}) => {
                     type:'MBU'
                   }}
                   error={errors.uom} touched={touched.uom}
-                />
+                /> */}
                 <FormNumberInput
                   label={'Min Value'}
                   name='min_value'

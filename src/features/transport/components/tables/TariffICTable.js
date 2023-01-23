@@ -1,12 +1,11 @@
 import React from 'react'
-import {Paginated} from 'components/table';
+import {Paginated, Table} from 'components/table';
 import {createColumnHelper} from '@tanstack/react-table';
 import { Button } from '@chakra-ui/react';
 
-import {useUpdateTransportICMutation} from 'lib/redux/api/tariff.api.slice';
-const TariffICTable = ({customFilter}) => {
-    const [updateIC,{isLoading}] = useUpdateTransportICMutation();
-    
+// import {useUpdateTransportICMutation} from 'lib/redux/api/tariff.api.slice';
+
+const TariffICTable = ({customFilter,data,handleDelete,icData}) => {    
     const columnHelper = createColumnHelper();
     const columns = [
         columnHelper.accessor('tariff_id',{
@@ -36,30 +35,30 @@ const TariffICTable = ({customFilter}) => {
         columnHelper.display({
             header:'Action',
             cell:props => {
-                const data = props.row.original
-                const handleClick = async () => {
-                    console.log(data)
-                    await updateIC({
-                        query:{
-                            id: data.id
-                        },
-                        body:{
-                            algo_status: 'INACTIVE'
-                        }
-                    })
+                const handleClick = () => {
+                    handleDelete(props.row.index)
                 }
-                return <Button size='xs' colorScheme={'red'} onClick={handleClick} isLoading={isLoading} isDisabled={data.algo_status === 'INACTIVE'}>{'Deactivate'}</Button>
+
+                return <Button size='xs' colorScheme={'red'} onClick={handleClick}>{'Delete'}</Button>
             }
         })
     ]
-  return (
-    <Paginated
-        title={'Tariff IC'}
-        route={'/v2/tariff/tariff-ic'}
-        columns={columns}
-        customFilters={customFilter}
-    />
-  )
+
+    if (icData?.length === 0 ) {
+        return <Table title={'Tariff IC'} data={data} columns={columns}/>
+    }
+
+    //remove the last element of the array
+    //remove the action column
+    columns.pop();
+    return (
+        <Paginated
+            title={'Tariff IC'}
+            route={'/v2/tariff/tariff-ic'}
+            columns={columns}
+            customFilters={customFilter}
+        />
+    )
 }
 
 export default TariffICTable

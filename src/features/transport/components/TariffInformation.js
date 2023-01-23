@@ -8,8 +8,8 @@ const TariffInformation = ({data}) => {
 
     return (
         <>
-            <Flex direction={'row'} justifyContent='space-between' px='16'>
-                <Flex direction={'column'}>
+            <Flex direction={'row'} width='100%' p={2}>
+                <Flex direction={'column'} width='50%'>
                     <Label label={'Tariff ID'} value={data?.tariff_id}/>
                     <Label label={'Class of Store'} value={data?.class_of_store || 'N/A'}/>
                     <Flex direction='row' columnGap={'20'}>

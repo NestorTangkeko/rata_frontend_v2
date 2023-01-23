@@ -8,7 +8,7 @@
         "strictFunctionTypes": true,
         "baseUrl":"src",
         "paths":{
-            "@/lib/*":["./lib/*"]
+            "@lib/api/*":["./lib/redux/api/*"]
         }
     },
     "include": [

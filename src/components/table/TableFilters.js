@@ -9,7 +9,7 @@ const Filter = ({column}) => {
 	const handleChange = (selected) => {
 		column.setFilterValue(selected)
 	}
-
+	
 	switch(column.id) {
 		case 'location':	return <Select route={'location'} label='Location' value={columnFilterValue} onChange={handleChange}/>
 		
@@ -24,11 +24,11 @@ const Filter = ({column}) => {
 		case 'customer':	return <Select route={'principal'} label='Principal' value={columnFilterValue} onChange={handleChange}/>   
 			
 
-		case 'rdd': return <DateRangePicker handleChange={handleChange}/>
+		case 'rdd': return <DateRangePicker label={'Delivery Date'} handleChange={handleChange}/>
 
-		case 'delivery_date': return <DateRangePicker handleChange={handleChange}/>
+		case 'delivery_date': return <DateRangePicker label={'Delivery Date'} handleChange={handleChange}/>
 
-		case 'draft_bill_date': return <DateRangePicker handleChange={handleChange}/>
+		case 'draft_bill_date': return <DateRangePicker label={'Draft Bill Date'} handleChange={handleChange}/>
 		
 		default :
 		return null

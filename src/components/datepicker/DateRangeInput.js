@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box,Text } from '@chakra-ui/react';
 import React from 'react';
 import ReactDatePicker from './ReactDatePicker';
 import moment from 'moment';
@@ -16,15 +16,16 @@ const DateInput = ({start,end,handleChange,label}) => {
     }
 
     return (
-        <Box>
-            <ReactDatePicker
-            selectsRange
-            startDate={startDate}
-            endDate={endDate}
-            onChange={onChange}
-            placeholder='RDD'
-            isClearable
-        />
+        <Box display={'flex'} flexDirection='column' width={'40%'}>
+                <Text fontSize={'sm'} as='b'>{label}</Text>
+                <ReactDatePicker
+                    selectsRange
+                    startDate={startDate}
+                    endDate={endDate}
+                    onChange={onChange}
+                    placeholder='RDD'
+                    isClearable
+                />
         </Box>
         
     )

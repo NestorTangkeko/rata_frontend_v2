@@ -41,6 +41,7 @@ const DataUpload = () => {
 		.unwrap()
 		.then(result => {
 			createXLSX(result)
+			toast.success('Upload Complete')
 		})
 		
 	}

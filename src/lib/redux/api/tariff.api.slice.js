@@ -4,14 +4,18 @@ export const tariffApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getTransportTariff: builder.query({
             query:(params) => ({
-                url:`/contract-tariff/tariff/${params.tariff_id}`,
+                url:`v2/tariff/tariff-id/${params.tariff_id}`,
                 method:'GET',
-                params:{
-                    ...params.query
-                }
+
+                // url:`/contract-tariff/tariff/${params.tariff_id}`,
+                // method:'GET',
+                // params:{
+                //     ...params.query
+                // }
             }),
             transformResponse: (res,meta,arg) =>  {
-                const {approved_by,approved_date,createdAt,updatedAt,created_by,modified_by,...data} = res.data
+                console.log(res)
+                const {approved_by,approved_date,createdAt,updatedAt,created_by,modified_by,...data} = res
                 return data
             },
             providesTags:['Tariff']
@@ -50,11 +54,11 @@ export const tariffApiSlice = apiSlice.injectEndpoints({
             invalidatesTags:['Pagination','Tariff']
         }),
         updateTariff: builder.mutation({
-            query:(data) => ({
-                url:`/contract-tariff/tariff/${data.tariff_id}`,
+            query:(params) => ({
+                url:`v2/tariff/tariff-id/${params.tariff_id}`,
                 method:'PUT',
                 body:{
-                    data
+                    ...params.body
                 }
             }),
             invalidatesTags:['Tariff']

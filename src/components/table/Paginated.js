@@ -82,7 +82,8 @@ const Paginated = ({title,columns,route,customFilters}) => {
                 {
                     table.getHeaderGroups().map(headerGroup => 
                         headerGroup.headers.map(header => {
-                            return (header.column.getCanFilter() ? <TableFilters key={header.column.id} column={header.column} table={table}/> : null)
+                            return (header.column.getCanFilter() ? 
+                            <TableFilters key={header.column.id} column={header.column} table={table}/> : null)
                             
                         })
                     )

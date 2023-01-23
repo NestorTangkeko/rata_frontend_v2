@@ -22,7 +22,7 @@ export const tariffICSchema = Yup.object().shape({
     tariff_id:      Yup.string().required('Required').nullable(),
     vendor_group:   Yup.object().required('Required').nullable(),
     vehicle_type:   Yup.string().required('Required').nullable(),
-    uom:            Yup.object().required('Required').nullable(),
+    uom:            Yup.string().required('Required'),
     min_value:      Yup.number().required(),
     max_value:      Yup.number().required(),
     rate:           Yup.number().min(1,"Enter rate greater than 1").required('Required').nullable(),

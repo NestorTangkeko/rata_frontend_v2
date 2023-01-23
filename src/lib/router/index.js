@@ -3,12 +3,13 @@ import App from 'App';
 import {Login} from 'features/authentication';
 import {
     TransportContract,
-    TransportTariffList,
-    TransportTariff, 
+    TransportContractDTL,
+    TransportTariffList, 
     TransportTariffUpdate, 
     TransportDraftBill, 
     TransportRevenueLeak, 
-    TransportTransmittal 
+    TransportTransmittal,
+    TransportOutlet 
 } from 'features/transport';
 import {Vendors,DataUpload} from 'features/data-management';
 import {
@@ -41,11 +42,21 @@ const router = createBrowserRouter([
             },
             {
                 path:'/transport-contract',
-                element:<TransportContract/>
+                element:<TransportOutlet/>,
+                children:[
+                    {
+                        index:true,
+                        element:<TransportContract/>
+                    },
+                    {
+                        path:':contract_id',
+                        element:<TransportContractDTL/>
+                    }
+                ]
             },
             {
                 path:'/transport-tariff',
-                element:<TransportTariff/>,
+                element:<TransportOutlet/>,
                 children:[
                     {
                         index:true,
