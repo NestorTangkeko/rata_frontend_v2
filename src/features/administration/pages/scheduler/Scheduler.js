@@ -11,8 +11,6 @@ const Scheduler = () => {
         <Container>
             <SchedulerTable/>
         </Container>
-
-
     </>)
 }
 

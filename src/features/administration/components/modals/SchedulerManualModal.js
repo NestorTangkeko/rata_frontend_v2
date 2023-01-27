@@ -5,7 +5,7 @@ import { Flex,Button, Text, Box } from '@chakra-ui/react';
 import {useManualTriggerMutation} from 'lib/redux/api/scheduler.slice';
 import Table from '../tables/SchedulerDtlTable';
 //import {Form,FormInput} from 'compon  ents/form';
-
+import {toast} from 'react-toastify';
 
 const SchedulerManualModal = ({isOpen,onClose,id}) => {
     const [selected, setSelected] = React.useState();
@@ -17,6 +17,9 @@ const SchedulerManualModal = ({isOpen,onClose,id}) => {
             date:selected
         })
         .unwrap()
+        .then(result => {
+            toast.success('Job was started, please refrain from clicking the confirm button')
+        })
     }
 
     return (

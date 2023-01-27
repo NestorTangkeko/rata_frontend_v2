@@ -24,11 +24,37 @@ export const schedulerSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Pagination']
+        }),
+        createEmail: builder.mutation({
+            query: (params) => ({
+                url: '/v2/scheduler/email',
+                method:'POST',
+                body:{
+                    data: params.data
+                }
+            }),
+            invalidatesTags:['Pagination']
+        }),
+        updateEmail: builder.mutation({
+            query: (params) => ({
+                url:'/v2/scheduler/email',
+                method: 'PUT',
+                params:{
+                    ...params.query
+                },
+                body:{
+                    data: params.data
+                }
+            }),
+            invalidatesTags:['Pagination']
         })
     })
+
 })
 
 export const {
     useManualTriggerMutation,
-    useUpdateSchedulerMutation
+    useUpdateSchedulerMutation,
+    useCreateEmailMutation,
+    useUpdateEmailMutation
 } = schedulerSlice
