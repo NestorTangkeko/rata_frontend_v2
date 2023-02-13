@@ -6,7 +6,10 @@ import SchedulerEmailTable from '../tables/SchedulerEmailTable';
 
 const SchedulerEmailModal = ({isOpen,
     onClose,
-    schedulerID}) => {
+    schedulerID,
+    hasEdit,
+    hasCreate
+}) => {
     
     return (
         <Modal title='Email Recipients' isOpen={isOpen} onClose={onClose} size='55%'> 
@@ -14,7 +17,7 @@ const SchedulerEmailModal = ({isOpen,
                 <Accordion allowMultiple>
                     <AccordionItem>
                         <h2>
-                            <AccordionButton border={'1px'} borderRadius='md'>
+                            <AccordionButton border={'1px'} borderRadius='md' hidden={!hasCreate}>
                                 <Box as="span" flex='1' textAlign='left'>
                                     Add Email Recipients
                                 </Box>
@@ -26,7 +29,7 @@ const SchedulerEmailModal = ({isOpen,
                         </AccordionPanel>
                     </AccordionItem>
                 </Accordion>
-                <SchedulerEmailTable schedulerId={schedulerID}/>
+                <SchedulerEmailTable schedulerId={schedulerID} hasEdit={hasEdit}/>
             </Flex>
         </Modal>
     )

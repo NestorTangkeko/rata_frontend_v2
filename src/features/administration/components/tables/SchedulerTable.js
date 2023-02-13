@@ -8,7 +8,7 @@ import SchedulerManualModal from '../modals/SchedulerManualModal';
 import UpdateModal from '../modals/SchedulerEditModal';
 import EmailModal from '../modals/SchedulerEmailModal';
 
-const SchedulerTable = () => {
+const SchedulerTable = ({hasEdit,hasCreate}) => {
     const manualModal = useDisclosure();
     const updateModal = useDisclosure();
     const emailModal = useDisclosure();
@@ -68,7 +68,7 @@ const SchedulerTable = () => {
 
                 return <Flex gap='1'>
                     <Button size={'xs'} colorScheme='orange' onClick={handleOpenManual}>Manual</Button>
-                    <Button size='xs' colorScheme='orange' onClick={handleOpen}>Edit</Button>
+                    <Button size='xs' colorScheme='orange' onClick={handleOpen} disabled={!hasEdit}>Edit</Button>
                     <IconButton size={'xs'} colorScheme='orange' onClick={handleOpenEmailModal} icon={<EmailIcon/>}/>
                 </Flex>
             }
@@ -89,9 +89,9 @@ const SchedulerTable = () => {
             columns={columns}
         />
 
-        <SchedulerManualModal isOpen={manualModal.isOpen} onClose={manualModal.onClose} {...data}/>
-        <UpdateModal isOpen={updateModal.isOpen} onClose={updateModal.onClose} data={data} handleChange={handleChange}/>
-        <EmailModal isOpen={emailModal.isOpen} onClose={emailModal.onClose} schedulerID={data?.id || ''}/>
+        <SchedulerManualModal isOpen={manualModal.isOpen} onClose={manualModal.onClose} {...data} hasCreate={hasCreate}/>
+        <UpdateModal    isOpen={updateModal.isOpen} onClose={updateModal.onClose} data={data} handleChange={handleChange}/>
+        <EmailModal     isOpen={emailModal.isOpen}  onClose={emailModal.onClose} schedulerID={data?.id || ''} hasEdit={hasEdit} hasCreate={hasCreate}/>
     </>
     )
 }

@@ -7,7 +7,7 @@ import Table from '../tables/SchedulerDtlTable';
 //import {Form,FormInput} from 'compon  ents/form';
 import {toast} from 'react-toastify';
 
-const SchedulerManualModal = ({isOpen,onClose,id}) => {
+const SchedulerManualModal = ({isOpen,onClose,id,hasCreate}) => {
     const [selected, setSelected] = React.useState();
     const [manualTrigger,{isLoading}] = useManualTriggerMutation()
 
@@ -32,7 +32,7 @@ const SchedulerManualModal = ({isOpen,onClose,id}) => {
                     </Box>
                     <Box width={'30%'} borderWidth={1} rounded='sm'>
                         <DatePicker selected={selected} onSelect={setSelected}/>
-                        <Button width={'100%'} rounded='none' colorScheme={'orange'} onClick={handleConfirm} isLoading={isLoading}>Confirm</Button>
+                        <Button width={'100%'} rounded='none' colorScheme={'orange'} onClick={handleConfirm} isLoading={isLoading} disabled={!hasCreate}>Confirm</Button>
                     </Box>
                 </Flex>                            
             </Flex>

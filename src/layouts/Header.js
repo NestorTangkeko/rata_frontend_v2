@@ -22,17 +22,22 @@ import {setLogOut, selectToken} from 'lib/redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import decode from 'jwt-decode';
-
+import { useLogoutMutation } from 'lib/redux/api/auth.api.slice';
 
 const Header = () => {
   const {isOpen,onClose,onOpen} = useDisclosure();
+  const [logOut] = useLogoutMutation()
   const token = decode(useSelector(selectToken));
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
 
-  const handleLogout = () => {
-    dispatch(setLogOut())
-    navigate('/login')
+  const handleLogout = async() => {
+    await logOut() 
+    .unwrap()
+    .then(()=> {
+      dispatch(setLogOut())
+      navigate('/login')
+    })
   }
 
   return (

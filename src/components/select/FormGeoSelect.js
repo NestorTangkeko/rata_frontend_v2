@@ -1,5 +1,5 @@
 import React from 'react';
-import { useField} from 'formik';
+import {useField} from 'formik';
 import Select from 'react-select/async';
 import {FormControl} from 'components/form';
 import {useGetGeoQuery} from 'lib/redux/api/geo.api.slice';

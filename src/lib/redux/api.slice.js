@@ -1,5 +1,6 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {isRejectedWithValue} from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const baseQuery = fetchBaseQuery({
     baseUrl:process.env.REACT_APP_API_DEV,
@@ -16,7 +17,7 @@ const baseQuery = fetchBaseQuery({
 export const apiSlice = createApi({
     reducerPath:'api',
     baseQuery: baseQuery,
-    tagTypes:['Pagination','Tariff','Contract','Leak'],
+    tagTypes:['Pagination','Tariff','Contract','Leak','Administration','Auth'],
     endpoints: builder => ({})
 })
 
@@ -24,6 +25,7 @@ export const apiSlice = createApi({
 export const errorHandler = (api) => (next) => (action) => {
     if(isRejectedWithValue(action)){
         console.log(action.payload)
+        toast.error(action.payload.data.message)
     }
 
     return next(action)

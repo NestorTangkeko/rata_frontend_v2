@@ -11,11 +11,14 @@ import TariffICModal from '../../components/modals/TariffICModal';
 import TariffModal from '../../components/modals/TariffModal';
 import TariffICTable from '../../components/tables/TariffICTable';
 import { toast } from 'react-toastify';
+import {useCheckAccesSub} from 'hooks';
 
 const UpdateTariff = () => {
 
     const navigate = useNavigate();
     const query = useQueryParams();
+    
+    const hasAccess = useCheckAccesSub({header_id: 'transport_operations'});
     
     //Temporary Data for creating IC Matrix
     const [icData,setICData] = React.useState([]);
@@ -81,8 +84,8 @@ const UpdateTariff = () => {
             <TariffInformation data={data}/>
             <Flex gap='2'>
                 <Spacer/>
-                <Button onClick={toggleUpdateTariff.onOpen} isDisabled={data.tariff_status === 'APPROVED'}>Edit</Button>
-                <Button onClick={handleApproveQuery} isDisabled={data.tariff_status === 'APPROVED'} colorScheme='orange' isLoading={updateTariffOptions.isLoading}>Approve</Button>
+                <Button onClick={toggleUpdateTariff.onOpen} isDisabled={data.tariff_status === 'APPROVED'} hidden={!hasAccess.edit}>Edit</Button>
+                <Button onClick={handleApproveQuery} isDisabled={data.tariff_status === 'APPROVED'} colorScheme='orange' isLoading={updateTariffOptions.isLoading} hidden={!hasAccess.edit}>Approve</Button>
             </Flex>
             <TariffModal onClose={toggleUpdateTariff.onClose} isOpen={toggleUpdateTariff.isOpen} data={data}/>
         </Container>
@@ -90,8 +93,8 @@ const UpdateTariff = () => {
             <Text>Independent Contractor Information</Text>
             <Flex gap='1' py='2' hidden={data?.tariff_status === 'APPROVED'}>
                 <Spacer/>
-                <Button size='sm' colorScheme={'orange'} onClick={()=>setICData([])}>Clear</Button>
-                <Button size='sm' colorScheme={'orange'} onClick={() => onOpen()} disabled={data?.tariff_status === 'APPROVED'}>Add</Button>
+                <Button size='sm' colorScheme={'orange'} onClick={()=>setICData([])} hidden={!hasAccess.edit}>Clear</Button>
+                <Button size='sm' colorScheme={'orange'} onClick={() => onOpen()} disabled={data?.tariff_status === 'APPROVED'} hidden={!hasAccess.edit}>Add</Button>
             </Flex>
             <TariffICTable 
                 data={icData}

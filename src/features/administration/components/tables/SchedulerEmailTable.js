@@ -4,7 +4,7 @@ import {createColumnHelper} from '@tanstack/react-table';
 import { Button,Flex } from '@chakra-ui/react';
 import { useUpdateEmailMutation } from 'lib/redux/api/scheduler.slice';
 
-const SchedulerEmailTable = ({schedulerId}) => {
+const SchedulerEmailTable = ({schedulerId,hasEdit}) => {
     const columnHelper = createColumnHelper();
     const [updateEmail, {isLoading}] = useUpdateEmailMutation();
 
@@ -35,12 +35,12 @@ const SchedulerEmailTable = ({schedulerId}) => {
 
                 if(props.row.original.status === 'ACTIVE') {
                     return <Flex direction={'column'}>
-                    <Button size={'xs'} colorScheme='red' isLoading={isLoading} onClick={() => handleUpdate('INACTIVE')}>Deactivate</Button>
+                    <Button size={'xs'} colorScheme='red' isLoading={isLoading} onClick={() => handleUpdate('INACTIVE')} isDisabled={!hasEdit}>Deactivate</Button>
                 </Flex>
                 }
                 else {
                     return <Flex direction={'column'}>
-                    <Button size={'xs'} colorScheme='green' isLoading={isLoading} onClick={() => handleUpdate('ACTIVE')}>Activate</Button>
+                    <Button size={'xs'} colorScheme='green' isLoading={isLoading} onClick={() => handleUpdate('ACTIVE')} isDisabled={!hasEdit}>Activate</Button>
                 </Flex>
                 }
             }

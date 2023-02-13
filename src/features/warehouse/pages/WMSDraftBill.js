@@ -5,7 +5,9 @@ import DraftBillTable from '../components/table/DraftBillTable';
 
 import DraftBillModal from '../components/modals/DraftBillModal';
 
+import {useCheckAccess} from 'hooks';
 const WMSDraftBill = () => {
+    const hasAccess = useCheckAccess({header_id:'warehouse_operations'})
     const {isOpen,onClose,onOpen} =useDisclosure();
     const [draftBillDetails, setDraftBillDetails] = React.useState(null)
 

@@ -9,15 +9,16 @@ import {
     TransportDraftBill, 
     TransportRevenueLeak, 
     TransportTransmittal,
-    TransportOutlet 
+    TransportOutlet, 
+    Invoices
 } from 'features/transport';
-import {Vendors,DataUpload} from 'features/data-management';
+import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo} from 'features/data-management';
 import {
     WarehouseDraftBill,
     WarehouseTransmittal
 } from 'features/warehouse';
-import {Scheduler} from 'features/administration';
-
+import {Role, RoleAccess, Scheduler, User} from 'features/administration';
+import ShipPoint from 'features/data-management/pages/ShipPoint';
 
 const router = createBrowserRouter([
     {
@@ -25,12 +26,12 @@ const router = createBrowserRouter([
         element: <App/>,
         children:[
             {
-                path:'/scheduler',
-                element:<Scheduler/>
-            },
-            {
                 path:'/transport-draftbill',
                 element:<TransportDraftBill/>
+            },
+            {
+                path:'/transport-invoice',
+                element: <Invoices/>
             },
             {
                 path:'/transport-revenue-leak',
@@ -77,42 +78,74 @@ const router = createBrowserRouter([
                 element: <WarehouseTransmittal/>
             },
             {
+                path:'/geography',
+                element:<Geography/>
+            },
+            {
+                path:'/ship-point',
+                element:<ShipPoint/>
+            }, 
+            {
+                path:'/location',
+                element:<Location/>
+            },
+            {
+              path:'/quick-code',
+              element:<QuickCode/>  
+            },
+            {
+                path:'/Principal',
+                element:<Principal/>
+            },
+            {
                 path:'/vendors',
                 element:<Vendors/>
             },
             {
+                path:'/algorithm',
+                children: [
+                    {
+                        index: true,
+                        element:<Algorithm/>
+                    },
+                    {
+                        path:'create',
+                        element:<CreateAlgo/>
+                    },
+                    {
+                        path:':id',
+                        element:<CreateAlgo/>   
+                    }
+                ]
+                
+            },
+            {
                 path:'/data-upload',
                 element:<DataUpload/>
+            },
+            {
+                path:'/scheduler',
+                element:<Scheduler/>
+            },
+            {
+                path:'/users',
+                element:<User/>
+            },
+            {
+                path:'/roles',
+                children: [
+                    {
+                        index:true,
+                        element: <Role/>
+                    },
+                    {
+                        path:':id',
+                        element: <RoleAccess/>
+                    }
+                ]
             }
-        ]
-        // children:[
-        //     {   
-        //         path:'/',
-        //         element:<Content/>,
-        //         children:[
-        //             {
-        //                 path:'/transport-draftbill',
-        //                 element:<Content/>
-        //             },
-        //             {
-        //                 path:'/transport-revenue-leak',
-        //                 element:<Content/>
-        //             },
-        //             {
-        //                 path:'/transport-transmittal',
-        //                 element:<Content/>
-        //             },
-        //             {
-        //                 path:'/transport-contract',
-        //                 element:<TransportContract/>
-        //             },
-        //             {
-        //                 path:'/transport-tariff',
-        //                 element:<TransportTariff/>
-        //             }
-        //         ]
-        //     }
-        // ]  
+
+        ] 
     },
     {
         path:'/login',

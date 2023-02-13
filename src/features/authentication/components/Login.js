@@ -10,16 +10,15 @@ const Login = () => {
     return (
         <Box>
             <Image height={{base:'100vh'}} objectFit={'cover'} src={bg} alt='LI Background'/>
-            <Box 
-                boxShadow='dark-lg'
+            <Box boxShadow='dark-lg'
                 position={'absolute'} 
                 top='0' 
                 right={'0'}
                 width={{
-                base:'xl',
-                xl:'xl',
-                md:'100%', 
-                sm:'100%'
+                    base:'xl',
+                    xl:'xl',
+                    md:'100%', 
+                    sm:'100%'
                 }}
                 height={{
                     base:'100vh' 
@@ -30,6 +29,7 @@ const Login = () => {
                 justifyContent={'center'}
                 >
                     <LoginForm/>
+            
             </Box>
         </Box>
   )

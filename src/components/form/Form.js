@@ -17,10 +17,10 @@ const Form = ({
             validationSchema={schema}
             onSubmit={onSubmit}
         >
-        {({handleSubmit,errors,touched})=> 
+        {({handleSubmit,errors,touched,values,setFieldValue})=> 
                 <form onSubmit={handleSubmit}>
                     <Flex gap={3} direction='column'>
-                        {children({errors,touched})}
+                        {children({errors,touched,values,setFieldValue})}
                     </Flex>
                 </form>
             }

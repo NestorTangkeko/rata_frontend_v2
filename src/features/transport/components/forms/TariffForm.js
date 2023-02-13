@@ -38,6 +38,9 @@ const TariffForm = ({data}) => {
     
   let initialValues = data ? {
       ...data,
+      min_value:          data.min_value || '',
+      max_value:          data.max_value || '',
+      sub_service_type: data.sub_service_type || '',
       vehicle_type: {
         label:data.vehicle_type,
         value:data.vehicle_type
@@ -81,7 +84,7 @@ const TariffForm = ({data}) => {
       tariff_desc:        '',
       min_value:          '',
       max_value:          '',
-      sub_service_type:   null,
+      sub_service_type:   '',
       vehicle_type:       null,
       min_billable_unit:  null,
       class_of_store:     null,
@@ -178,7 +181,6 @@ const TariffForm = ({data}) => {
                   <Box width={'50%'}>
                     <Label label='Status' value={data?.tariff_status || ''}/>
                   </Box>
-                  
                 </Flex>
                 <Flex direction={'row'} columnGap='2'>
                   <FormSelect 

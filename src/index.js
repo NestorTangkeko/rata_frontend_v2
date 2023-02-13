@@ -50,9 +50,3 @@ root.render(<Provider store={store}>
     </PersistGate>
   </Provider>
 );
-
-
-  //<StrictMode>
-  // <ColorModeScript /> */}
-    //<App />
-  //</StrictMode>

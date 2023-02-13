@@ -30,26 +30,26 @@ const Select = ({route, name, label, value, onChange,filter}) => {
             <Box width='100%' display={'flex'} flexDir='column' gap='1'>
                 <Text fontSize={'sm'} as='b'>{label}</Text>
                 <AsyncSelect
-                name={name}
-                placeholder={label}
-                value={value ?? null}
-                styles={{ menu: (base) => ({ 
-                    ...base, 
-                    zIndex: 9999,
-                    whiteSpace: 'pre-wrap'
-                })}}
-                defaultOptions={loadDefaultOptions()}
-                loadOptions={(inputValue,callBack)=>{
-                    setTimeout(() => {
-                        callBack(filterOptions(inputValue))
-                    },1000) 
-                }}
-                onChange={onChange}
-                isClearable
-                isLoading={isLoading}
-            />
-        </Box>        
-    )
+                    name={name}
+                    placeholder={label}
+                    value={value ?? null}
+                    styles={{ menu: (base) => ({ 
+                        ...base, 
+                        zIndex: 9999,
+                        whiteSpace: 'pre-wrap'
+                    })}}
+                    defaultOptions={loadDefaultOptions()}
+                    loadOptions={(inputValue,callBack)=>{
+                        setTimeout(() => {
+                            callBack(filterOptions(inputValue))
+                        },1000) 
+                    }}
+                    onChange={onChange}
+                    isClearable
+                    isLoading={isLoading}
+                />
+            </Box>        
+        )
 }
 
 Select.defaultProps = {

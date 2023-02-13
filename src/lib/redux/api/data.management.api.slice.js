@@ -4,7 +4,7 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         updateData: builder.mutation({
             query: (params) => ({
-                url:`/v2/data-management/${params.route}`,
+                url:`v2/data-management/${params.route}`,
                 method:'PUT',
                 params:{
                     ...params.query
@@ -14,10 +14,32 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Pagination']
+        }),
+        createData: builder.mutation({
+            query: (params) => ({
+                url:`v2/data-management/${params.route}`,
+                method:'POST',
+                params:{
+                    ...params.query
+                },
+                body: {
+                    ...params.body
+                }
+            })
+        }),
+        getDataDetails: builder.query({
+            query:(params) => ({
+                url: `v2/data-management/${params.route}`,
+                method:'GET'
+            }),
+            // providesTags:['Pagination']
         })
     })
+
 })
 
 export const {
-    useUpdateDataMutation
+    useUpdateDataMutation,
+    useCreateDataMutation,   
+    useGetDataDetailsQuery                              
 } = dataManagementSlice

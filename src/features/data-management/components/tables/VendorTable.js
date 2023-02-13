@@ -3,7 +3,7 @@ import {Paginated} from 'components/table';
 import {Button} from '@chakra-ui/react';
 import {createColumnHelper} from '@tanstack/react-table';
 
-const VendorTable = ({handleICModal}) => {
+const VendorTable = ({handleICModal,hasEdit}) => {
     const columnHelper = createColumnHelper();
 
     const columns = [
@@ -34,7 +34,7 @@ const VendorTable = ({handleICModal}) => {
                     })
                 }
                 return (
-                    <Button size='sm' colorScheme={isIC ? 'green' : 'gray'} onClick={onClick}>{isIC ? 'True' : 'False'}</Button>
+                    <Button size='sm' colorScheme={isIC ? 'green' : 'gray'} onClick={onClick} isDisabled={!hasEdit}>{isIC ? 'True' : 'False'}</Button>
                 )
             }
         }),

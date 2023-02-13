@@ -8,15 +8,15 @@ import DropZone from 'components/DropZone';
 import {useGetTemplateMutation,useUploadDataMutation} from 'lib/redux/api/data.upload.api.slice';
 import { toast } from 'react-toastify';
 
-import {useXLSX,useCreateXLSX} from 'hooks';
+import {useXLSX,useCreateXLSX,useCheckAccess} from 'hooks';
 
 const DataUpload = () => {
+	const hasAccess = useCheckAccess({header_id:'data_management'})
 	const [getConverted,setConvert] = useXLSX();
 	const [createXLSX] = useCreateXLSX();
 	const [getTemplate, getTemplateProps] = useGetTemplateMutation();
 	const [uploadData, uploadProps] = useUploadDataMutation();
 	const [uploadType,setUploadType] = React.useState(null)
-	// const [file,setFile] = React.useState()
 	
 	const onUpload = React.useCallback((data)=>{
 		setConvert(data[0])

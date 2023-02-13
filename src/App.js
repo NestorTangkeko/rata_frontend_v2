@@ -9,19 +9,19 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const token = useSelector(selectToken)
+    const token = useSelector(selectToken)
 
-  if(!token) {
-    return <Navigate to='/login'/>
-  }
+    if(!token) {
+        return <Navigate to='/login'/>
+    }
 
-  return (
+    return (
     <>
-      <Header/>
-      <Box display={'flex'} mt='20' mx='10' mb='5' rowGap='5' flexDirection={'column'}>
-        <Outlet/>
-      </Box>
-      <ToastContainer/>
+        <Header/>
+        <Box display={'flex'} mt='20' mx='10' mb='5' rowGap='5' flexDirection={'column'}>
+            <Outlet/>
+        </Box>
+        <ToastContainer/>
     </>
   );
 }

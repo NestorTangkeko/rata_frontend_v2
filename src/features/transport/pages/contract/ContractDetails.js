@@ -8,10 +8,12 @@ import ContractTariffTable from 'features/transport/components/tables/ContractTa
 import ContractInformation from 'features/transport/components/ContractInformation';
 
 import {toast} from 'react-toastify';
+import {useCheckAccesSub} from 'hooks'
 
 const ContractDetails = () => {
     const navigate = useNavigate();
     const params = useParams();
+    const hasAccess = useCheckAccesSub({header_id: 'transport_operations'});
 
     const {data,isSuccess} = useGetTransportContractQuery({
         contract_id: params.contract_id
@@ -58,6 +60,7 @@ const ContractDetails = () => {
                 <Flex gap='1'>
                 <Spacer/> 
                     <Button 
+                        hidden={!hasAccess.edit}
                         onClick={handleApprove} 
                         isDisabled={data?.contract_status === 'APPROVED'} 
                         isLoading={updateContractProps.isLoading}
@@ -67,7 +70,7 @@ const ContractDetails = () => {
                 </Flex>
                 </Container>
             <Container>
-                <ContractTariffTable isLoading={updateTariffProps.isLoading}  handleCancelTariff={handleCancelTariff} contract_id={params?.contract_id || null}/>
+                <ContractTariffTable hasEdit={hasAccess.edit} isLoading={updateTariffProps.isLoading}  handleCancelTariff={handleCancelTariff} contract_id={params?.contract_id || null}/>
             </Container>
         </>    
     )

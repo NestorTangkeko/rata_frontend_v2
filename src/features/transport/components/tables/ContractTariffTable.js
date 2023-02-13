@@ -3,7 +3,7 @@ import {createColumnHelper} from '@tanstack/react-table';
 import {Paginated} from 'components/table';
 import {Button} from '@chakra-ui/react'
 
-const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff}) => {
+const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff,hasEdit}) => {
     const columnHelper = createColumnHelper();
     const columns=[
         columnHelper.accessor('tariff_id',{
@@ -31,7 +31,9 @@ const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff}) => {
                 const handleClick = async() => {
                     await handleCancelTariff(data.tariff_id)
                 }
-                return <Button size='xs' colorScheme={'red'} onClick={handleClick} isLoading={isLoading} isDisabled={data.status === 'INACTIVE'}>{'Deactivate'}</Button>
+                return hasEdit ?  
+                    <Button size='xs' colorScheme={'red'} onClick={handleClick} isLoading={isLoading} isDisabled={data.status === 'INACTIVE' } >{'Deactivate'}</Button> : 
+                    null
             }
         })
     ]

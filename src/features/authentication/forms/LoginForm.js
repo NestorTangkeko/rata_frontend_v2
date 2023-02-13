@@ -5,7 +5,7 @@ import {authSchema} from '../validations';
 import Form         from 'components/form/Form';
 import FormControl  from 'components/form/FormControl';
 
-import {useLoginMutation} from '../api/auth.api.slice';
+import {useLoginMutation} from '../../../lib/redux/api/auth.api.slice';
 import {setLogIn} from 'lib/redux';
 import {useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
