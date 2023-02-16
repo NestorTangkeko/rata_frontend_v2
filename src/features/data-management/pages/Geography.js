@@ -8,7 +8,7 @@ const Geography = () => {
   return (<>
           <SubHeader title={'Geography'}>
             <Export 
-              hidden={!hasAccess.edit}
+              hidden={!hasAccess.export}
               route='data-management/geography'
               type={'geography'}
             />

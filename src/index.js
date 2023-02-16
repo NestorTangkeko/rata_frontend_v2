@@ -13,6 +13,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import {persistor, store} from 'lib/redux';
 import router from 'lib/router';
 
+import { ToastContainer } from 'react-toastify';
+
 
 const breakpoints = {
   sm: '320px',
@@ -48,5 +50,6 @@ root.render(<Provider store={store}>
         <RouterProvider router={router}/>
       </ChakraProvider>
     </PersistGate>
+    <ToastContainer/>
   </Provider>
 );

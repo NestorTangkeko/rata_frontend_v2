@@ -4,7 +4,6 @@ import {useCheckAccess} from 'hooks';
 import UserTable from 'features/administration/components/tables/UserTable';
 import { Button, useDisclosure } from '@chakra-ui/react';
 import UserCreateModal from 'features/administration/components/modals/UserCreateModal';
-import UserRoleModal from 'features/administration/components/modals/UserRoleModal';
 
 const User = () => {
   const hasAccess = useCheckAccess({header_id:'administration'})

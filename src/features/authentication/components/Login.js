@@ -4,9 +4,19 @@ import {
     Image,
 } from '@chakra-ui/react';
 import LoginForm from '../forms/LoginForm';
+import {selectToken} from 'lib/redux'
+import { useSelector } from 'react-redux';
+
 import bg from 'assets/kli_bg.png';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
+    const token = useSelector(selectToken)
+
+    if(token){
+        return <Navigate to='/' replace/>
+    }
+
     return (
         <Box>
             <Image height={{base:'100vh'}} objectFit={'cover'} src={bg} alt='LI Background'/>
