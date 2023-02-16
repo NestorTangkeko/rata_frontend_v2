@@ -18,6 +18,24 @@ const ShipPointTable = () => {
         columnHelper.accessor('stc_address',{
             header:'Address'
         }),
+        columnHelper.accessor('country',{
+            header:'Country'
+        }),
+        columnHelper.accessor('region',{
+            header:'Region'
+        }),
+        columnHelper.accessor('province',{
+            header:'Province'
+        }),
+        columnHelper.accessor('city',{
+            header:'City'
+        }),
+        columnHelper.accessor('barangay',{
+            header:'Barangay'
+        }),
+        columnHelper.accessor('zip_code',{
+            header:'Zip'
+        }),
         columnHelper.accessor('is_active',{
             header:'Is Active',
             cell: props => props.getValue() ? 'true' : 'false'

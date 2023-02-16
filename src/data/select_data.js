@@ -1,5 +1,13 @@
 export const  data_upload = [
     {
+        label: 'Principal',
+        value: 'principal'
+    },
+    {
+        label: 'Ship Point',
+        value: 'ship-point'
+    },
+    {
         label:'Vendor Upload',
         value:'vendor'
     },
