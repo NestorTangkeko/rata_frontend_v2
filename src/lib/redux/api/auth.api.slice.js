@@ -2,6 +2,16 @@ import {apiSlice} from 'lib/redux';
 
 export const authSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
+        accountUpdate: builder.mutation({
+            query: (params) => ({
+                url: `/v2/authentication`,
+                method: 'PUT',
+                body:{
+                    ...params.body
+                }
+            }),
+            providesTags:['Auth']
+        }),
         access: builder.query({
             query: (params) => ({
                 url:'/v2/authentication',
@@ -29,4 +39,9 @@ export const authSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const {useLogoutMutation,useLoginMutation,useAccessQuery} = authSlice
+export const {
+    useLogoutMutation,
+    useLoginMutation,
+    useAccountUpdateMutation,
+    useAccessQuery
+} = authSlice

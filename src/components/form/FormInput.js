@@ -5,6 +5,7 @@ import {Input} from '@chakra-ui/react';
 
 const FormInput = ({
     id,
+    type,
     name,
     label,
     error,
@@ -20,9 +21,15 @@ const FormInput = ({
             name={name}
             placeholder={label}
             isDisabled={isDisabled}
+            type={type}
+           
         />
     </FormControl>
   )
+}
+
+FormInput.defaultProps = {
+  type:'text'
 }
 
 export default FormInput
