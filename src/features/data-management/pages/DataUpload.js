@@ -11,7 +11,8 @@ import { toast } from 'react-toastify';
 import {useXLSX,useCreateXLSX,useCheckAccess} from 'hooks';
 
 const DataUpload = () => {
-	const hasAccess = useCheckAccess({header_id:'data_management'})
+	//const hasAccess = useCheckAccess({header_id:'data_management'})
+	
 	const [getConverted,setConvert] = useXLSX();
 	const [createXLSX] = useCreateXLSX();
 	const [getTemplate, getTemplateProps] = useGetTemplateMutation();
