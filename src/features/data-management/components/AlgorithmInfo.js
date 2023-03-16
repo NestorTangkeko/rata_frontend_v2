@@ -14,7 +14,7 @@ const AlgorithmInfo = ({data}) => {
                 label={'Description'}
                 value={data?.algo_description}  
             />
-            <Label label={'Parameter'} value={data?.parameter}/>
+            <Label label={'Parameter (UOM to be aggregated)'} value={data?.group_by}/>
         </Flex>
         <Flex direction={'column'}>
             <Label
@@ -25,7 +25,7 @@ const AlgorithmInfo = ({data}) => {
                 label={'Status'}
                 value={data?.status}
             />
-            <Label label={'Group By'} value={data?.group_by}/>
+            <Label label={'Grouping'} value={data?.parameter}/>
         </Flex>
     </Flex>
   )
