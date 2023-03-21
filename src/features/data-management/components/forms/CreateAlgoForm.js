@@ -22,9 +22,8 @@ const CreateAlgoForm = ({onSubmit}) => {
             body: {
                 data:{
                     ...values,
-                    group_by: values.group_by?.value,
-                    parameter: values.parameter?.value
-    
+                    group_by: values.group_by ? values.group_by.map(item => item.value).join(',') : null,
+                    parameter:  values.parameter?.value 
                 }
             }
         })
@@ -32,10 +31,8 @@ const CreateAlgoForm = ({onSubmit}) => {
         .then(()=>{
             onSubmit({
                 ...values,
-                group_by: values.group_by?.value,
-                parameter: values.parameter.map(item => {
-                    return item.value
-                }).join(',')
+                group_by: values.group_by ? values.group_by.map(item => item.value).join(',') : null,
+                parameter:  values.parameter?.value 
             })
         })
     }
@@ -68,7 +65,7 @@ const CreateAlgoForm = ({onSubmit}) => {
                         />
                         <FormLocalSelect
                             label={'Parameter (UOM to be aggregated)'}
-                            name='group_by'
+                            name='parameter'
                             type={'aggregate_by'}
                             isDisabled={!values.with_agg}
                             touched={touched.group_by}
@@ -87,7 +84,7 @@ const CreateAlgoForm = ({onSubmit}) => {
                         </Box>    
                         <FormLocalSelect
                             label={'Grouping'}
-                            name='parameter'
+                            name='group_by'
                             type={'group_by'}
                             isDisabled={!values.with_agg}
                             isMulti
