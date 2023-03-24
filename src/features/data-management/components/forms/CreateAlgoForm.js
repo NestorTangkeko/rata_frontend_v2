@@ -90,7 +90,6 @@ const CreateAlgoForm = ({onSubmit}) => {
                             isMulti
                             touched={touched.parameter}
                             error={errors.parameter}
-                            
                         />
                         <Flex>
                             <Flex flexGrow={1}/>
