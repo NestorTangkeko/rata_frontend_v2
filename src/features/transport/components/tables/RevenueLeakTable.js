@@ -12,7 +12,7 @@ const RevenueLeakTable = ({handleOpen}) => {
             cell: props => {
                 const value = props.getValue();
                 const onClick = () => {
-                    handleOpen(props.row.original)
+                    handleOpen(value)
                 }
                 // 
                 return <Button variant='link' size={'sm'} onClick={onClick}>{value}</Button>

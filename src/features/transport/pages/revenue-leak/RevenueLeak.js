@@ -6,17 +6,22 @@ import RevenueLeakDtlModal from 'features/transport/components/modals/RevenueLea
 import { useDisclosure, Button } from '@chakra-ui/react';
 import ReplanModal from 'features/transport/components/modals/ReplanModal';
 import DataExport from 'components/data-export';
+import {useLazyGetDetailsQuery} from 'lib/redux/api/leak.api.slice';
 import {useCheckAccess} from 'hooks';
 
 const RevenueLeak = () => {
     const hasAccess = useCheckAccess({header_id:'transport_operations'})
     const detailsDisclosure = useDisclosure();
     const replanDisclosure = useDisclosure();
-    const [selectedHeader, setDetails] = React.useState([])
+    const [selectedHeader, setDetails] = React.useState([]);
+    const [getDetails,{isLoading}] = useLazyGetDetailsQuery()
 
-    const handleOpen = (data) => {
-        detailsDisclosure.onOpen()
-        setDetails(data.details)
+    const handleOpen = async (br_no) => {
+        //console.log(br_no);
+        await getDetails(br_no).unwrap().then(result => {
+            setDetails(result)
+            detailsDisclosure.onOpen()
+        })    
     }
 
     const handleOpenReplan = () => {
@@ -31,7 +36,7 @@ const RevenueLeak = () => {
             </SubHeader>
             <Container>
                 <RevenueLeakTable handleOpen={handleOpen} />
-                <RevenueLeakDtlModal isOpen={detailsDisclosure.isOpen} onClose={detailsDisclosure.onClose} data={selectedHeader}/>
+                <RevenueLeakDtlModal isLoading={isLoading} isOpen={detailsDisclosure.isOpen} onClose={detailsDisclosure.onClose} data={selectedHeader}/>
                 <ReplanModal isOpen={replanDisclosure.isOpen} onClose={replanDisclosure.onClose}/>
             </Container>
         </>  
