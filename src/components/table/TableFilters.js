@@ -30,6 +30,8 @@ const Filter = ({column}) => {
 
 		case 'draft_bill_date': return <DateRangePicker label={'Draft Bill Date'} handleChange={handleChange}/>
 		
+		case 'tariff_status': return <Select route={'tariff-status'} label={'Tariff Status'} value={columnFilterValue} onChange={handleChange}/>
+
 		default :
 		return null
 	}

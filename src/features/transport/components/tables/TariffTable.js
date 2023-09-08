@@ -1,14 +1,39 @@
 import React from 'react'
-import {Paginated} from 'components/table';
+import {Paginated,IndeterminateCheckbox} from 'components/table';
 import {createColumnHelper} from '@tanstack/react-table';
 import { Button } from '@chakra-ui/react';
 import { useLocation, useNavigate, createSearchParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {setSelectedRows} from 'lib/redux';
 
 const TariffTable = () => {
+    const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
-    const columnHelper = createColumnHelper()
-    const columns = [
+    const columnHelper = createColumnHelper();
+    const columns =React.useMemo(() => [ 
+        {
+            id:'select',
+            header:({table}) => (
+                <IndeterminateCheckbox
+                    {...{
+                        isChecked: table.getIsAllRowsSelected(),
+                        indeterminate: table.getIsSomeRowsSelected(),
+                        onChange: table.getToggleAllRowsSelectedHandler(),
+                    }}
+                />
+            ),
+            cell:({row}) => (
+                <IndeterminateCheckbox
+                    {...{
+                        isChecked: row.getIsSelected(),
+                        disabled: !row.getCanSelect(),
+                        indeterminate: row.getIsSomeSelected(),
+                        onChange: row.getToggleSelectedHandler(),
+                    }}
+                />
+            )
+        },
         columnHelper.accessor('tariff_id',{
             header:'Tariff ID',
             cell:props => {
@@ -75,11 +100,15 @@ const TariffTable = () => {
         columnHelper.accessor('to_geo',{
             header:'To Geo'
         }),
-    ]
+    ],[])
+
+    const getSelectedRows = React.useCallback((rows = []) => {
+        dispatch(setSelectedRows(rows.filter(item => item.tariff_status === 'DRAFT')))
+    },[])
 
     return (
         <>
-            <Paginated title='Tariffs' columns={columns} route='/contract-tariff/tariff'/>
+            <Paginated title='Tariffs' columns={columns} route='/contract-tariff/tariff' selectedRows={getSelectedRows}/>
         </>
     )
 }
