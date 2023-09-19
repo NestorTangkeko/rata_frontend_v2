@@ -7,9 +7,6 @@
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "baseUrl":"src",
-        "paths":{
-            "@lib/api/*":["./lib/redux/api/*"]
-        }
     },
     "include": [
         "src"

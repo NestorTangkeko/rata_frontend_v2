@@ -12,7 +12,7 @@ import {
     TransportOutlet, 
     Invoices
 } from 'features/transport';
-import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo} from 'features/data-management';
+import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit} from 'features/data-management';
 import {
     WarehouseDraftBill,
     WarehouseTransmittal
@@ -83,7 +83,16 @@ const router = createBrowserRouter([
             },
             {
                 path:'/ship-point',
-                element:<ShipPoint/>
+                children:[
+                    {
+                        index:true,
+                        element:<ShipPoint/>, 
+                    },
+                    {
+                        path:':id',
+                        element:<ShipPointEdit/>
+                    }
+                ]
             }, 
             {
                 path:'/location',

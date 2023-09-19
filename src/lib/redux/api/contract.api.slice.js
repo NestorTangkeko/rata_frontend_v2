@@ -25,6 +25,16 @@ export const contractApiSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Pagination']
+        }),
+        updateTransportContractValidity: builder.mutation({
+            query:({contract_id,...data}) => ({
+                url: 'v2/contract/validity/'+contract_id,
+                method: 'POST',
+                body: {
+                    ...data
+                }
+            }),
+            invalidatesTags: ['Contract'] 
         })
     })
 })
@@ -33,5 +43,6 @@ export const contractApiSlice = apiSlice.injectEndpoints({
 export const {
     useGetTransportContractQuery,
     useUpdateTransportContractMutation,
-    useUpdateTransportContractTariffMutation
+    useUpdateTransportContractTariffMutation,
+    useUpdateTransportContractValidityMutation
 } = contractApiSlice;

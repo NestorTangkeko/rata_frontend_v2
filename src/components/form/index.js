@@ -4,3 +4,5 @@ export {default as FormInput}       from './FormInput'
 export {default as FormNumberInput} from './FormNumberInput'
 export {default as FormSwitch}      from './FormSwitch';
 export {default as FormLocalSelect} from './FormLocalSelect';
+export {default as FormGeoSelect}   from './FormGeoSelect';
+export {default as Formik}          from './Formik';

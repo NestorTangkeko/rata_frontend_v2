@@ -59,7 +59,6 @@ function ContractExport({
                     startDate={date.from}
                     endDate={date.to}
                     onChange={(dates) => {
-                        
                         setDate({
                             ...date,
                             from: dates[0],

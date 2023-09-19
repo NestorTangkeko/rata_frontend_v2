@@ -23,7 +23,6 @@ const Contract = () => {
     <>
         <SubHeader title={'Contracts'}>
             <Button colorScheme={'orange'} hidden={!hasAccess.export} onClick={modal.onOpen}>Export</Button>
-            {/* <DataExport type='transport-contract' route={'transport/contract'} hidden={!hasAccess.export}/> */}
             <Button colorScheme={'orange'} hidden={!hasAccess.create}>Create</Button>
         </SubHeader>
         <Container>

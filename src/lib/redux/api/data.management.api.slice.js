@@ -33,6 +33,19 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
                 method:'GET'
             }),
             // providesTags:['Pagination']
+        }),
+        getShipPoint: builder.query({
+            query:(stc) => ({
+                url: 'v2/data-management/ship-point/'+String(stc).toLowerCase(),
+                method:'GET'   
+            })
+        }),
+        updateShipPoint: builder.mutation({
+            query:({stc, body}) => ({
+                url:'v2/data-management/ship-point/'+String(stc).toLowerCase(),
+                method:'PUT',
+                body
+            })
         })
     })
 
@@ -41,5 +54,7 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
 export const {
     useUpdateDataMutation,
     useCreateDataMutation,   
-    useGetDataDetailsQuery                              
+    useGetDataDetailsQuery,
+    useGetShipPointQuery,
+    useUpdateShipPointMutation                              
 } = dataManagementSlice
