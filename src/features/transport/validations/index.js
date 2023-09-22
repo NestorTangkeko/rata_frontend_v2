@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as Yup from 'yup';
 
 export const tariffSchema = Yup.object().shape({
@@ -32,3 +33,23 @@ export const replanDraftBill = Yup.object().shape({
     contract_type: Yup.object().required('Required').nullable(),
     rdd: Yup.string().required('Required')
 })
+
+
+const isDateValid = Yup.string().test({
+    name:'isDateValid',
+    exclusive:false,
+    params:{},
+    message:'Invalid date',
+    test: (value,{parent}) => {
+        console.log(value,parent)
+        console.log(moment(parent.to).diff(value,'days'))
+        return moment(parent.to).diff(value,'days') >= 0
+    }
+})
+
+export const contractExportSchema = Yup.object().shape({
+    contract: Yup.object().nullable().required('Required'),
+    from: isDateValid.required('Required'),
+    to: isDateValid.required('Required')
+})
+

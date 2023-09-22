@@ -64,7 +64,6 @@ function ShipPointEdit() {
       </SubHeader>
       <Container>
         <Formik
-          
           {...{
             initialValues: initialValues,
             onSubmit:handleSubmit,

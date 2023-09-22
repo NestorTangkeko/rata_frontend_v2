@@ -21,7 +21,6 @@ function FormGeoSelect({name,label,type,onChange,...props}) {
     const filterOptions = (input) => {
         if(data) 
         return data.filter(i => i.label.toLowerCase().includes(input.toLowerCase()))
-
         return []
     }
 
