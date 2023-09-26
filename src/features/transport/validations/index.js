@@ -5,8 +5,8 @@ export const tariffSchema = Yup.object().shape({
     tariff_id:          Yup.string().required('required'),
     tariff_desc:        Yup.string().required('required'),
     min_billable_unit:  Yup.object().nullable(),
-    min_value:          Yup.number(),
-    max_value:          Yup.number(),
+    min_value:          Yup.string(),
+    max_value:          Yup.string(),
     class_of_store:     Yup.object().nullable(),
     service_type:       Yup.object().required('required').nullable(),
     sub_service_type:   Yup.string().nullable(),
@@ -35,21 +35,23 @@ export const replanDraftBill = Yup.object().shape({
 })
 
 
-const isDateValid = Yup.string().test({
-    name:'isDateValid',
-    exclusive:false,
-    params:{},
-    message:'Invalid date',
-    test: (value,{parent}) => {
-        console.log(value,parent)
-        console.log(moment(parent.to).diff(value,'days'))
-        return moment(parent.to).diff(value,'days') >= 0
-    }
-})
+const isDateValid = (name) => {
+    return Yup.string()
+    .test({
+        name:'isDateValid'+name,
+        exclusive:false,
+        params:{},
+        message:'Invalid date',
+        test: (value,{parent}) => {
+            return moment(parent.to).diff(parent.from,'days') >= 0
+        }
+    })
+}
+
 
 export const contractExportSchema = Yup.object().shape({
     contract: Yup.object().nullable().required('Required'),
-    from: isDateValid.required('Required'),
-    to: isDateValid.required('Required')
+    from: isDateValid('from'),
+    to: isDateValid('to')
 })
 

@@ -22,13 +22,33 @@ function ContractExport({
             to: ''
         },
         validationSchema:contractExportSchema,
+        validate: ({from,to}) => {
+            const errors = {}
+            if(moment(from).isValid() && !moment(to).isValid()) {
+                errors.to = 'Valid until is required!'
+            }
+
+            if(moment(to).isValid() && !moment(from).isValid()) {
+                console.log('test')
+                errors.to = 'Valid From is required!'
+            }
+            return errors
+        },
         onSubmit: async(values) => {
+            let query = {};
+
+            if(moment(values.from).isValid() && moment(values.to).isValid()) {
+                query = {
+                    from: moment(values.from).format('YYYY-MM-DD'),
+                    to: moment(values.to).format('YYYY-MM-DD')
+                }
+            }
+
             await exporData({
                 route:'transport/contract',
                 query:{
                     contract_id: values.contract?.value,
-                    from: moment(values.from).format('YYYY-MM-DD'),
-                    to: moment(values.to).format('YYYY-MM-DD')
+                    ...query
                 }
             })
             .unwrap()
@@ -37,8 +57,6 @@ function ContractExport({
             })
         }
     });
-
-   
    
     return (
     <Modal isOpen={isOpen} onClose={onClose} title={'Contract Export'}>
