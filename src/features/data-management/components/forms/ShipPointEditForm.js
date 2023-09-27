@@ -1,8 +1,8 @@
-import { Flex, Grid } from '@chakra-ui/react'
-import Label from 'components/Label'
-import { FormGeoSelect, FormInput } from 'components/form'
-import { useFormikContext } from 'formik'
-import React from 'react'
+import { Flex, Grid } from '@chakra-ui/react';
+import Label from 'components/Label';
+import { FormGeoSelect, FormInput } from 'components/form';
+import { useFormikContext } from 'formik';
+import React from 'react';
 
 function ShipPointEditForm() {
     const {values,setFieldValue} = useFormikContext();

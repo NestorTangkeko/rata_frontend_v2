@@ -19,6 +19,7 @@ import {
 } from 'features/warehouse';
 import {Role, RoleAccess, Scheduler, User} from 'features/administration';
 import ShipPoint from 'features/data-management/pages/ShipPoint';
+import { BillingCreate, BillingTransport } from 'features/billing';
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,19 @@ const router = createBrowserRouter([
                     {
                         path:':contract_id',
                         element:<TransportContractDTL/>
+                    }
+                ]
+            },
+            {
+                path:'/transport-billing',
+                children:[
+                    {
+                        index:true,
+                        element: <BillingTransport/>
+                    },
+                    {
+                        path:'create',
+                        element:<BillingCreate/>
                     }
                 ]
             },

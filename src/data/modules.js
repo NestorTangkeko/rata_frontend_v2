@@ -39,6 +39,12 @@ const modules = [
                 id:'tariff',
                 label:'Tariff',
                 path:'/transport-tariff'
+            },
+            {
+                sequence_no: 7,
+                id:'billing',
+                label: 'Billing',
+                path:'/transport-billing'
             }
         ]
     },
