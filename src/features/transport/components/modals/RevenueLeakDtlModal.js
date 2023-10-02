@@ -5,11 +5,14 @@ import Table from '../tables/RevenueLeakDtlTable';
 const RevenueLeakDtlModal = ({
     isOpen,
     onClose,
+    isLoading = false,
     data
 }) => {
   return (
     <Modal title='Revenue Leak Details' size='50%' isOpen={isOpen} onClose={onClose}>
-        <Table data={data}/>
+        {
+          !isLoading ? <Table data={data}/> : 'Loading'  
+        }
         
     </Modal> 
   )

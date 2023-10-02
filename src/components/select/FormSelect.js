@@ -11,10 +11,7 @@ const MasterSelect = ({
     error,
     touched,
     filter,
-    route,
-    query,
-    isDisabled,
-    onChange
+    route
 }) => {
 
    // eslint-disable-next-line no-unused-vars

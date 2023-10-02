@@ -1,13 +1,21 @@
 import React from 'react'
 import {Paginated} from 'components/table';
 import {createColumnHelper} from '@tanstack/react-table';
+import { Button } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const ShipPointTable = () => {
     const columnHelper = createColumnHelper();
-
+    const navigate = useNavigate();
     const columns = [
         columnHelper.accessor('stc_code',{
             header:'STC',
+            cell: props => {
+                const handleClick = () => {
+                    navigate(props.getValue())
+                }
+                return <Button variant={'link'} onClick={handleClick}>{props.getValue()}</Button>
+            }
         }),
         columnHelper.accessor('stc_description',{
             header:'Description'

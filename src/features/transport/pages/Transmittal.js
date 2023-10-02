@@ -4,6 +4,7 @@ import {useDisclosure} from '@chakra-ui/react';
 import {Button} from '@chakra-ui/react';
 import TransmittalModal from '../components/modals/TransmittalModal';
 import {useCheckAccess} from 'hooks';
+import AsciiTable from '../components/tables/AsciiTable';
 
 const Transmittal = () => {
     const hasAccess = useCheckAccess({header_id:'transport_operations'})
@@ -14,7 +15,7 @@ const Transmittal = () => {
 			  <Button onClick={transmittalDisclosure.onOpen} hidden={!hasAccess.create}>Transmittal</Button>
         </SubHeader>
         <Container>
-			
+          <AsciiTable/>
         </Container>
         <TransmittalModal isOpen={transmittalDisclosure.isOpen} onClose={transmittalDisclosure.onClose}/>
     </>

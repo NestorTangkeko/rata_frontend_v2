@@ -126,14 +126,15 @@ const RoleModules = ({onConfirm, isConfirmLoading, access, hasEdit}) => {
                 }
             }))
         })  
+
         if(access.length > 0) {
             data = data.map(item => {
                 const currentAccess = access.find(a => a.header_id === item.header_id && a.id === item.id)
                 
-                item.view   = currentAccess.view
-                item.create = currentAccess.create
-                item.edit   = currentAccess.edit
-                item.export = currentAccess.export
+                item.view   = currentAccess?.view ?? false
+                item.create = currentAccess?.create ?? false
+                item.edit   = currentAccess?.edit ?? false
+                item.export = currentAccess?.export ?? false
                 
                 return item
             })

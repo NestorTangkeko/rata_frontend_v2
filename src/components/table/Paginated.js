@@ -12,7 +12,8 @@ import { Table,
     Select,
     Input,
     Flex,
-    IconButton
+    IconButton,
+    filter
 } from "@chakra-ui/react";
 import {RepeatIcon} from '@chakra-ui/icons';
 import {
@@ -32,7 +33,7 @@ const pageSizes = [
     100
 ]
 
-const Paginated = ({title,columns,route,customFilters}) => {
+const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows}) => {
     const [page,setPage] = React.useState({
         pageSize:10,
         pageIndex:0
@@ -40,7 +41,8 @@ const Paginated = ({title,columns,route,customFilters}) => {
 
     const [globalFilter,setGlobalFilter] = React.useState('')
     const [columnFilters,setColumnFilters] = React.useState([])
-
+    const [rowSelection, setRowSelection] = React.useState({})
+  
     const {data = [],refetch,isLoading} = useGetDataQuery({
         route:route,
         query:{
@@ -64,15 +66,39 @@ const Paginated = ({title,columns,route,customFilters}) => {
                 ...page
             },
             columnFilters,
-            globalFilter    
+            globalFilter,
+            rowSelection 
         },
-        manualPagination:true,
-        manualFiltering:true,
-        onPaginationChange:setPage,
-        onColumnFiltersChange: setColumnFilters,
-        onGlobalFilterChange: setGlobalFilter,
-        getCoreRowModel: getCoreRowModel(),
+        getCoreRowModel:        getCoreRowModel(),
+        manualPagination:       true,
+        manualFiltering:        true,
+        enableRowSelection:     true,
+        onPaginationChange:     setPage,
+        onColumnFiltersChange:  setColumnFilters,
+        onGlobalFilterChange:   setGlobalFilter,
+        onRowSelectionChange:   setRowSelection
     })
+
+
+    //clear selectedRows
+    React.useEffect(() => {
+        setRowSelection({})
+    },[page,columnFilters,globalFilter])
+
+    React.useEffect(() => {
+        const rows = Object.keys(rowSelection).map(i => Number(i))
+        const temp = data?.data || [];
+        if(selectedRows){
+            if(rows.length > 0) {
+                selectedRows(temp.filter((value,index) => rows.includes(index)))
+            }
+            else {
+                selectedRows([])
+            }
+        }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[rowSelection])
 
     return (
         <Box borderWidth={'1px'} rounded='sm'>
@@ -80,13 +106,14 @@ const Paginated = ({title,columns,route,customFilters}) => {
             <Box fontWeight={'semibold'} as='h4'>{title}</Box>
             <Flex gap={1}>
                 {
+                    showFilters ? 
                     table.getHeaderGroups().map(headerGroup => 
                         headerGroup.headers.map(header => {
                             return (header.column.getCanFilter() ? 
                             <TableFilters key={header.column.id} column={header.column} table={table}/> : null)
                             
                         })
-                    )
+                    ): null
                 }
             </Flex>
             <Flex direction={'row'} justifyContent='space-between'>   

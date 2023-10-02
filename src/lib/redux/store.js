@@ -15,10 +15,12 @@ import storage from 'redux-persist/lib/storage';
 import {apiSlice,errorHandler} from './api.slice';
 import authSlice from './auth.slice';
 import geoSlice from './geo.slice';
+import tariffSlice from './tariff.slice';
 
 const reducers = combineReducers({
     [apiSlice.reducerPath]: apiSlice.reducer,
     geography: geoSlice,
+    tariff: tariffSlice,
     auth:persistReducer({
         key:'auth',
         storage

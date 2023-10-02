@@ -10,7 +10,6 @@ const ReplanModal = ({
     return (
         <Modal title='Replan Draft Bill' size='50%' isOpen={isOpen} onClose={onClose}>
             <ReplanForm/>
-            
         </Modal>
     )
 }

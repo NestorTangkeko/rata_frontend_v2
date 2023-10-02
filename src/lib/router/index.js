@@ -12,13 +12,14 @@ import {
     TransportOutlet, 
     Invoices
 } from 'features/transport';
-import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo} from 'features/data-management';
+import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit} from 'features/data-management';
 import {
     WarehouseDraftBill,
     WarehouseTransmittal
 } from 'features/warehouse';
 import {Role, RoleAccess, Scheduler, User} from 'features/administration';
 import ShipPoint from 'features/data-management/pages/ShipPoint';
+import { BillingCreate, BillingTransport } from 'features/billing';
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,19 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path:'/transport-billing',
+                children:[
+                    {
+                        index:true,
+                        element: <BillingTransport/>
+                    },
+                    {
+                        path:'create',
+                        element:<BillingCreate/>
+                    }
+                ]
+            },
+            {
                 path:'/transport-tariff',
                 element:<TransportOutlet/>,
                 children:[
@@ -83,7 +97,16 @@ const router = createBrowserRouter([
             },
             {
                 path:'/ship-point',
-                element:<ShipPoint/>
+                children:[
+                    {
+                        index:true,
+                        element:<ShipPoint/>, 
+                    },
+                    {
+                        path:':id',
+                        element:<ShipPointEdit/>
+                    }
+                ]
             }, 
             {
                 path:'/location',

@@ -1,6 +1,6 @@
 import React from 'react';
 import FormControl from './FormControl';
-import {Field}      from 'formik';
+import {Field, useField}      from 'formik';
 import {Input} from '@chakra-ui/react';
 
 const FormInput = ({
@@ -12,17 +12,17 @@ const FormInput = ({
     touched,
     isDisabled
 }) => {
-
+  const [field,meta] = useField(name);
+  
   return (
-    <FormControl label={label} id={id} error={error} touched={touched}>
+    <FormControl label={label} id={id} error={meta.error} touched={meta.touched}>
         <Field
             as={Input}
             id={id}
-            name={name}
+            name={field.name}
             placeholder={label}
             isDisabled={isDisabled}
             type={type}
-           
         />
     </FormControl>
   )

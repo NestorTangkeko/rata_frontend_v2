@@ -10,10 +10,20 @@ export const geoSlice = apiSlice.injectEndpoints({
                     ...params.query
                 }
             })
+        }),
+        getGeography: builder.query({
+            query:(params) => ({
+                url:'/v2/select/'+params.type,
+                method:'GET',
+                params:{
+                    ...params.query
+                }
+            })
         })
     })
 })
 
 export const {
-    useGetGeoQuery
+    useGetGeoQuery,
+    useGetGeographyQuery
 } = geoSlice

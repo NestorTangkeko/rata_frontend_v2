@@ -37,7 +37,7 @@ const ReactDatePicker = ({
     <>
      <InputGroup>  
         <DatePicker
-          selectsRange
+          selectsRange={selectsRange}
           selected={startDate}
           startDate={startDate}
           endDate={endDate}

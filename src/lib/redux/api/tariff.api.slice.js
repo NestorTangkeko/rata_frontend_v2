@@ -6,12 +6,6 @@ export const tariffApiSlice = apiSlice.injectEndpoints({
             query:(params) => ({
                 url:`v2/tariff/tariff-id/${params.tariff_id}`,
                 method:'GET',
-
-                // url:`/contract-tariff/tariff/${params.tariff_id}`,
-                // method:'GET',
-                // params:{
-                //     ...params.query
-                // }
             }),
             transformResponse: (res,meta,arg) =>  {
                 console.log(res)
@@ -63,7 +57,16 @@ export const tariffApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags:['Tariff']
         }),
-        
+        bulkApproveTariff: builder.mutation({
+            query:(data) => ({
+                url: 'v2/tariff/status',
+                method:'PUT',
+                body:{
+                    data
+                }
+            }),
+            invalidatesTags:['Pagination']
+        })
     })
 })
 
@@ -72,5 +75,6 @@ export const {
     useCreateTariffICMutation,
     useCreateTariffMutation,
     useUpdateTariffMutation,
-    useUpdateTransportICMutation
+    useUpdateTransportICMutation,
+    useBulkApproveTariffMutation
 } = tariffApiSlice;

@@ -87,6 +87,9 @@ const InvoicesTable = () => {
         columnHelper.accessor('reason_code',{
             header:'Reason Code'
         }),
+        columnHelper.accessor('redel_remarks',{
+            header:'Redel Remarks'
+        }),
         columnHelper.accessor('cleared_date',{
             header:'Cleard Date'
         }),
@@ -101,6 +104,7 @@ const InvoicesTable = () => {
                 title={'Invoices'}
                 columns={columns}
                 route={'/v2/invoice'}
+                showFilters
             />
         </>
     )
