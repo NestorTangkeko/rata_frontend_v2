@@ -1,20 +1,23 @@
 import React from 'react';
-import {createColumnHelper} from '@tanstack/react-table';
-import {Button} from '@chakra-ui/react';
-import {Paginated} from 'components/table';
+import { Paginated } from 'components/table';
+import { useFormikContext } from 'formik';
+import { createColumnHelper } from '@tanstack/react-table';
 
-const DraftBillTable = ({handleGetDetails}) => {
+const DraftBillTable = () => {
+    const {values:{from,to,customer,service_type}} = useFormikContext()
+
     const columnHelper = createColumnHelper();
-    const columns = [
+
+    const columns = React.useMemo(() => [
         columnHelper.accessor('draft_bill_no',{
             header:'Draft Bill',
-            cell:props => {
-                const data = props.getValue();
-                const handleClick = () => {
-                    handleGetDetails(props.row.original)
-                }
-                return <Button variant='link' colorScheme={'blue'} size='xs' onClick={handleClick}>{data}</Button>
-            }
+            // cell:props => {
+            //     const data = props.getValue();
+            //     const handleClick = () => {
+            //         handleGetDetails(props.row.original)
+            //     }
+            //     return <Button variant='link' colorScheme={'blue'} size='xs' onClick={handleClick}>{data}</Button>
+            // }
         }),
         columnHelper.accessor('contract_type',{
             header:'Contract Type'
@@ -76,15 +79,23 @@ const DraftBillTable = ({handleGetDetails}) => {
         columnHelper.accessor('status',{
             header:'Status'
         })
-    ]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    ],[])
 
     return (
+       <>
         <Paginated
             title='Draft Bill'
             columns={columns}
-            route={'/v2/draft-bill'}
-            showFilters
+            route={'/v2/billing/draft-bill'}
+            customFilters={{
+                from,
+                to,
+                customer: customer?.value || '',
+                service_type: service_type?.value || ''
+            }}
         />
+       </>
     )
 }
 

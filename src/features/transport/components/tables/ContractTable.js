@@ -44,6 +44,7 @@ const ContractTable = ({goToDetails}) => {
             title={'Transport Contract'}
             columns={columns}
             route={'/v2/contract'}
+            showFilters
         />
     )
 }

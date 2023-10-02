@@ -1,10 +1,11 @@
 import React from 'react'
 import {SubHeader,Container} from 'layouts';
-import { Button, Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'components/form';
 import BillingCreateForm from '../components/forms/BillingCreateForm';
 import { createBillingSchema } from '../validations';
+import DraftBillTable from '../components/table/DraftBillTable';
 
 const BillingCreate = () => {
   const nav = useNavigate();
@@ -13,7 +14,7 @@ const BillingCreate = () => {
     from: '',
     to:'',
     service_type: null,
-    principal: null,
+    customer: null,
     parameter_1: '',
     parameter_2: '',
     parameter_3: '',
@@ -40,7 +41,11 @@ const BillingCreate = () => {
     </SubHeader> 
     <Container>
         <Formik initialValues={values} onSubmit={handleSubmit} validationSchema={createBillingSchema}>
-          <BillingCreateForm/>
+          <Flex direction={'column'} gap={5}>
+            <BillingCreateForm/>
+            <DraftBillTable/>
+          </Flex>
+
         </Formik>
     </Container>
   </>

@@ -104,6 +104,7 @@ const InvoicesTable = () => {
                 title={'Invoices'}
                 columns={columns}
                 route={'/v2/invoice'}
+                showFilters
             />
         </>
     )

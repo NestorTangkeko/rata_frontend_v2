@@ -33,7 +33,7 @@ const pageSizes = [
     100
 ]
 
-const Paginated = ({title,columns,route,customFilters,selectedRows}) => {
+const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows}) => {
     const [page,setPage] = React.useState({
         pageSize:10,
         pageIndex:0
@@ -97,6 +97,7 @@ const Paginated = ({title,columns,route,customFilters,selectedRows}) => {
             }
         }
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[rowSelection])
 
     return (
@@ -105,13 +106,14 @@ const Paginated = ({title,columns,route,customFilters,selectedRows}) => {
             <Box fontWeight={'semibold'} as='h4'>{title}</Box>
             <Flex gap={1}>
                 {
+                    showFilters ? 
                     table.getHeaderGroups().map(headerGroup => 
                         headerGroup.headers.map(header => {
                             return (header.column.getCanFilter() ? 
                             <TableFilters key={header.column.id} column={header.column} table={table}/> : null)
                             
                         })
-                    )
+                    ): null
                 }
             </Flex>
             <Flex direction={'row'} justifyContent='space-between'>   

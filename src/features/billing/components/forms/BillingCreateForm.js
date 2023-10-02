@@ -1,4 +1,4 @@
-import { Grid,Flex, GridItem, Text, Divider } from '@chakra-ui/react';
+import { Grid,Flex, GridItem, Text, } from '@chakra-ui/react';
 import { FormInput } from 'components/form';
 import { FormSelect } from 'components/select';
 import React from 'react';
@@ -12,7 +12,7 @@ function BillingCreateForm() {
                 <FormInput name='from' type={'date'} label={'RDD From'}/>
                 <FormInput name='to' type={'date'} label={'RDD To'}/>
             </Flex>
-            <FormSelect name='principal' route={'principal'} label={'Principal'}/>
+            <FormSelect name='customer' route={'principal'} label={'Principal'}/>
             <FormSelect name='service_type' route={'quick-code'} label={'Service Type'} filter={{type:'SRV_TYP'}}/>
             
         </GridItem>

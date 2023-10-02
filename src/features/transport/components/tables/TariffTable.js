@@ -104,11 +104,12 @@ const TariffTable = () => {
 
     const getSelectedRows = React.useCallback((rows = []) => {
         dispatch(setSelectedRows(rows.filter(item => item.tariff_status === 'DRAFT')))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return (
         <>
-            <Paginated title='Tariffs' columns={columns} route='/contract-tariff/tariff' selectedRows={getSelectedRows}/>
+            <Paginated title='Tariffs' columns={columns} route='/contract-tariff/tariff' selectedRows={getSelectedRows} showFilters/>
         </>
     )
 }

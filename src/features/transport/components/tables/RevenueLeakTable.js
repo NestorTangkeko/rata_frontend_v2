@@ -83,6 +83,7 @@ const RevenueLeakTable = ({handleOpen}) => {
                 title='Revenue Leaks'
                 columns={columns}
                 route={'/v2/revenue-leak'}
+                showFilters
             />
         </>
     )
