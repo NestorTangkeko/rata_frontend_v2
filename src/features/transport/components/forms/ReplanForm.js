@@ -31,9 +31,9 @@ const ReplanForm = () => {
         .unwrap()
         .then(result => {
             setResult({
-                draft_bill: result?.draft_bill.length,
-                revenue_leak: result?.revenue_leak.length,
-                invoices: result?.data.length
+                draft_bill: result?.draft_bill,
+                revenue_leak: result?.revenue_leak,
+                invoices: result?.data
             })
             toast.success('Done!')
         })
