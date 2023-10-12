@@ -22,7 +22,7 @@ const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff,hasEdit})
             header:'Valid From'
         }),
         columnHelper.accessor('valid_to',{
-            header:'Valid To'
+            header:'Valid Until'
         }),
         columnHelper.display({
             header:'Action',

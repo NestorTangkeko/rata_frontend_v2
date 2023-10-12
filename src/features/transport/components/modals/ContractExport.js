@@ -18,6 +18,7 @@ function ContractExport({
     const formik = useFormik({
         initialValues:{
             contract: null,
+            service_type:null,
             from: '',
             to: ''
         },
@@ -48,6 +49,7 @@ function ContractExport({
                 route:'transport/contract',
                 query:{
                     contract_id: values.contract?.value,
+                    service_type: values.service_type?.value,
                     ...query
                 }
             })
@@ -80,12 +82,22 @@ function ContractExport({
                             <Input type='date' name='to' value={formik.values.to} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                         </FormControl>
                     </Flex>
-                    
                 </Flex>
+                <FormControl error={formik.errors.contract} touched={formik.touched.contract}>
+                    <Select
+                        label={'Service Type'}
+                        route={'quick-code'}
+                        value={formik.values.service_type}
+                        filter={{
+                            type: 'SRV_TYP'
+                        }}
+                        onChange={(selected) => formik.setFieldValue('service_type',selected)}
+                    />
+                </FormControl>
                 <Flex justify={'flex-end'}>
                     <Button type='submit' colorScheme='orange' isLoading={isLoading}>Export</Button>
                 </Flex>
-                
+        
             </Flex>
         </form>
         

@@ -35,7 +35,7 @@ const ContractTable = ({goToDetails}) => {
             header:'Valid From'
         }),
         columnHelper.accessor('valid_to',{
-            header:'Valid To'
+            header:'Valid Until'
         })
     ]
     

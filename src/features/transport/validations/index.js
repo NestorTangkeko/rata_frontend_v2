@@ -52,6 +52,7 @@ const isDateValid = (name) => {
 export const contractExportSchema = Yup.object().shape({
     contract: Yup.object().nullable().required('Required'),
     from: isDateValid('from'),
-    to: isDateValid('to')
+    to: isDateValid('to'),
+    service_type: Yup.object().nullable()
 })
 

@@ -8,11 +8,14 @@ const DateInput = ({start,end,handleChange,label}) => {
     const [endDate,setEndDate] = React.useState(null)
 
     const onChange = dates => {
-        const [start, end] = dates;
+        let [start, end] = dates;
         setStartDate(start);
         setEndDate(end);
+        
+        start = moment(start).isValid() ? moment(start).format('YYYY-MM-DD') : null;
+        end =   moment(end).isValid() ? moment(end).format('YYYY-MM-DD') : null;
 
-        handleChange(`${moment(start).format('YYYY-MM-DD')},${moment(end).format('YYYY-MM-DD')}`);
+        handleChange(`${start},${end}`);
     }
 
     return (

@@ -16,7 +16,7 @@ const ContractInformation = ({data}) => {
                 <Label label={'Description'}     value={data?.contract_description}/>
                 <Label label={'Contract Status'} value={data?.contract_status}/>
                 <Label label={'Trucker Group'}   value={data?.vendor_group}/>
-                <Label label={'Valid To'}        value={data?.valid_to}/>
+                <Label label={'Valid Until'}        value={data?.valid_to}/>
             </Flex>
         </Flex>
     </>
