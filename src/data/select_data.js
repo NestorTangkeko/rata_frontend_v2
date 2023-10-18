@@ -304,3 +304,14 @@ export const operators = [
         value:'Math.round('
     }
 ]
+
+export const draft_bill_export = [
+    {
+        label:'Draft Bill Date',
+        value:'draft_bill_date'
+    },
+    {
+        label:'Delivery Date',
+        value:'delivery_date'
+    }
+]

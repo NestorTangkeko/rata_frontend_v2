@@ -71,8 +71,7 @@ function ContractExport({
                         value={formik.values.contract}
                         onChange={(selected) => formik.setFieldValue('contract',selected)}
                     />
-                </FormControl>
-                
+                </FormControl>   
                 <Flex direction={'column'} gap='1'>
                     <Flex gap='2'>
                         <FormControl label='Valid From' error={formik.errors.from} touched={formik.touched.from}>
