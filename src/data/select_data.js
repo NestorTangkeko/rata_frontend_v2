@@ -131,6 +131,10 @@ export const parameters = [
         value:`tariff['tariff_rate']`
     },
     {
+        label:'min_rate',
+        value:`tariff['min_rate']`
+    },
+    {
         label:'total_qty',
         value:`invoice['total_qty']`
     },
