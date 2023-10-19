@@ -56,3 +56,9 @@ export const contractExportSchema = Yup.object().shape({
     service_type: Yup.object().nullable()
 })
 
+
+export const draftBillExportSchema = Yup.object().shape({
+    type: Yup.object().nullable().required('Required'),
+    from: isDateValid('from').required('Required'),
+    to: isDateValid('to').required('Required')
+})

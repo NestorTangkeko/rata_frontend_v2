@@ -131,6 +131,10 @@ export const parameters = [
         value:`tariff['tariff_rate']`
     },
     {
+        label:'min_rate',
+        value:`tariff['min_rate']`
+    },
+    {
         label:'total_qty',
         value:`invoice['total_qty']`
     },
@@ -302,5 +306,16 @@ export const operators = [
     {
         label:'Round',
         value:'Math.round('
+    }
+]
+
+export const draft_bill_export = [
+    {
+        label:'Draft Bill Date',
+        value:'draft_bill_date'
+    },
+    {
+        label:'Delivery Date',
+        value:'delivery_date'
     }
 ]

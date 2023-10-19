@@ -12,6 +12,9 @@ const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff,hasEdit})
         columnHelper.accessor('tariff_rate',{
             header:'Tariff Rate'
         }),
+        columnHelper.accessor('min_rate',{
+            header:'Min Rate'
+        }),
         columnHelper.accessor('status',{
             header:'Status'
         }),
