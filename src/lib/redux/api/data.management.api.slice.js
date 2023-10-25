@@ -31,21 +31,23 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
             query:(params) => ({
                 url: `v2/data-management/${params.route}`,
                 method:'GET'
-            }),
-            // providesTags:['Pagination']
+            })
+            
         }),
         getShipPoint: builder.query({
             query:(stc) => ({
                 url: 'v2/data-management/ship-point/'+String(stc).toLowerCase(),
                 method:'GET'   
-            })
+            }),
+            providesTags:['ShipPoint']
         }),
         updateShipPoint: builder.mutation({
             query:({stc, body}) => ({
                 url:'v2/data-management/ship-point/'+String(stc).toLowerCase(),
                 method:'PUT',
                 body
-            })
+            }),
+            invalidatesTags:['ShipPoint'] 
         })
     })
 

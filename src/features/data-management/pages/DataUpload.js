@@ -8,7 +8,8 @@ import DropZone from 'components/DropZone';
 import {useGetTemplateMutation,useUploadDataMutation} from 'lib/redux/api/data.upload.api.slice';
 import { toast } from 'react-toastify';
 
-import {useXLSX,useCreateXLSX,useCheckAccess} from 'hooks';
+import {useXLSX,useCreateXLSX} from 'hooks';
+
 
 const DataUpload = () => {
 	//const hasAccess = useCheckAccess({header_id:'data_management'})
@@ -41,8 +42,13 @@ const DataUpload = () => {
 		})
 		.unwrap()
 		.then(result => {
-			createXLSX(result)
-			toast.success('Upload Complete')
+			//createXLSX(result)
+			if(!result){
+				return toast.success('Upload Success!')
+			}
+
+			toast.warn('Upload Complete with errors!')
+			return createXLSX(result)
 		})
 		
 	}

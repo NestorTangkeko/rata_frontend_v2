@@ -6,8 +6,6 @@ const FormSwitch = ({
     id,
     name,
     label,
-    error,
-    touched,
     onChange
 }) => {
     // eslint-disable-next-line no-unused-vars
@@ -16,9 +14,9 @@ const FormSwitch = ({
     const {value} = meta
 
     return (
-        <FormControl label={label} id={id} error={error} touched={touched}>
+        <FormControl label={label} id={id} error={meta.error} touched={meta.touched}>
             <SwitchCUI
-                    name={name}
+                    name={fields.name}
                     size={'sm'}
                     isChecked={value}
                     onChange={()=>{

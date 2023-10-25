@@ -1,11 +1,11 @@
 import { Flex, Grid } from '@chakra-ui/react';
 import Label from 'components/Label';
-import { FormGeoSelect, FormInput } from 'components/form';
+import { FormInput, FormSwitch } from 'components/form';
 import { useFormikContext } from 'formik';
 import React from 'react';
 
 function ShipPointEditForm() {
-    const {values,setFieldValue} = useFormikContext();
+    const {values} = useFormikContext();
     
     return (
        <Grid templateColumns={'repeat(2, 1fr)'} columnGap={2} rowGap={2}>
@@ -19,25 +19,16 @@ function ShipPointEditForm() {
                     label={'Ship Point Address'}
                 />
                 
-                <FormGeoSelect
+                <Label
                     name={'region'}
-                    type={'region'}
                     label={'Region'}
-                    onChange={() => {
-                        setFieldValue('province',null)
-                        setFieldValue('city',null)
-                        setFieldValue('barangay',null)
-                    }}
+                    value={values.region?.value}
                 />
 
-                <FormGeoSelect
+                <Label
                     name={'city'}
-                    type={'city'}
                     label={'City'}
-                    province_code={values.province?.value}
-                    onChange={() => {
-                        setFieldValue('barangay',null)
-                    }}
+                    value={values.city?.value}
                 />
                
             </Flex>
@@ -46,27 +37,25 @@ function ShipPointEditForm() {
                     label={'Ship Point Name'}
                     value={values.stc_description}
                 />
-                <FormInput
-                    name={'zip_code'}
+                <FormSwitch
+                    label={'Is Active?'}
+                    name='is_active'
+                />
+                <Label
                     label={'Postal Code'}
+                    value={values.zip_code}
                 />
                
-                <FormGeoSelect
+                <Label
                     name={'province'}
-                    type={'province'}
                     label={'Province'}
-                    region_code={values.region?.value}
-                    onChange={() => {
-                        setFieldValue('city',null)
-                        setFieldValue('barangay',null)
-                    }}
+                    value={values.province?.value}
                 />
 
-                <FormGeoSelect
+                <Label
                     name={'barangay'}
-                    type={'barangay'}
                     label={'Barangay'}
-                    city_code={values.city?.value}
+                    value={values.barangay?.value ?? 'n/a'}
                 />
                 
             </Flex>

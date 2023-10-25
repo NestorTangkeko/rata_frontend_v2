@@ -41,11 +41,12 @@ function ShipPointEdit() {
       stc: id,
       body:{
         stc_address: values.stc_address,
-        zip_code: values.zip_code,
-        region:   values.region?.value || null,          
-        province: values.province?.value || null,
-        city:     values.city?.value || null,
-        barangay: values.barangay?.value || null
+        is_active: values.is_active
+        // zip_code: values.zip_code,
+        // region:   values.region?.value || null,          
+        // province: values.province?.value || null,
+        // city:     values.city?.value || null,
+        // barangay: values.barangay?.value || null
       }
     })
     .unwrap()
@@ -74,7 +75,7 @@ function ShipPointEdit() {
             <br/>
             <Flex justify={'flex-end'} gap={2}>
                 <Button type='reset' isLoading={updateProps.isLoading}>Reset</Button>
-                <Button colorScheme='orange' type='submit' isLoading={updateProps.isLoading}>Save</Button>
+                <Button colorScheme='orange' type='submit' isLoading={updateProps.isLoading} disabled={!data?.is_active}>Save</Button>
             </Flex>
         </Formik>
       </Container>
