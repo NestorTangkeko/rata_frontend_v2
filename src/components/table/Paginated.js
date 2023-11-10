@@ -101,7 +101,7 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
     },[rowSelection])
 
     return (
-        <Box borderWidth={'1px'} rounded='sm'>
+        <Box borderWidth={'1px'} rounded='sm' width={'full'}>
         <Box display={'flex'} p='1' flexDirection={'column'} gap='2'>
             <Box fontWeight={'semibold'} as='h4'>{title}</Box>
             <Flex gap={1}>

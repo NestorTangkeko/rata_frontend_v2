@@ -16,11 +16,13 @@ import {apiSlice,errorHandler} from './api.slice';
 import authSlice from './auth.slice';
 import geoSlice from './geo.slice';
 import tariffSlice from './tariff.slice';
+import transmittalSice from './transmittal.slice';
 
 const reducers = combineReducers({
     [apiSlice.reducerPath]: apiSlice.reducer,
     geography: geoSlice,
     tariff: tariffSlice,
+    transmittal: transmittalSice,
     auth:persistReducer({
         key:'auth',
         storage

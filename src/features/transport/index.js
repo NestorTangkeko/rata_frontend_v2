@@ -6,6 +6,7 @@ export {default as TransportDraftBill}      from './pages/draft-bill/DraftBill';
 export {default as TransportRevenueLeak}    from './pages/revenue-leak/RevenueLeak';
 export {default as TransportTransmittal}    from './pages/Transmittal';
 export {default as Invoices}                from './pages/Invoices';
+export {default as TransmittalDetails}      from './pages/transmittal/TransmittalDetails';
 
 //routes
 export {default as TransportOutlet} from './routers';

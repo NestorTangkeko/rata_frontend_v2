@@ -10,7 +10,8 @@ import {
     TransportRevenueLeak, 
     TransportTransmittal,
     TransportOutlet, 
-    Invoices
+    Invoices,
+    TransmittalDetails
 } from 'features/transport';
 import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit} from 'features/data-management';
 import {
@@ -40,7 +41,17 @@ const router = createBrowserRouter([
             },
             {
                 path:'/transport-transmittal',
-                element:<TransportTransmittal/>
+                children:[
+                    {
+                        index:true,
+                        element:<TransportTransmittal/>
+                    },
+                    {
+                        path:':draft_bill',
+                        element:<TransmittalDetails/>
+                    }
+                ]
+                
             },
             {
                 path:'/transport-contract',
