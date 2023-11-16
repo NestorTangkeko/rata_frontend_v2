@@ -31,8 +31,8 @@ const RevenueLeak = () => {
     return (
         <>
             <SubHeader title={'Revenue Leaks'}>
-                <DataExport route={'transport/revenue-leak'}/>
-                <Button colorScheme={'orange'} onClick={handleOpenReplan}>Replan</Button>
+                <DataExport hidden={!hasAccess.export} route={'transport/revenue-leak'}/>
+                <Button hidden={!hasAccess.create} colorScheme={'orange'} onClick={handleOpenReplan}>Replan</Button>
             </SubHeader>
             <Container>
                 <RevenueLeakTable handleOpen={handleOpen} />
