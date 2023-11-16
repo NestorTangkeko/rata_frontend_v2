@@ -15,6 +15,7 @@ const DraftBillDetailTable = ({data}) => {
         columnHelper.accessor('invoice_no'),
         columnHelper.accessor('delivery_status'),
         columnHelper.accessor('vehicle_type'),
+        columnHelper.accessor('planned_vehicle_type'),
         columnHelper.accessor('tariff_id'),
         columnHelper.accessor('contract_id'),
         columnHelper.accessor('service_type'),

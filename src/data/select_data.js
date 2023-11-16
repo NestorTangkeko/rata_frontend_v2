@@ -100,8 +100,8 @@ export const group_by = [
         value:'vehicle_type'
     },
     {
-        label:'trip_plan',
-        value:'trip_plan'
+        label:'trip_no',
+        value:'trip_no'
     },
     {
         label:'transaction_date',
