@@ -75,7 +75,7 @@ function ShipPointEdit() {
             <br/>
             <Flex justify={'flex-end'} gap={2}>
                 <Button type='reset' isLoading={updateProps.isLoading}>Reset</Button>
-                <Button colorScheme='orange' type='submit' isLoading={updateProps.isLoading} disabled={!data?.is_active}>Save</Button>
+                <Button colorScheme='orange' type='submit' isLoading={updateProps.isLoading}>Save</Button>
             </Flex>
         </Formik>
       </Container>
