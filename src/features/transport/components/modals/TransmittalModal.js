@@ -47,7 +47,7 @@ const TransmittalModal = ({
 	}
 
     return (
-        <Modal title={isRetransmit ? 'Retransmit to Ascii' :'Transmittal to Ascii'} isOpen={isOpen} onClose={onClose}>
+        <Modal title={isRetransmit==='true' ? 'Retransmit to Ascii' :'Transmittal to Ascii'} isOpen={isOpen} onClose={onClose}>
         <Flex direction={'column'} gap='2'>
             <Select
                 name='location'

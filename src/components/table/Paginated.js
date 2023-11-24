@@ -13,7 +13,8 @@ import { Table,
     Input,
     Flex,
     IconButton,
-    filter
+    filter,
+    Wrap
 } from "@chakra-ui/react";
 import {RepeatIcon} from '@chakra-ui/icons';
 import {
@@ -78,7 +79,6 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
         onGlobalFilterChange:   setGlobalFilter,
         onRowSelectionChange:   setRowSelection
     })
-
 
     //clear selectedRows
     React.useEffect(() => {

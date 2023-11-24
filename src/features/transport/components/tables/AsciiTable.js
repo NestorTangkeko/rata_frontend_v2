@@ -18,13 +18,25 @@ const AsciiTable = () => {
                 return <Button variant='link' colorScheme={'blue'} size='xs' onClick={handleClick}>{data}</Button>
 			} 
 		}),
+		columnHelper.accessor('first_transmitted_date',{
+			header:'First Transmitted Date'
+		}),
+		columnHelper.accessor('last_transmitted_date',{
+			header:'Last Transmitted Date'
+		}),
+		columnHelper.accessor('last_transmitted_by',{
+			header:'Last Transmitted By'
+		}),
+		columnHelper.accessor('transmittal_count',{
+			header:'# of Retransmittal'
+		}),
 		columnHelper.accessor('contract_type',{
 			header:'Contract Type'
 		}),
 		columnHelper.accessor('location',{
 			header:'Location'
 		}),
-		columnHelper.accessor('draft_bill_date',{
+		columnHelper.accessor('Draft Bill Date',{
 			header:'draft_bill_date'
 		}),
 		columnHelper.accessor('delivery_date',{
@@ -59,18 +71,6 @@ const AsciiTable = () => {
 		}),
 		columnHelper.accessor('status',{
 			header:'Status'
-		}),
-		columnHelper.accessor('first_transmitted_date',{
-			header:'First Transmitted Date'
-		}),
-		columnHelper.accessor('last_transmitted_date',{
-			header:'Last Transmitted Date'
-		}),
-		columnHelper.accessor('last_transmitted_by',{
-			header:'Last Transmitted By'
-		}),
-		columnHelper.accessor('transmittal_count',{
-			header:'# of Retransmittal'
 		})
 	]
 

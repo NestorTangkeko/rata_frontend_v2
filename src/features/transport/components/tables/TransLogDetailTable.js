@@ -3,7 +3,7 @@ import { createColumnHelper } from '@tanstack/react-table'
 import { Paginated } from 'components/table';
 import { getTransmittalState } from 'lib/redux/transmittal.slice';
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function TransLogDetailTable() {
     const {header} = useSelector(getTransmittalState);
@@ -39,7 +39,7 @@ function TransLogDetailTable() {
         <Box width={'100%'}>
             <Paginated
             columns={columns}
-            title={'Transmittal Detail'}
+            title={'Error Log Details'}
             route={`/v2/ascii/log-details/${header.header_id}`}
         />
         </Box>

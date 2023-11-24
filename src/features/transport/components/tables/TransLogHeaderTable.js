@@ -37,7 +37,7 @@ function TransLogHeaderTable() {
 
     return (
         <Paginated
-            title={'Transmittal Logs Header'}
+            title={'Error Logs Header'}
             columns={columns}
             route={`/v2/ascii/log-header/${draft_bill}`}
         />

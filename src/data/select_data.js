@@ -50,11 +50,27 @@ export const contract_status = [
     'DRAFT'
 ]
 
-export const draft_bill_status = [
-    'DRAFT_BILL',
-    'DRAFT_BILL_POSTED',
+export const rate_status = [
+    {
+        label:'ACTIVE',
+        value:'ACTIVE'
+    },
+    {
+        label:'INACTIVE',
+        value:'INACTIVE'
+    }
 ]
 
+export const draft_bill_status = [
+    {
+        label:'DRAFT_BILL',
+        value:'DRAFT_BILL'
+    },
+    {
+        label:'DRAFT_BILL_POSTED',
+        value:'DRAFT_BILL_POSTED'
+    }
+]
 
 export const aggregate_by = [
     {
@@ -317,5 +333,16 @@ export const draft_bill_export = [
     {
         label:'Delivery Date',
         value:'delivery_date'
+    }
+]
+
+export const contract_validity = [
+    {
+        label:'Valid',
+        value:'VALID'
+    },
+    {
+        label:'Invalid',
+        value:'INVALID'
     }
 ]

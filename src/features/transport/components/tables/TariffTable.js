@@ -64,7 +64,10 @@ const TariffTable = () => {
         columnHelper.accessor('class_of_store',{
             header:'Class of Store'
         }),
-        
+
+        columnHelper.accessor('vehicle_type',{
+            header:'Vehicle Type'
+        }),
         columnHelper.accessor('service_type',{
             header:'Service Type'
         }),
@@ -100,6 +103,7 @@ const TariffTable = () => {
         columnHelper.accessor('to_geo',{
             header:'To Geo'
         }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     ],[])
 
     const getSelectedRows = React.useCallback((rows = []) => {

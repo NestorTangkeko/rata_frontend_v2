@@ -17,7 +17,6 @@ const RevenueLeak = () => {
     const [getDetails,{isLoading}] = useLazyGetDetailsQuery()
 
     const handleOpen = async (br_no) => {
-        //console.log(br_no);
         await getDetails(br_no).unwrap().then(result => {
             setDetails(result)
             detailsDisclosure.onOpen()

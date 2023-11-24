@@ -1,6 +1,6 @@
 import React from 'react';
 import {SubHeader, Container} from 'layouts';
-import {Button, Flex} from '@chakra-ui/react';
+import {Box, Button, Flex} from '@chakra-ui/react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Label from 'components/Label';
 import { useGetDraftBillQuery } from 'lib/redux/api/ascii.api.slice';
@@ -34,7 +34,7 @@ function TransmittalDetails() {
 
     return (
     <>
-        <SubHeader title={'Transmittal Details'}>
+        <SubHeader title={'Transmittal Log Details'}>
             <Button onClick={handleBack}>Back</Button>
         </SubHeader>
         <Container>
@@ -55,8 +55,8 @@ function TransmittalDetails() {
                     <Flex width={'35%'}>
                         <TransLogHeaderTable/>
                     </Flex>
-                    <Flex direction={'column'} flexGrow={1}>
-                        <Flex>
+                    <Flex direction={'column'} gap='2'>
+                        <Box display={'flex'} borderWidth={'1px'} rounded='sm' p='1' alignItems={'center'}>
                             <Flex width={'50%'}>
                                 <Label
                                     label='Transmitted By'
@@ -68,7 +68,7 @@ function TransmittalDetails() {
                                 label='Transmitted Date'
                                 value={header.transmitted_date}
                             />
-                        </Flex>
+                        </Box>
                         <TransLogDetailTable/>
                     </Flex>
                     

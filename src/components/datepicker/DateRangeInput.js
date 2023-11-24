@@ -15,11 +15,11 @@ const DateInput = ({start,end,handleChange,label}) => {
         start = moment(start).isValid() ? moment(start).format('YYYY-MM-DD') : null;
         end =   moment(end).isValid() ? moment(end).format('YYYY-MM-DD') : null;
 
-        handleChange(`${start},${end}`);
+        handleChange(!start || !end ? null : `${start},${end}`);
     }
 
     return (
-        <Box display={'flex'} flexDirection='column' width={'40%'}>
+        <Box display={'flex'} flexDirection='column'>
                 <Text fontSize={'sm'} as='b'>{label}</Text>
                 <ReactDatePicker
                     selectsRange

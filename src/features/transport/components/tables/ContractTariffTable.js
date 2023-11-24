@@ -15,7 +15,7 @@ const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff,hasEdit})
         columnHelper.accessor('min_rate',{
             header:'Min Rate'
         }),
-        columnHelper.accessor('status',{
+        columnHelper.accessor('rate_status',{
             header:'Status'
         }),
         columnHelper.accessor('fk_agg_id',{
@@ -42,6 +42,7 @@ const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff,hasEdit})
     ]
   return (
     <Paginated
+        showFilters
         title={'Contract Tariff'}
         route={'/v2/contract/contract-tariff'}
         customFilters={{
