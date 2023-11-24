@@ -70,7 +70,7 @@ const Filter = ({column}) => {
 			</WrapItem>
 
 			case 'vendor' : return <WrapItem>
-				<Select route={'vendor'} label='Vendor' value={columnFilterValue} onChange={handleChange}/>
+				<Select route={'vendor'} label='Vendor' value={columnFilterValue} 	onChange={handleChange}/>
 			</WrapItem>	
 			default :
 			return null

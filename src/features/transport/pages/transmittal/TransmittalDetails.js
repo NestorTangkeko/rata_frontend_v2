@@ -26,6 +26,7 @@ function TransmittalDetails() {
             transmitted_by: null,
             transmitted_date: null
         }))   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     if(isLoading) return <>Loading...</>
