@@ -28,7 +28,7 @@ const AsciiTable = () => {
 			header:'Last Transmitted By'
 		}),
 		columnHelper.accessor('transmittal_count',{
-			header:'# of Retransmittal'
+			header:'# of Transmittal'
 		}),
 		columnHelper.accessor('contract_type',{
 			header:'Contract Type'
