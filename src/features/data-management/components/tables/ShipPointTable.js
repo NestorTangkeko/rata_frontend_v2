@@ -3,8 +3,9 @@ import {Paginated} from 'components/table';
 import {createColumnHelper} from '@tanstack/react-table';
 import { Button } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-
+import {useCheckAccess} from 'hooks';
 const ShipPointTable = () => {
+    const hasAccess = useCheckAccess({header_id:'data_management'})
     const columnHelper = createColumnHelper();
     const navigate = useNavigate();
     const columns = [
@@ -14,7 +15,7 @@ const ShipPointTable = () => {
                 const handleClick = () => {
                     navigate(props.getValue())
                 }
-                return <Button variant={'link'} onClick={handleClick}>{props.getValue()}</Button>
+                return hasAccess.edit ? <Button variant={'link'} onClick={handleClick}>{props.getValue()}</Button> : props.getValue()
             }
         }),
         columnHelper.accessor('stc_description',{

@@ -10,7 +10,8 @@ import { toast } from 'react-toastify';
 
 const TransmittalModal = ({
     isOpen,
-    onClose
+    onClose,
+    isRetransmit
 }) => {
     
     const [confirm,{isLoading}] = useConfirmTransportMutation()
@@ -38,14 +39,15 @@ const TransmittalModal = ({
             query:{
                 location:state.location.value,
                 date: state.date,
-                type: state.contract_type.value
+                type: state.contract_type.value,
+                isRetransmit
             }
         })
         .unwrap()
 	}
 
     return (
-        <Modal title='Transmittal to Ascii' isOpen={isOpen} onClose={onClose}>
+        <Modal title={isRetransmit==='true' ? 'Retransmit to Ascii' :'Transmittal to Ascii'} isOpen={isOpen} onClose={onClose}>
         <Flex direction={'column'} gap='2'>
             <Select
                 name='location'

@@ -22,7 +22,11 @@ const DraftBillInformation = ({data}) => {
                     <Label label={'Draft Bill Date'} value={data?.draft_bill_date }/>
                     <Label label={'Vendor'} value={data?.vendor || 'N/A'}/>
                     <Label label={'MBU'} value={data?.min_billable_unit}/>
-                    <Label label={'Rate'} value={data?.rate}/>
+                    <Flex gap={5}>
+                        <Label label={'Contracted Rate'} value={data?.rate}/>
+                        <Label label={'Contracted Min. Rate'} value={data?.min_rate}/>
+                    </Flex>
+                    
                 </Flex>
                 <Flex direction={'column'}>
                     <Label label={'Contract Type'} value={data?.contract_type}/>

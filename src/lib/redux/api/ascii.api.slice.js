@@ -3,6 +3,13 @@ import {saveAs} from 'file-saver';
 
 export const asciiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
+        getDraftBill: builder.query({
+            query: (draft_bill) => ({
+                url:'/v2/ascii/draft-bill/'+draft_bill,
+                method:'GET',
+            }),
+            providesTags:['Transmittal']
+        }),
         confirmWarehouse: builder.mutation({
             query: (params) => ({
                 url:`/v2/ascii/warehouse`,
@@ -26,13 +33,14 @@ export const asciiSlice = apiSlice.injectEndpoints({
                     ...params.query
                 },
                 responseHandler:(res) => res.blob(),
-                cache: 'no-cache'
+                cache: 'no-cache',
             }),
             transformResponse:(res,meta) => {
                 const fileName = meta.response.headers.get('Content-disposition')
                 console.log(res,fileName)
                 saveAs(res,fileName)
             },
+            invalidatesTags:['Transmittal']
             
         }) 
     })
@@ -40,5 +48,6 @@ export const asciiSlice = apiSlice.injectEndpoints({
 
 export const {
     useConfirmWarehouseMutation,
-    useConfirmTransportMutation
+    useConfirmTransportMutation,
+    useGetDraftBillQuery
 } = asciiSlice
