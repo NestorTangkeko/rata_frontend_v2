@@ -5,8 +5,6 @@ import {Box, Text} from '@chakra-ui/react';
 
 const LocalSelect = ({type,name,label,value,width,onChange}) => {
     const data = selectData[type];
-
-    console.log(data)
     
     return (
         <Box display={'flex'} flexDirection='column' width={width} gap={1}>

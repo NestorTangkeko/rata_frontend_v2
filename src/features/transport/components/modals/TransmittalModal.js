@@ -77,8 +77,8 @@ const TransmittalModal = ({
             />
 
             <DateInput 
-                label='Delivery Date'
-                name='rdd'
+                label='Trip Date'
+                name='trip_date'
                 value={state.date}
                 onChange={(e) => {
                     setState({

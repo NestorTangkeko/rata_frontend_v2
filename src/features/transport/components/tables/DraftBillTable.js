@@ -25,6 +25,9 @@ const DraftBillTable = ({handleGetDetails}) => {
         columnHelper.accessor('trip_no',{
             header:'Trip No'
         }),
+        columnHelper.accessor('trip_date',{
+            header:'Trip Date'
+        }),
         columnHelper.accessor('delivery_date',{
             header:'Delivery Date'
         }),
@@ -33,6 +36,9 @@ const DraftBillTable = ({handleGetDetails}) => {
         }),
         columnHelper.accessor('service_type',{
             header:'Service Type'
+        }),
+        columnHelper.accessor('ascii_service_type',{
+            header:'Ascii Service Type'
         }),
         columnHelper.accessor('sub_service_type',{
             header:'Sub Service Type'

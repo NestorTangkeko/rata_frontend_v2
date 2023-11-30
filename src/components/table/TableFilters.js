@@ -1,14 +1,17 @@
 import React from 'react';
 import {LocalSelect, Select} from 'components/select';
 import {DateRangePicker} from 'components/datepicker';
+import {Switch} from 'components/input';
 import { WrapItem } from '@chakra-ui/react';
 
 const Filter = ({column}) => {
-
 	const columnFilterValue = column.getFilterValue();
-
 	const handleChange = (selected) => {
 		column.setFilterValue(selected)
+	}
+
+	const handleChecked = (checked) => {
+		column.setFilterValue(checked ? '1' : '0')
 	}
 
 	const renderFilters = () => {
@@ -30,7 +33,7 @@ const Filter = ({column}) => {
 			</WrapItem> 
 			
 			case 'principal_code' : return <WrapItem>
-					<Select route={'principal'} label='Principal' value={columnFilterValue} onChange={handleChange}/>  
+				<Select route={'principal'} label='Principal' value={columnFilterValue} onChange={handleChange}/>  
 			</WrapItem>
 			
 			case 'customer':		return <WrapItem>
@@ -54,12 +57,12 @@ const Filter = ({column}) => {
 			</WrapItem>
 
 			case 'status': 			return <WrapItem>
-					<LocalSelect type={'draft_bill_status'} label={'Draft Bill Status'} value={columnFilterValue} onChange={handleChange}/>
-				</WrapItem>
+				<LocalSelect type={'draft_bill_status'} label={'Draft Bill Status'} value={columnFilterValue} onChange={handleChange}/>
+			</WrapItem>
 				
 			case 'rate_status': 	return <WrapItem>
-					<LocalSelect type={'rate_status'} label={'Status'} value={columnFilterValue} onChange={handleChange}/>
-				</WrapItem>
+				<LocalSelect type={'rate_status'} label={'Status'} value={columnFilterValue} onChange={handleChange}/>
+			</WrapItem>
 
 			case 'class_of_store' : return <WrapItem>
 				<Select route={'quick-code'} label='Class of Store' value={columnFilterValue} filter={{type:'CLSOFSTR'}}  onChange={handleChange}/>
@@ -72,6 +75,31 @@ const Filter = ({column}) => {
 			case 'vendor' : return <WrapItem>
 				<Select route={'vendor'} label='Vendor' value={columnFilterValue} 	onChange={handleChange}/>
 			</WrapItem>	
+
+			case 'trip_status': return <WrapItem>
+				<LocalSelect type={'trip_status'} label={'Trip Status'} value={columnFilterValue} 	onChange={handleChange}/>
+			</WrapItem>
+
+			case 'is_processed_sell' : return <WrapItem>
+				<Switch
+					label={'Is Processed Sell?'}
+					value={columnFilterValue === '1' ? true : false}
+					onChecked={handleChecked}
+				/>
+			</WrapItem>
+
+			case 'is_processed_buy' : return <WrapItem marginLeft={'1'} marginRight={'1'}>
+				<Switch
+					label={'Is Processed Buy?'}
+					value={columnFilterValue === '1' ? true : false}
+					onChecked={handleChecked}
+				/>
+			</WrapItem>
+
+			case 'revenue_leak_reason' : return <WrapItem>
+				<LocalSelect type={'revenue_leak'} label={'Revenue Leak'} value={columnFilterValue} 	onChange={handleChange}/>
+			</WrapItem>
+
 			default :
 			return null
 		}

@@ -16,10 +16,10 @@ const InvoicesTable = () => {
             header:'Is Billable'
         }),
         columnHelper.accessor('is_processed_sell',{
-            header:'Draft Bill Sell'
+            header:'Is Processed Sell'
         }),
         columnHelper.accessor('is_processed_buy',{
-            header:'Draft Bill Buy'
+            header:'Is Processed Buy'
         }),
         columnHelper.accessor('trip_date',{
             header:'Trip Date'
@@ -50,6 +50,9 @@ const InvoicesTable = () => {
         }),
         columnHelper.accessor('service_type',{
             header:'Service Type'
+        }),
+        columnHelper.accessor('ascii_service_type',{
+            header:'Ascii Service Type'
         }),
         columnHelper.accessor('sub_service_type',{
             header:'Sub Service Type'
