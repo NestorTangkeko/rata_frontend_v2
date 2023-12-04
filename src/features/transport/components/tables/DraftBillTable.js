@@ -25,6 +25,9 @@ const DraftBillTable = ({handleGetDetails}) => {
         columnHelper.accessor('trip_no',{
             header:'Trip No'
         }),
+        columnHelper.accessor('trip_date',{
+            header:'Trip Date'
+        }),
         columnHelper.accessor('delivery_date',{
             header:'Delivery Date'
         }),
