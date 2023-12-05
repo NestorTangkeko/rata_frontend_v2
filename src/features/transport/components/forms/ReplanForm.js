@@ -25,7 +25,7 @@ const ReplanForm = () => {
         await replan({
             contract_type: values.contract_type?.value,
             query:{
-                rdd: moment(values.rdd).format('YYYY-MM-DD')
+                trip_date: moment(values.trip_date).format('YYYY-MM-DD')
             }
         })
         .unwrap()
@@ -55,7 +55,7 @@ const ReplanForm = () => {
                 onSubmit={handleSubmit}
                 initialValues={{
                     contract_type: null,
-                    rdd: null
+                    trip_date: null
                 }}
             >
                 {({errors, touched}) => (
@@ -71,8 +71,8 @@ const ReplanForm = () => {
                             touched={touched.contract_type}
                         />
                         <FormDateInput
-                            label={'RDD'}
-                            name='rdd'
+                            label={'Trip Date'}
+                            name='trip_date'
                             error={errors.rdd}
                             touched={touched.rdd}
                         />
