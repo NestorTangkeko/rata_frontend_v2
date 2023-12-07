@@ -34,7 +34,6 @@ export const replanDraftBill = Yup.object().shape({
     trip_date: Yup.string().required('Required')
 })
 
-
 const isDateValid = (name) => {
     return Yup.string()
     .test({
@@ -47,7 +46,6 @@ const isDateValid = (name) => {
         }
     })
 }
-
 
 export const contractExportSchema = Yup.object().shape({
     contract: Yup.object().nullable().required('Required'),

@@ -31,7 +31,7 @@ const DraftBillInformation = ({data}) => {
                 <Flex direction={'column'}>
                     <Label label={'Contract Type'} value={data?.contract_type}/>
                     <Label label={'Status'} value={data?.status || 'N/A'}/>
-                    <Label label={'Delivery Date'} value={data?.delivery_date }/>
+                    <Label label={'Trip Date'} value={data?.trip_date }/>
                     <Label label={'Vehicle Type'} value={data?.vehicle_type || 'N/A'}/>
                     <Flex gap={'5'}>
                         <Label label={'Min Value'} value={data?.min_billable_value || 'N/A'}/>

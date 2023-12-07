@@ -42,9 +42,9 @@ const AsciiTable = () => {
 		columnHelper.accessor('trip_date',{
             header:'Trip Date'
         }),
-		columnHelper.accessor('delivery_date',{
-			header:'RDD'
-		}),
+		// columnHelper.accessor('delivery_date',{
+		// 	header:'RDD'
+		// }),
 		columnHelper.accessor('customer',{
 			header:'Customer'
 		}),

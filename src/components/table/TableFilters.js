@@ -45,6 +45,10 @@ const Filter = ({column}) => {
 				<DateRangePicker label={'Delivery Date'} handleChange={handleChange}/>
 			</WrapItem>
 
+			case 'trip_date': 	return <WrapItem>
+			<DateRangePicker label={'Trip Date'} handleChange={handleChange}/>
+			</WrapItem>
+
 			case 'draft_bill_date': return <WrapItem>
 				<DateRangePicker label={'Draft Bill Date'} handleChange={handleChange}/>
 			</WrapItem>
