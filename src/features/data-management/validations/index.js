@@ -10,10 +10,11 @@ export const algorihtmSchema = Yup.object().shape({
 })
 
 export const shipPointSchema = Yup.object().shape({
-    region:     Yup.object().nullable().required('Required'),
-    province:   Yup.object().nullable().required('Required'),
-    city:       Yup.object().nullable().required('Required'),
-    barangay:   Yup.object().nullable().optional(),
-    zip_code:   Yup.string().required('Required'),
-    stc_address:Yup.string().required('Required')
+    // region:     Yup.object().nullable().required('Required'),
+    // province:   Yup.object().nullable().required('Required'),
+    // city:       Yup.object().nullable().required('Required'),
+    // barangay:   Yup.object().nullable().optional(),
+    // zip_code:   Yup.string().required('Required'),
+    stc_address:Yup.string().required('Required'),
+    is_active: Yup.string()
 })

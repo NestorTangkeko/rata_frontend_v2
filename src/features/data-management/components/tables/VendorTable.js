@@ -25,18 +25,19 @@ const VendorTable = ({handleICModal,hasEdit}) => {
         }),
         columnHelper.accessor('is_ic',{
             header:'Is IC?',
-            cell: props => {
-                const isIC = props.getValue() === 1 ? true : false;
-                const onClick = () => {
-                    handleICModal({
-                        is_ic: isIC,
-                        vendor_id: props.row.original.vendor_id
-                    })
-                }
-                return (
-                    <Button size='sm' colorScheme={isIC ? 'green' : 'gray'} onClick={onClick} isDisabled={!hasEdit}>{isIC ? 'True' : 'False'}</Button>
-                )
-            }
+            cell: props => props.getValue() === 1 ? 'true' : 'false'
+            // cell: props => {
+            //     const isIC = props.getValue() === 1 ? true : false;
+            //     const onClick = () => {
+            //         handleICModal({
+            //             is_ic: isIC,
+            //             vendor_id: props.row.original.vendor_id
+            //         })
+            //     }
+            //     return (
+            //         <Button size='sm' colorScheme={isIC ? 'green' : 'gray'} onClick={onClick} isDisabled={!hasEdit}>{isIC ? 'True' : 'False'}</Button>
+            //     )
+            // }
         }),
     ]
     return (

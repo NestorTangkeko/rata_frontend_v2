@@ -40,6 +40,7 @@ function ShipPointEditForm() {
                 <FormSwitch
                     label={'Is Active?'}
                     name='is_active'
+                    onChange={()=>{}}
                 />
                 <Label
                     label={'Postal Code'}
