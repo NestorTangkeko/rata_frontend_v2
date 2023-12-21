@@ -27,12 +27,6 @@ const DraftBillTable = ({handleGetDetails}) => {
         }),
         columnHelper.accessor('trip_date',{
             header:'Trip Date'
-<<<<<<< HEAD
-        }),
-        columnHelper.accessor('delivery_date',{
-            header:'Delivery Date'
-=======
->>>>>>> P1
         }),
         // columnHelper.accessor('delivery_date',{
         //     header:'Delivery Date'
