@@ -52,28 +52,26 @@ function TransmittalDetails() {
                 />
             </Flex>
             <br/>
-                <Flex gap={5}>
-                    <Flex width={'35%'}>
-                        <TransLogHeaderTable/>
-                    </Flex>
-                    <Flex direction={'column'} gap='2'>
-                        <Box display={'flex'} borderWidth={'1px'} rounded='sm' p='1' alignItems={'center'}>
-                            <Flex width={'50%'}>
-                                <Label
-                                    label='Transmitted By'
-                                    value={header.transmitted_by}
-                                />
-                            </Flex>
-                            
-                            <Label
-                                label='Transmitted Date'
-                                value={header.transmitted_date}
-                            />
-                        </Box>
-                        <TransLogDetailTable/>
-                    </Flex>
-                    
+            <Flex gap={5}>
+                <Flex width={'35%'}>
+                    <TransLogHeaderTable/>
                 </Flex>
+                <Flex direction={'column'} gap='2'>
+                    <Box display={'flex'} borderWidth={'1px'} rounded='sm' p='1' alignItems={'center'}>
+                        <Flex width={'50%'}>
+                            <Label
+                                label='Transmitted By'
+                                value={header.transmitted_by}
+                            />
+                        </Flex>                    
+                        <Label
+                            label='Transmitted Date'
+                            value={header.transmitted_date}
+                        />
+                    </Box>
+                    <TransLogDetailTable/>
+                </Flex>
+            </Flex>
         </Container>
     </>
     )

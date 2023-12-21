@@ -4,7 +4,6 @@ import {DatePicker} from 'components/datepicker'
 import { Flex,Button, Text, Box } from '@chakra-ui/react';
 import {useManualTriggerMutation} from 'lib/redux/api/scheduler.slice';
 import Table from '../tables/SchedulerDtlTable';
-//import {Form,FormInput} from 'compon  ents/form';
 import {toast} from 'react-toastify';
 
 const SchedulerManualModal = ({isOpen,onClose,id,hasCreate}) => {

@@ -374,8 +374,8 @@ export const draft_bill_export = [
         value:'draft_bill_date'
     },
     {
-        label:'Delivery Date',
-        value:'delivery_date'
+        label:'Trip Date',
+        value:'trip_date'
     }
 ]
 

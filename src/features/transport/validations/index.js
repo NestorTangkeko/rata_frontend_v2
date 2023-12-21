@@ -31,9 +31,8 @@ export const tariffICSchema = Yup.object().shape({
 
 export const replanDraftBill = Yup.object().shape({
     contract_type: Yup.object().required('Required').nullable(),
-    rdd: Yup.string().required('Required')
+    trip_date: Yup.string().required('Required')
 })
-
 
 const isDateValid = (name) => {
     return Yup.string()
@@ -47,7 +46,6 @@ const isDateValid = (name) => {
         }
     })
 }
-
 
 export const contractExportSchema = Yup.object().shape({
     contract: Yup.object().nullable().required('Required'),
