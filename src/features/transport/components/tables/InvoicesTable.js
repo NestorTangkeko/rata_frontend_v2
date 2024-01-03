@@ -49,7 +49,7 @@ const InvoicesTable = () => {
             header:'Planned Vehicle ID'
         }),
         columnHelper.accessor('service_type',{
-            header:'Service Type'
+            header:'TMS Service Type'
         }),
         columnHelper.accessor('ascii_service_type',{
             header:'Ascii Service Type'
