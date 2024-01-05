@@ -60,3 +60,10 @@ export const draftBillExportSchema = Yup.object().shape({
     from: isDateValid('from').required('Required'),
     to: isDateValid('to').required('Required')
 })
+
+export const transmittalExportSchema = Yup.object().shape({
+    from: isDateValid('from').required('Required'),
+    to: isDateValid('to').required('Required'),
+    contract_type: Yup.object().nullable(),
+    location: Yup.object().nullable() 
+})

@@ -97,10 +97,10 @@ export const revenue_leak = [
         label:'No Formula or Condtion Match',
         value:'No Formula or Condtion Match'.toUpperCase()
     },
-    {
-        label:'Invalid Total Charges result',
-        value:'Invalid Total Charges result'.toUpperCase()
-    }
+    // {
+    //     label:'Invalid Total Charges result',
+    //     value:'Invalid Total Charges result'.toUpperCase()
+    // }
 
 ]
 

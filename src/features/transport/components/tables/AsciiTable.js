@@ -57,9 +57,6 @@ const AsciiTable = () => {
 		columnHelper.accessor('trip_no',{
 			header:'Trip No.'
 		}),
-		columnHelper.accessor('trip_date',{
-			header:'Trip Date'
-		}),
 		columnHelper.accessor('min_billable_value',{
 			header:'Min. Value'
 		}),
