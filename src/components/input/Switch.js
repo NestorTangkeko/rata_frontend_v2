@@ -1,11 +1,9 @@
 import { Box, Text , Switch as SwitchCUI} from '@chakra-ui/react';
 import React from 'react';
 
-
 const Switch = ({label,value,name,onChecked}) => {
-    
     const handleChecked = (e) => {
-        onChecked(e.target.checked)
+        onChecked( e.target.checked)
     }
  
     return (

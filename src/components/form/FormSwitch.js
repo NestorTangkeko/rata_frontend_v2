@@ -13,6 +13,8 @@ const FormSwitch = ({
     const {setValue,setTouched} = helpers
     const {value} = meta
 
+    // console.log(meta)
+
     return (
         <FormControl label={label} id={id} error={meta.error} touched={meta.touched}>
             <SwitchCUI
@@ -21,7 +23,7 @@ const FormSwitch = ({
                     isChecked={value}
                     onChange={()=>{
                         setValue(!value)
-                        onChange()
+                        //onChange()
                     }}
                     onBlur={()=>setTouched(true)}
                 />

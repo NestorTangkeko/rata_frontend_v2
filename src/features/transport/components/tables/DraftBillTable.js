@@ -35,7 +35,10 @@ const DraftBillTable = ({handleGetDetails}) => {
             header:'Customer'
         }),
         columnHelper.accessor('service_type',{
-            header:'Service Type'
+            header:'TMS Service Type'
+        }),
+        columnHelper.accessor('ascii_service_type',{
+            header:'Ascii Service Type'
         }),
         columnHelper.accessor('sub_service_type',{
             header:'Sub Service Type'

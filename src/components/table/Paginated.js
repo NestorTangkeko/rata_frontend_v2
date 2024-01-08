@@ -12,9 +12,7 @@ import { Table,
     Select,
     Input,
     Flex,
-    IconButton,
-    filter,
-    Wrap
+    IconButton
 } from "@chakra-ui/react";
 import {RepeatIcon} from '@chakra-ui/icons';
 import {

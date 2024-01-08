@@ -61,6 +61,49 @@ export const rate_status = [
     }
 ]
 
+export const trip_status= [
+    {
+        label:'DISPATCH_CONFIRMED',
+        value:'DISPATCH_CONFIRMED'
+    },
+    {
+        label:'TRUCKER_CLEARED',
+        value:'TRUCKER_CLEARED'
+    }
+]
+
+export const revenue_leak = [
+    {
+        label:'No Ship Point Information',
+        value:'No Ship Point Information'.toUpperCase()
+    },
+    {
+        label:'Not Billable',
+        value:'Not Billable'.toUpperCase()
+    },
+    {
+        label:'No Contract',
+        value:'No Contract'.toUpperCase()
+    },
+    {
+        label:'No Tariff',
+        value:'No Tariff'.toUpperCase()
+    },
+    {
+        label:'Duplicate Tariff',
+        value:'Duplicate Tariff'.toUpperCase()
+    },
+    {
+        label:'No Formula or Condtion Match',
+        value:'No Formula or Condtion Match'.toUpperCase()
+    },
+    // {
+    //     label:'Invalid Total Charges result',
+    //     value:'Invalid Total Charges result'.toUpperCase()
+    // }
+
+]
+
 export const draft_bill_status = [
     {
         label:'DRAFT_BILL',
