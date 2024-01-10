@@ -66,6 +66,9 @@ const AsciiTable = () => {
 		columnHelper.accessor('actual_quantity',{
 			header:'Actual Quantity'
 		}),
+		columnHelper.accessor('actual_cbm',{
+			header:'Actual CBM'
+		}),
 		columnHelper.accessor('rate',{
 			header:'Rate'
 		}),
