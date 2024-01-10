@@ -94,8 +94,8 @@ export const revenue_leak = [
         value:'Duplicate Tariff'.toUpperCase()
     },
     {
-        label:'No Formula or Condition Match',
-        value:'No Formula or Condition Match'.toUpperCase()
+        label:'No Formula or Condition Matched',
+        value:'No Formula or Condition Matched'.toUpperCase()
     },
     {
         label:'Invalid Total Charges result',
