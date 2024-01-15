@@ -43,11 +43,11 @@ const ContractDetails = () => {
         })
     }
 
-    const handleCancelTariff = async(tariff_id) => {
+    const handleCancelTariff = async(id) => {
         await updateTariff({
             query:{
-                contract_id: data.contract_id,
-                tariff_id
+                //contract_id: data.contract_id,
+                id
             }
         })
         .unwrap()

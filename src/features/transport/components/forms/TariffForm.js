@@ -5,25 +5,29 @@ import Label from 'components/Label';
 import {tariffSchema} from '../../validations';
 import {Button,Flex,Box} from '@chakra-ui/react';
 
-import {useCreateTariffMutation} from 'lib/redux/api/tariff.api.slice';
+import {useUpdateTariffMutation} from 'lib/redux/api/tariff.api.slice';
+import { toast } from 'react-toastify';
 
 const TariffForm = ({data}) => {
-  const [createTariff,{isLoading}] = useCreateTariffMutation();
+  const [updateTariff,{isLoading}] = useUpdateTariffMutation();
   
   const handleSubmit = async (values,{resetForm}) => {
-    const cast = tariffSchema.cast(values)
-    await createTariff({
-      ...cast,
-      tariff_status:    'DRAFT',
-      vehicle_type:      values.vehicle_type?.value || null,
-      min_billable_unit: values.min_billable_unit?.value || null,  
-      class_of_store:    values.class_of_store?.value || null, 
-      service_type:      values.service_type?.value || null,
-      location:          values.location?.value || null,
-      from_geo_type:     values.from_geo_type?.value || null,
-      to_geo_type:       values.to_geo_type?.value || null,
-      from_geo:          values.from_geo?.value || null,
-      to_geo:            values.to_geo?.value || null
+    const {approved_by,approved_date,createdAt,updatedAt,created_by,division,equipment_type,leg_behavior,modified_by,ic_data,...cast} = values
+    await updateTariff({
+      tariff_id: values.tariff_id,
+      body:{
+        ...cast,
+        tariff_status:    'DRAFT',
+        vehicle_type:      cast.vehicle_type?.value || null,
+        min_billable_unit: cast.min_billable_unit?.value || null,  
+        class_of_store:    cast.class_of_store?.value || null, 
+        service_type:      cast.service_type?.value || null,
+        location:          cast.location?.value || null,
+        from_geo_type:     cast.from_geo_type?.value || null,
+        to_geo_type:       cast.to_geo_type?.value || null,
+        from_geo:          cast.from_geo?.value || null,
+        to_geo:            cast.to_geo?.value || null,
+      }
     })
     .unwrap()
     .then(()=>{
@@ -31,7 +35,7 @@ const TariffForm = ({data}) => {
         //reset form in create mode
         resetForm();
       }
-      console.log('success')
+      toast.success('Success')
     })
   }
 
@@ -45,11 +49,11 @@ const TariffForm = ({data}) => {
         label:data.vehicle_type,
         value:data.vehicle_type
       },
-      min_billable_unit: !data?.min_billable_unit ||   {
+      min_billable_unit: !data?.min_billable_unit ?  null : {
         label:data.min_billable_unit,
         value:data.min_billable_unit
       },
-      class_of_store:  !data?.class_of_store ||   {
+      class_of_store:  !data?.class_of_store ? null :  {
         label:data.class_of_store,
         value:data.class_of_store
       },

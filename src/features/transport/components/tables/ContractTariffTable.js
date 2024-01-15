@@ -32,10 +32,10 @@ const ContractTariffTable = ({contract_id,isLoading,handleCancelTariff,hasEdit})
             cell: props => {
                 const data = props.row.original
                 const handleClick = async() => {
-                    await handleCancelTariff(data.tariff_id)
+                    //console.log(props.row.original)
+                    await handleCancelTariff(data.id)
                 }
-                return hasEdit ?  
-                    <Button size='xs' colorScheme={'red'} onClick={handleClick} isLoading={isLoading} isDisabled={data.status === 'INACTIVE' } >{'Deactivate'}</Button> : 
+                return hasEdit ?  <Button size='xs' colorScheme={'red'} onClick={handleClick} isLoading={isLoading} isDisabled={data.status === 'INACTIVE' } >{'Deactivate'}</Button> : 
                     null
             }
         })

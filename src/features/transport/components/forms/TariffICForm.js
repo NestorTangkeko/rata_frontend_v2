@@ -24,20 +24,6 @@ const TariffICForm = ({data,handleAdd}) => {
       })
 
       resetForm();
-    // await createIC({
-    //   tariff_id:    values.tariff_id,  
-    //   vendor_group: values.vendor_group.value, 
-    //   vehicle_type: data.vehicle_type,
-    //   uom:          data.uom,
-    //   min_value:    values.min_value,
-    //   max_value:    values.max_value,
-    //   rate:         values.rate,
-    //   algo_status:  'ACTIVE'
-    // })
-    // .unwrap()
-    // .then(()=>{
-    //   resetForm()
-    // })
   }
 
   return (

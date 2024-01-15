@@ -57,6 +57,16 @@ export const tariffApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags:['Tariff']
         }),
+        approveTariff: builder.mutation({
+            query:(params) => ({
+                url:`v2/tariff/tariff-id/${params.tariff_id}`,
+                method:'POST',
+                body:{
+                    ...params.body
+                }
+            }),
+            invalidatesTags:['Tariff']
+        }),
         bulkApproveTariff: builder.mutation({
             query:(data) => ({
                 url: 'v2/tariff/status',
@@ -76,5 +86,6 @@ export const {
     useCreateTariffMutation,
     useUpdateTariffMutation,
     useUpdateTransportICMutation,
-    useBulkApproveTariffMutation
+    useBulkApproveTariffMutation,
+    useApproveTariffMutation
 } = tariffApiSlice;

@@ -3,7 +3,7 @@ import {Container, SubHeader} from 'layouts';
 import { Text, Button,Flex,useDisclosure, Spacer } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import {useQueryParams} from 'hooks';
-import {useUpdateTariffMutation, useGetTransportTariffQuery} from 'lib/redux/api/tariff.api.slice';
+import {useApproveTariffMutation, useGetTransportTariffQuery} from 'lib/redux/api/tariff.api.slice';
 
 
 import TariffInformation from '../../components/TariffInformation';
@@ -27,7 +27,7 @@ const UpdateTariff = () => {
         tariff_id:query.get('tariff_id')
     })
 
-    const [updateTariff,updateTariffOptions] = useUpdateTariffMutation()
+    const [updateTariff,updateTariffOptions] = useApproveTariffMutation()
 
     const {isOpen,onOpen,onClose} = useDisclosure();
     const toggleUpdateTariff = useDisclosure();
@@ -36,10 +36,9 @@ const UpdateTariff = () => {
         await updateTariff({
             tariff_id:data.tariff_id,
             body: {
-                tariff_ic: icData,
-                tariff_header: {
-                    tariff_status: 'APPROVED'
-                }
+                ic_data: icData,
+                tariff_status: 'APPROVED',
+                tariff_id:data.tariff_id
             }
         })
         .unwrap()
