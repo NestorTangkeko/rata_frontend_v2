@@ -9,3 +9,5 @@ export {default as Algorithm}   from './pages/Algorithm/Algorithm';
 export {default as CreateAlgo}  from './pages/Algorithm/CreateAlgo';
 
 export {default as ShipPointEdit} from './pages/ShipPointEdit';
+
+export {default as CostAllocation} from './pages/CostAllocation/CostAllocation';

@@ -133,11 +133,18 @@ const modules = [
                 path:'/algorithm'
             },
             {
-                sequence_no:8,
+                sequence_no: 8,
+                id: 'cost_allocation',
+                label: 'Cost Allocation',
+                path:'/cost-allocation'
+            },
+            {
+                sequence_no:9,
                 id:'data_upload',
                 label:'Data Upload',
                 path:'/data-upload'
-            }
+            },
+            
         ]
     },
     {
