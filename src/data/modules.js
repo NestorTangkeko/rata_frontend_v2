@@ -139,12 +139,17 @@ const modules = [
                 path:'/cost-allocation'
             },
             {
-                sequence_no:9,
+                sequence_no: 9,
+                id: 'vehicle_types',
+                label: 'Vehicle Types',
+                path:'/vehicle-type'
+            },
+            {
+                sequence_no:10,
                 id:'data_upload',
                 label:'Data Upload',
                 path:'/data-upload'
-            },
-            
+            }    
         ]
     },
     {

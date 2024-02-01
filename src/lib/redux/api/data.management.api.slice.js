@@ -25,7 +25,8 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
                 body: {
                     ...params.body
                 }
-            })
+            }),
+            invalidatesTags:['Pagination']
         }),
         getDataDetails: builder.query({
             query:(params) => ({
