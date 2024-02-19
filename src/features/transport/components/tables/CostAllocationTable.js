@@ -38,6 +38,9 @@ const CostAllocationTable = ({draft_bill_no=''}) => {
         columnHelper.accessor('allocated_cost',{
             header:'Allocated Cost'
         }),
+        columnHelper.accessor('location',{
+            header:'Location'
+        }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     ],[])
   
