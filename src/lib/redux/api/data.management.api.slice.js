@@ -25,7 +25,8 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
                 body: {
                     ...params.body
                 }
-            })
+            }),
+            invalidatesTags:['Pagination']
         }),
         getDataDetails: builder.query({
             query:(params) => ({
@@ -48,7 +49,17 @@ export const dataManagementSlice = apiSlice.injectEndpoints({
                 body
             }),
             invalidatesTags:['ShipPoint'] 
-        })
+        }),
+        // updateCostAlloc: builder.mutation({
+        //     query: ({id, is_active})=>({
+        //         url: 'v2/data-management/cost-allocation',
+        //         method:'PUT',
+        //         params:{
+        //             is_active
+        //         }
+        //     }),
+        //     invalidatesTags:['Pagination']
+        // })
     })
 
 })

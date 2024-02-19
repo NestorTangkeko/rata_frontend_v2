@@ -18,3 +18,9 @@ export const shipPointSchema = Yup.object().shape({
     stc_address:Yup.string().required('Required'),
     is_active: Yup.string()
 })
+
+export const costAllocSchema = Yup.object().shape({
+    service_type:       Yup.object().nullable().required('Required'),
+    draft_bill_type:    Yup.object().nullable().required('Required'),
+    is_active:          Yup.string()
+})

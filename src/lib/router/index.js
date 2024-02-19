@@ -13,7 +13,7 @@ import {
     Invoices,
     TransmittalDetails
 } from 'features/transport';
-import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit} from 'features/data-management';
+import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit, VehicleTypes} from 'features/data-management';
 import {
     WarehouseDraftBill,
     WarehouseTransmittal
@@ -21,6 +21,7 @@ import {
 import {Role, RoleAccess, Scheduler, User} from 'features/administration';
 import ShipPoint from 'features/data-management/pages/ShipPoint';
 import { BillingCreate, BillingTransport } from 'features/billing';
+import CostAllocation from 'features/data-management/pages/CostAllocation/CostAllocation';
 
 const router = createBrowserRouter([
     {
@@ -150,8 +151,15 @@ const router = createBrowserRouter([
                         path:':id',
                         element:<CreateAlgo/>   
                     }
-                ]
-                
+                ]  
+            },
+            {
+                path:'/cost-allocation',
+                element:<CostAllocation/>
+            },
+            {
+                path:'/vehicle-type',
+                element:<VehicleTypes/>
             },
             {
                 path:'/data-upload',
