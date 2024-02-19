@@ -18,6 +18,7 @@ const DraftBillDetailTable = ({data}) => {
         columnHelper.accessor('planned_vehicle_type'),
         columnHelper.accessor('tariff_id'),
         columnHelper.accessor('contract_id'),
+        columnHelper.accessor('principal_code'),
         columnHelper.accessor('service_type'),
         columnHelper.accessor('sub_service_type'),
         columnHelper.accessor('min_billable_value'),
