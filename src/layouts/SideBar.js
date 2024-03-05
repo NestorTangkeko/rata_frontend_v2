@@ -9,7 +9,6 @@ const SideBar = ({
   onClose
 }) => {
 	const {modules} = useSetAccess();
-
 	const drawerItems = () => {
 		return modules.filter(item => item.view).map(header => {
 			const {children} = header

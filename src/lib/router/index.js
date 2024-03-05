@@ -22,6 +22,7 @@ import {Role, RoleAccess, Scheduler, User} from 'features/administration';
 import ShipPoint from 'features/data-management/pages/ShipPoint';
 import { BillingCreate, BillingTransport } from 'features/billing';
 import CostAllocation from 'features/data-management/pages/CostAllocation/CostAllocation';
+import { PreBillingReport } from 'features/reports';
 
 const router = createBrowserRouter([
     {
@@ -185,8 +186,16 @@ const router = createBrowserRouter([
                         element: <RoleAccess/>
                     }
                 ]
+            },
+            {
+                path:'/reports',
+                children:[
+                    {
+                        path:'pre-billing',
+                        element:<PreBillingReport/>
+                    }
+                ]
             }
-
         ] 
     },
     {

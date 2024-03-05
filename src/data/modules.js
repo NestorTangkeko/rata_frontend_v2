@@ -176,6 +176,19 @@ const modules = [
                 path:'/scheduler'
             }
         ]
+    },
+    {
+        sequence_no:5,
+        id:'reports',
+        label:'Reports',
+        children:[
+            {
+                sequence_no: 1,
+                id:'pre-billing',
+                label:'Pre-Billing Report',
+                path:'/reports/pre-billing'
+            }
+        ]
     }
 ]
 
