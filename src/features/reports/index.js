@@ -1,1 +1,2 @@
-export {default as PreBillingReport} from './pages/Pre-Billing';
+export {default as Reports} from './pages/Reports';
+export {default as ReportDetails} from './pages/ReportDetails';

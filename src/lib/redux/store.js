@@ -33,7 +33,7 @@ export const store = configureStore({
     reducer:reducers,
     middleware: getDefaultMiddleware => getDefaultMiddleware({
         serializableCheck :{
-            ignoreActions:[FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+            ignoreActions:[apiSlice.reducer,FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
         }
     })
     .concat(apiSlice.middleware,errorHandler),
