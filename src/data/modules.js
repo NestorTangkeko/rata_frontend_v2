@@ -187,6 +187,12 @@ const modules = [
                 id:'pre-billing',
                 label:'Pre-Billing Report',
                 path:'/reports/pre-billing'
+            },
+            {
+                sequence_no: 2,
+                id:     'accrual',
+                label:  'Accrual Reports',
+                path:   '/reports/accrual'
             }
         ]
     }
