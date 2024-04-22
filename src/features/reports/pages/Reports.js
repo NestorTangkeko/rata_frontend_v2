@@ -7,7 +7,9 @@ const PreBilling = () => {
 return (<>
         <SubHeader title={'Reports'}></SubHeader>
         <Container>
-            <ReportHeaderTable/>
+            <ReportHeaderTable filters={{
+              report_type:'PREBILLING'
+            }}/>
         </Container>
   </>)
 }
