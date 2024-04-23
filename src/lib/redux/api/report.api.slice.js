@@ -14,7 +14,7 @@ export const reportApiSlice = apiSlice.injectEndpoints({
         downloadReport: builder.mutation({
             query:({report,path,fileName}) => ({
                 url: '/v2/reports/'+report,
-                params: {
+                body: {
                     filePath: path,
                     fileName: fileName
                 },
