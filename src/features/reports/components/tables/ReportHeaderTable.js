@@ -5,7 +5,9 @@ import { Button, useDisclosure } from '@chakra-ui/react';
 import ReportEdit from '../dialogs/ReportEdit';
 import { useNavigate } from 'react-router-dom';
 
-const ReportHeaderTable = () => {
+const ReportHeaderTable = ({
+    filters={}
+}) => {
     const navigate = useNavigate();
     const columnHelper = createColumnHelper();
     const {isOpen,onClose,onOpen} = useDisclosure();
@@ -62,6 +64,9 @@ const ReportHeaderTable = () => {
                 title={'Reports'}
                 route={'/v2/reports'}
                 columns={columns}
+                customFilters={{
+                    ...filters
+                }}
             />
             <ReportEdit isOpen={isOpen} onClose={onClose} data={selected}/>
         </>
