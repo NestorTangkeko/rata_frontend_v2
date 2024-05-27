@@ -389,3 +389,14 @@ export const contract_validity = [
         value:'INVALID'
     }
 ]
+
+export const cr_status = [
+    {
+        label:'CR CONFIRMED',
+        value:'CR_CONFIRMED'
+    },
+    {
+        label:'CR FAILED',
+        value:'CR_FAILED'
+    }
+]

@@ -23,6 +23,7 @@ import ShipPoint from 'features/data-management/pages/ShipPoint';
 import { BillingCreate, BillingTransport } from 'features/billing';
 import CostAllocation from 'features/data-management/pages/CostAllocation/CostAllocation';
 import { AccrualReports, ReportDetails, Reports } from 'features/reports';
+import {CRUpload, CRDetails} from 'features/billing';
 
 const router = createBrowserRouter([
     {
@@ -206,6 +207,19 @@ const router = createBrowserRouter([
                     {
                         path:':report_name',
                         element:<ReportDetails/>
+                    }
+                ]
+            },
+            {
+                path:'/cr-upload',
+                children:[
+                    {
+                        index:true,
+                        element:<CRUpload/>
+                    },
+                    {
+                        path:':id',
+                        element:<CRDetails/>
                     }
                 ]
             }
