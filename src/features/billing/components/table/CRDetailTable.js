@@ -10,7 +10,7 @@ const CRDetailTable = () => {
         columnHelper.accessor('CR_CODE'),
         columnHelper.accessor('LINE_NO'),
         columnHelper.accessor('ITEM_CODE'),
-        columnHelper.accessor('SERVICE_TYPE'),
+        columnHelper.accessor('SERVICE_TYPE_CODE'),
         columnHelper.accessor('PRINCIPAL_CODE'),
         columnHelper.accessor('LOCATION_CODE'),
         columnHelper.accessor('UM_CODE'),

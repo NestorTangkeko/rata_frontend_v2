@@ -17,6 +17,7 @@ const CRTable = () => {
             }
         }),
         columnHelper.accessor('CR_CODE'),
+        columnHelper.accessor('COMPANY_CODE'),
         columnHelper.accessor('REF_CODE'),
         columnHelper.accessor('CR_DATE'),
         columnHelper.accessor('DATE_CONFIRMED'),

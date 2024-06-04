@@ -9,7 +9,9 @@ const CRErrorTable = () => {
     const {id} = useParams();
     const columnHelper = createColumnHelper();
     const columns = React.useMemo(()=> [
-        columnHelper.accessor('ref_code'),
+        columnHelper.accessor('ref_code',{
+            header:'cr_code'
+        }),
         columnHelper.accessor('result_type'),
         columnHelper.accessor('field_name'),
         columnHelper.accessor('field_value'),

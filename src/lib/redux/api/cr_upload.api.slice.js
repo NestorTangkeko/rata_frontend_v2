@@ -34,6 +34,21 @@ export const crUploadSlice = apiSlice.injectEndpoints({
                 url: 'v2/cr-upload/header/'+id,
                 method:'GET'
             })
+        }),
+        exportCr: builder.mutation({
+            query:(params) => ({
+                url: `/v2/cr-upload/export`,
+                method:'POST',
+                params:{
+                    ...params.query
+                },
+                responseHandler:(res) => res.blob(),
+                cache: 'no-cache'
+            }),
+            transformResponse:(res,meta) => {
+                const fileName = meta.response.headers.get('Content-disposition')
+                saveAs(res,fileName)
+            }
         })
        
     })
@@ -42,5 +57,6 @@ export const crUploadSlice = apiSlice.injectEndpoints({
 export const {
     useGetCRTemplateMutation,
     useUploadCRMutation,
-    useGetCrHeaderQuery
+    useGetCrHeaderQuery,
+    useExportCrMutation
 } = crUploadSlice

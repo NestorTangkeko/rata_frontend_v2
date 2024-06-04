@@ -26,8 +26,12 @@ const CRDetails = () => {
 			<Flex direction={'column'} gap='2'>
 				<Grid templateColumns={'repeat(3,4fr)'}>
 					<Label 
-					label={'CR CODE'}
-					value = {data.CR_CODE}
+						label={'COMPANY CODE'}
+						value = {data.COMPANY_CODE}
+					/>
+					<Label 
+						label={'CR CODE'}
+						value = {data.CR_CODE}
 					/>
 
 					<Label 
