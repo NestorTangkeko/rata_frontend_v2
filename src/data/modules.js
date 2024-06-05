@@ -1,6 +1,6 @@
 const modules = [
     {
-        sequence_no_no:1,
+        sequence_no:1,
         id:'transport_operations',
         label:'Transport Operations',
         children:[
@@ -86,7 +86,20 @@ const modules = [
         ]
     },
     {
-        sequence_no_no:3,
+        sequence_no: 3,
+        id: 'billing',
+        label: 'Billing',
+        children: [
+            {
+                sequence_no:1,
+                id:'cr_upload',
+                label:'Confirmation Receipt Upload',
+                path:'/cr-upload'
+            }
+        ]
+    },
+    {
+        sequence_no:4,
         id:'data_management',
         label:'Data Management',
         children:[
@@ -153,7 +166,7 @@ const modules = [
         ]
     },
     {
-        sequence_no:4,
+        sequence_no:5,
         id:'administration',
         label:'Administration',
         children:[
@@ -178,7 +191,7 @@ const modules = [
         ]
     },
     {
-        sequence_no:5,
+        sequence_no:6,
         id:'reports',
         label:'Reports',
         children:[

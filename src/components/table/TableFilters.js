@@ -2,7 +2,7 @@ import React from 'react';
 import {LocalSelect, Select} from 'components/select';
 import {DateRangePicker} from 'components/datepicker';
 import {Switch} from 'components/input';
-import { WrapItem } from '@chakra-ui/react';
+import { Flex, Input, WrapItem, Text } from '@chakra-ui/react';
 
 const Filter = ({column}) => {
 	const columnFilterValue = column.getFilterValue();
@@ -102,6 +102,31 @@ const Filter = ({column}) => {
 
 			case 'revenue_leak_reason' : return <WrapItem>
 				<LocalSelect type={'revenue_leak'} label={'Revenue Leak'} value={columnFilterValue} 	onChange={handleChange}/>
+			</WrapItem>
+
+			case 'CR_DATE' : return <WrapItem>
+				<DateRangePicker label={'CR Date'} handleChange={handleChange}/>
+			</WrapItem>
+
+			case 'SUPPLIER_CODE': return <WrapItem>
+				<Flex direction='column'>
+					<Text fontSize={'sm'} as='b'> Supplier Code</Text>
+					<Input placeholder='Supplier Code' onChange={(e) => {
+						handleChange(e.target.value)
+					}} />
+				</Flex>
+			</WrapItem>
+			case 'DEPARTMENT_CODE': return <WrapItem>
+				<Select
+					label={'Department Code'}
+					route={'department-code'}
+					value={columnFilterValue} 	
+					onChange={handleChange}
+
+				/>
+			</WrapItem>
+			case 'STATUS': return <WrapItem>
+				<LocalSelect label ='Status' type={'cr_status'} value={columnFilterValue} onChange={handleChange}/>
 			</WrapItem>
 
 			default :
