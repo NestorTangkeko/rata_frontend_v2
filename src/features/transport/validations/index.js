@@ -54,6 +54,40 @@ export const contractExportSchema = Yup.object().shape({
     service_type: Yup.object().nullable()
 })
 
+export const invoiceSchema =  Yup.object().shape({
+    trip_date_from: Yup.string().test({
+        name:'trip_date_fromValidity',
+        exclusive: false,
+        message:'Invalid Date',
+        test: (value,{parent}) => {
+            return moment(parent.trip_date_to).diff(parent.trip_date_from,'days') >= 0
+        }
+    }),
+    trip_date_to: Yup.string().test({
+        name:'trip_date_toValidity',
+        exclusive: false,
+        message:'Invalid Date',
+        test: (value,{parent}) => {
+            return moment(parent.trip_date_to).diff(parent.trip_date_from,'days') >= 0
+        }
+    }),
+    cleared_date_from:  Yup.string().test({
+        name:'cleared_date_toValidity',
+        exclusive: false,
+        message:'Invalid Date',
+        test: (value,{parent}) => {
+            return moment(parent.cleared_date_to).diff(parent.cleared_date_from,'days') >= 0
+        }
+    }),
+    cleared_date_to:  Yup.string().test({
+        name:'cleared_date_toValidity',
+        exclusive: false,
+        message:'Invalid Date',
+        test: (value,{parent}) => {
+            return moment(parent.cleared_date_to).diff(parent.cleared_date_from,'days') >= 0
+        }
+    }),
+})
 
 export const draftBillExportSchema = Yup.object().shape({
     type: Yup.object().nullable().required('Required'),

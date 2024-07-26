@@ -129,6 +129,10 @@ const Filter = ({column}) => {
 				<LocalSelect label ='Status' type={'cr_status'} value={columnFilterValue} onChange={handleChange}/>
 			</WrapItem>
 
+			case 'cleared_date': return <WrapItem>
+				<DateRangePicker label={'RUD Cleared'} handleChange={handleChange}/>
+			</WrapItem>
+
 			default :
 			return null
 		}
