@@ -56,8 +56,6 @@ const InvoiceExport = ({
         }
     })
 
-
-
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={'Invoice Export'}>
             <form onSubmit={formik.handleSubmit}>
@@ -71,7 +69,7 @@ const InvoiceExport = ({
                             <Input type='date' name='trip_date_to' value={formik.values.trip_date_to} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                         </FormControl>
                     </Flex>
-                    <Text>RUD Cleared Date</Text>
+                    {/* <Text>RUD Cleared Date</Text>
                     <Flex gap='2'>
                         <FormControl label='Cleared Date From' error={formik.errors.cleared_date_from} touched={formik.touched.cleared_date_from}>
                             <Input type='date' name='cleared_date_from' value={formik.values.cleared_date_from} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
@@ -79,7 +77,7 @@ const InvoiceExport = ({
                         <FormControl label='Cleared Date To' error={formik.errors.cleared_date_to} touched={formik.touched.cleared_date_to}>
                             <Input type='date' name='cleared_date_to' value={formik.values.cleared_date_to} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                         </FormControl>
-                    </Flex>
+                    </Flex> */}
                     <Flex justify={'flex-end'}>
                         <Button type='submit' colorScheme='orange' isLoading={isLoading}>Export</Button>
                     </Flex>

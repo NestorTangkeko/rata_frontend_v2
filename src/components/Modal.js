@@ -16,7 +16,9 @@ const Modal = ({size,title,isOpen,onClose,children}) => {
         <ModalOverlay/>
         <ModalContent minWidth={size}>
           <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton />
+          {
+            onClose ?  <ModalCloseButton /> : null
+          }
           <Divider/>
           <ModalBody>
             {children}

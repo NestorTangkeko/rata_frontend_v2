@@ -101,3 +101,12 @@ export const transmittalExportSchema = Yup.object().shape({
     contract_type: Yup.object().nullable(),
     location: Yup.object().nullable() 
 })
+
+export const extendRateSchema = Yup.object().shape({
+    valid_to: Yup.string().required('Required')
+})
+
+export const filterRatesSchema = Yup.object().shape({
+    from: Yup.string().required('Required'), 
+    to: Yup.string().required('Required')
+})
