@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, GridItem, Input, Toast, useDisclosure } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, GridItem, Input, useDisclosure } from '@chakra-ui/react'
 import { useFormik } from 'formik'
 import { Container } from 'layouts'
 import React from 'react'
@@ -9,6 +9,7 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 import { extendRateSchema, filterRatesSchema } from 'features/transport/validations';
 import ExtendModal from 'features/transport/components/modals/ExtendModal';
+import { Select } from 'components/select';
 
 const ContractExtendRate = ({
     contract_id = '',
@@ -23,17 +24,17 @@ const ContractExtendRate = ({
     const formik = useFormik({
         initialValues:{
             from:'',
-            to: ''
+            algorithm: null
         },
         validationSchema: filterRatesSchema,
         onSubmit: async (values) => {
             await getTariffs({
                 contract_id,
-                ...values
+                algorithm: values.algorithm?.value,
+                from: values.from
             })
             .unwrap()
             .then(result => {
-                console.log(result)
                setTariffs(result)
             })
         }
@@ -60,7 +61,7 @@ const ContractExtendRate = ({
         await extendRates({
             contract_id,
             from: formik.values.from,
-            to: formik.values.to,
+            algorithm: formik.values.algorithm?.value,
             new_valid_to: extendForm.values.valid_to
         })
         .unwrap()
@@ -84,12 +85,17 @@ const ContractExtendRate = ({
                 <Flex direction={'column'} gap={1}>
                     <Flex alignItems={'center'} gap={2}>
                         <FormControl label='Valid Until' error={formik.errors.from} touched={formik.touched.from}>
-                            <Input min={valid_from} type='date' name='from' value={formik.values.from} onChange={formik.handleChange} onBlur={formik.handleBlur}/>  
+                            <Input min={moment().subtract(7,'days').format('YYYY-MM-DD')} type='date' name='from' value={formik.values.from} onChange={formik.handleChange} onBlur={formik.handleBlur}/>  
                         </FormControl>
-                        <FormControl label='Valid Until' error={formik.errors.to} touched={formik.touched.to}>
-                            <Input min={valid_from} type='date' name='to' value={formik.values.to} onChange={formik.handleChange} onBlur={formik.handleBlur}/>  
-                        </FormControl>
-                        
+                        <FormControl >   
+                            <Select
+                                label={'Algorithm'}
+                                name={'algorithm'}
+                                value={formik.values.algorithm}
+                                onChange={(selected) => formik.setFieldValue('algorithm',selected)}
+                                route={'algorithm'}
+                            />
+                        </FormControl>         
                     </Flex>
                     <Flex gap={1} justifyContent={'end'}>
                         <Button type='submit' isLoading={isLoading}>Filter</Button>

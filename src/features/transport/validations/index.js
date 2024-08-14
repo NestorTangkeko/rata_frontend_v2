@@ -107,6 +107,14 @@ export const extendRateSchema = Yup.object().shape({
 })
 
 export const filterRatesSchema = Yup.object().shape({
-    from: Yup.string().required('Required'), 
-    to: Yup.string().required('Required')
+    from: Yup.string().test({
+        name: 'valid_unitl_validation',
+        exclusive:false,
+        params:{},
+        message:'Invalid date',
+        test: (value) => {
+            return moment(value).add(7,'days').diff(moment(),'days') < 0 ? false : true
+        }
+    }).required('Required'), 
+    algorithm: Yup.object().nullable()
 })
