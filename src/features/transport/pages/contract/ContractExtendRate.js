@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { extendRateSchema, filterRatesSchema } from 'features/transport/validations';
 import ExtendModal from 'features/transport/components/modals/ExtendModal';
 import { Select } from 'components/select';
+import Label from 'components/Label';
 
 const ContractExtendRate = ({
     contract_id = '',
@@ -19,8 +20,12 @@ const ContractExtendRate = ({
     const [tariffs,setTariffs]              = React.useState([])
     const [getTariffs, {isLoading}]         = useLazyGetExtendedRateQuery();
     const [extendRates, extendRatesProps]   = useExtendRatesMutation();
+    const [extendResults, setResults] = React.useState({
+        total_rates: 0,
+        updated_rates: 0,
+    });
     const extendDialog                       = useDisclosure();
-
+    
     const formik = useFormik({
         initialValues:{
             from:'',
@@ -35,7 +40,12 @@ const ContractExtendRate = ({
             })
             .unwrap()
             .then(result => {
-               setTariffs(result)
+                setResults({
+                    ...extendResults,
+                    total_rates: result.length,
+                    updated_rates: 0
+                })
+                setTariffs(result)
             })
         }
     })   
@@ -46,12 +56,13 @@ const ContractExtendRate = ({
         },
         validationSchema: extendRateSchema,
         onSubmit: async(values) => {
-            const newValidUntil = moment(values.valid_to)
-            const validUntil = moment(formik.values.to)
+           
+            // const newValidUntil = moment(values.valid_to)
+            // const validUntil = moment(formik.values.to)
 
-            if(newValidUntil.diff(validUntil,'day') < 7) {
-                return toast.error('Date must be more than a week from the previous valid date')
-            }
+            // if(newValidUntil.diff(validUntil,'day') < 7) {
+            //     return toast.error('Date must be more than a week from the previous valid date')
+            // }
 
             extendDialog.onOpen();
         }
@@ -65,9 +76,15 @@ const ContractExtendRate = ({
             new_valid_to: extendForm.values.valid_to
         })
         .unwrap()
-        .then(() => {
-            toast.success('Rates Extended!');
+        .then((result) => {
+            console.log(result)
+            toast.success('Done');
             extendDialog.onClose();
+            setResults({
+                ...extendResults,
+                total_rates: result.total_rates,
+                updated_rates: result.updated_rates
+            })
             handleClear();
         })
     }
@@ -85,10 +102,11 @@ const ContractExtendRate = ({
                 <Flex direction={'column'} gap={1}>
                     <Flex alignItems={'center'} gap={2}>
                         <FormControl label='Valid Until' error={formik.errors.from} touched={formik.touched.from}>
-                            <Input min={moment().subtract(7,'days').format('YYYY-MM-DD')} type='date' name='from' value={formik.values.from} onChange={formik.handleChange} onBlur={formik.handleBlur}/>  
+                            <Input disabled={tariffs.length > 0} min={moment().subtract(7,'days').format('YYYY-MM-DD')} type='date' name='from' value={formik.values.from} onChange={formik.handleChange} onBlur={formik.handleBlur}/>  
                         </FormControl>
                         <FormControl >   
                             <Select
+                                disabled={tariffs.length > 0}
                                 label={'Algorithm'}
                                 name={'algorithm'}
                                 value={formik.values.algorithm}
@@ -98,7 +116,7 @@ const ContractExtendRate = ({
                         </FormControl>         
                     </Flex>
                     <Flex gap={1} justifyContent={'end'}>
-                        <Button type='submit' isLoading={isLoading}>Filter</Button>
+                        <Button type='submit' isLoading={isLoading}  disabled={tariffs.length > 0}>Filter</Button>
                     </Flex>    
                 </Flex>
             </form>
@@ -115,6 +133,10 @@ const ContractExtendRate = ({
                                     <FormControl label='New Valid To' error={extendForm.errors.valid_to} touched={extendForm.touched.valid_to}>
                                         <Input min={valid_from} max={valid_to} type='date' name='valid_to' value={extendForm.values.valid_to} onChange={extendForm.handleChange} onBlur={extendForm.handleBlur}/>
                                     </FormControl>
+                                </Flex>
+                                <Flex gap={3}>
+                                    <Label label = 'Total Rates' value={extendResults.total_rates}/>
+                                    <Label label = 'Updated Rates' value={extendResults.updated_rates}/>
                                 </Flex>
                                 <Flex gap={1} justifyContent={'end'}>
                                     <Button type='button' onClick={handleClear}>Clear</Button>

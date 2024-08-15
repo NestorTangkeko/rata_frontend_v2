@@ -3,7 +3,7 @@ import {Box,Text} from '@chakra-ui/react';
 import AsyncSelect from 'react-select/async';
 import {useGetSelectOptionsQuery} from 'lib/redux/api/select.api.slice';
 
-const Select = ({route, name, label, value, onChange,filter}) => {
+const Select = ({route, name, label, value, onChange,disabled = false,filter}) => {
 
     const {data =[], isLoading} = useGetSelectOptionsQuery({
         route,
@@ -47,6 +47,7 @@ const Select = ({route, name, label, value, onChange,filter}) => {
                     onChange={onChange}
                     isClearable
                     isLoading={isLoading}
+                    isDisabled={disabled}
                 />
             </Box>        
         )
