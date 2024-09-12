@@ -31,5 +31,5 @@ export const reportApiSlice = apiSlice.injectEndpoints({
 
 export const {
     useUpdateReportMutation,
-    useDownloadReportMutation
+    useDownloadReportMutation,
 } = reportApiSlice

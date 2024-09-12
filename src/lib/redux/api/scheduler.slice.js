@@ -47,13 +47,23 @@ export const schedulerSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Pagination']
-        })
+        }),
+        manualReportTrigger: builder.mutation({
+            query:({report_name, ...data}) => ({
+                url:'/v2/scheduler/'+report_name,
+                method:'POST',
+                body:data
+            }),
+            invalidatesTags:['Pagination']
+        }),
     })
+    
 
 })
 
 export const {
     useManualTriggerMutation,
+    useManualReportTriggerMutation,
     useUpdateSchedulerMutation,
     useCreateEmailMutation,
     useUpdateEmailMutation
