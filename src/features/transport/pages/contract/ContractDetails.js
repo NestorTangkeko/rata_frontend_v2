@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container, SubHeader} from 'layouts';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import {Button, Text, Spacer, Flex, useDisclosure} from '@chakra-ui/react';
+import {Button, Text, Spacer, Flex, useDisclosure, TabPanel, Tabs, TabList, TabPanels, Tab} from '@chakra-ui/react';
 
 import {useGetTransportContractQuery, useUpdateTransportContractMutation, useUpdateTransportContractTariffMutation} from 'lib/redux/api/contract.api.slice';
 import ContractTariffTable from 'features/transport/components/tables/ContractTariffTable';
@@ -10,6 +10,7 @@ import ContractInformation from 'features/transport/components/ContractInformati
 import {toast} from 'react-toastify';
 import {useCheckAccesSub} from 'hooks'
 import ContractRenew from 'features/transport/components/modals/ContractRenew';
+import ContractExtendRate from './ContractExtendRate';
 
 const ContractDetails = () => {
     const navigate  = useNavigate();
@@ -67,11 +68,9 @@ const ContractDetails = () => {
                 <ContractInformation data={data}/>
                 <Flex gap='1'>
                 <Spacer/> 
-                    
                     <Button hidden={!hasAccess.edit} isDisabled={data?.contract_status !== 'APPROVED'}  onClick={renewDialog.onOpen}>
                         Renew
                     </Button>
-
                     <Button 
                         hidden={!hasAccess.edit}
                         onClick={handleApprove} 
@@ -80,11 +79,23 @@ const ContractDetails = () => {
                         colorScheme='orange'>
                             Approve
                     </Button>
-
                 </Flex>
                 </Container>
             <Container>
-                <ContractTariffTable hasEdit={hasAccess.edit} isLoading={updateTariffProps.isLoading}  handleCancelTariff={handleCancelTariff} contract_id={params?.contract_id || null}/>
+                <Tabs>
+                    <TabList>
+                        <Tab>Rates</Tab>
+                        <Tab>Extend Rates</Tab>
+                    </TabList>
+                    <TabPanels>
+                        <TabPanel>
+                            <ContractTariffTable hasEdit={hasAccess.edit} isLoading={updateTariffProps.isLoading}  handleCancelTariff={handleCancelTariff} contract_id={params?.contract_id || null}/>
+                        </TabPanel>
+                        <TabPanel>
+                            <ContractExtendRate valid_from={data.valid_from} valid_to={data.valid_to} contract_id={params.contract_id}/>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
             </Container>
 
             <ContractRenew isOpen={renewDialog.isOpen} onClose={renewDialog.onClose} 

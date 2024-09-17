@@ -1,5 +1,5 @@
-import {createBrowserRouter} from 'react-router-dom';
 import App from 'App';
+import {createBrowserRouter} from 'react-router-dom';
 import {Login} from 'features/authentication';
 import {
     TransportContract,
@@ -11,7 +11,7 @@ import {
     TransportTransmittal,
     TransportOutlet, 
     Invoices,
-    TransmittalDetails
+    TransmittalDetails,
 } from 'features/transport';
 import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit, VehicleTypes} from 'features/data-management';
 import {
