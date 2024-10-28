@@ -9,6 +9,25 @@ export const contractApiSlice = apiSlice.injectEndpoints({
             }),
             providesTags:['Contract']
         }),
+        getExtendedRate: builder.query({
+            query:({contract_id,...params}) => ({
+                url: `v2/contract/contract-tariff/${contract_id}`,
+                method:'GET',
+                params: {
+                    ...params
+                }
+            })
+        }),
+        extendRates: builder.mutation({
+            query:({contract_id,...params}) => ({
+                url: `v2/contract/contract-tariff/${contract_id}`,
+                method:'PUT',
+                body:{
+                    ...params
+                },
+            }),
+            invalidatesTags: ['Contract']
+        }),
         updateTransportContract: builder.mutation({
             query:(params) => ({
                 url: `v2/contract/contract-id/${params.contract_id}`,
@@ -44,5 +63,7 @@ export const {
     useGetTransportContractQuery,
     useUpdateTransportContractMutation,
     useUpdateTransportContractTariffMutation,
-    useUpdateTransportContractValidityMutation
+    useUpdateTransportContractValidityMutation,
+    useLazyGetExtendedRateQuery,
+    useExtendRatesMutation
 } = contractApiSlice;

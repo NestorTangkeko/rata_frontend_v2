@@ -45,20 +45,20 @@ const DataExportModal = ({
     const render = () => {
         switch (type) { 
             case 'default': 
-            return <>
-                    <DateInput
-                        label={'From'}
-                        name='from'
-                        value={state.from}
-                        onChange={onChange}
-                    />
-                    <DateInput
-                        label={'To'}
-                        name='to'
-                        value={state.to}
-                        onChange={onChange}
-                    />
-            </>
+                return <>
+                        <DateInput
+                            label={'From'}
+                            name='from'
+                            value={state.from}
+                            onChange={onChange}
+                        />
+                        <DateInput
+                            label={'To'}
+                            name='to'
+                            value={state.to}
+                            onChange={onChange}
+                        />
+                </>
             case 'transport-contract': 
             return  <Select
                         label={'Contract'}

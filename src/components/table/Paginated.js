@@ -42,7 +42,7 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
     const [columnFilters,setColumnFilters] = React.useState([])
     const [rowSelection, setRowSelection] = React.useState({})
   
-    const {data = [],refetch,isLoading} = useGetDataQuery({
+    const {data = [],refetch,isFetching} = useGetDataQuery({
         route:route,
         query:{
             totalPage:page.pageSize,
@@ -117,7 +117,7 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
             <Flex direction={'row'} justifyContent='space-between'>   
                 <Flex gap={1}>
                     <DebounceInput value={globalFilter ?? ''} onChange={value => setGlobalFilter(String(value))} />
-                    <IconButton icon={<RepeatIcon/>} size='sm' onClick={refetch} isLoading={isLoading}/>
+                    <IconButton icon={<RepeatIcon/>} size='sm' onClick={refetch} isLoading={isFetching}/>
                 </Flex> 
                 <Text fontSize={'small'}>Count: {data?.rows || 0}</Text>
             </Flex>  
@@ -156,7 +156,7 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
             </Table>
         </TableContainer>
         <Box display={{lg:'flex'}} justifyContent={{lg:'space-between'}} p='1' alignItems={'center'}>
-            <Button width={{xl:'md',lg:'sm', sm:'100%'}} fontSize={'sm'} fontWeight='normal' onClick={()=>{table.previousPage()}} disabled={!table.getCanPreviousPage()}>Previous</Button>
+            <Button width={{xl:'md',lg:'sm', sm:'100%'}} fontSize={'sm'} fontWeight='normal' onClick={()=>{table.previousPage()}} disabled={!table.getCanPreviousPage() || isFetching}>Previous</Button>
             <Box display={'flex'} columnGap='2' p={2} justifyContent='center' alignItems={'center'}>
                 <Text fontSize={'sm'}>Page</Text>
                 <Input 
@@ -182,7 +182,7 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
                     ))}
                 </Select>
             </Box>
-            <Button width={{xl:'md',lg:'sm', sm:'100%'}} fontSize={'sm'} fontWeight='normal' onClick={()=>{table.nextPage()}} disabled={!table.getCanNextPage()}>Next</Button>
+            <Button width={{xl:'md',lg:'sm', sm:'100%'}} fontSize={'sm'} fontWeight='normal' onClick={()=>{table.nextPage()}} disabled={!table.getCanNextPage() || isFetching}>Next</Button>
         </Box>
     </Box>
     )
