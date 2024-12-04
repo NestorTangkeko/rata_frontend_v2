@@ -12,6 +12,7 @@ const ReportLogsTable = () => {
     const columnHelper = createColumnHelper();
     const columns = [
         columnHelper.accessor('id'), 
+        columnHelper.accessor('transaction_date'),
         columnHelper.accessor('report_id'),
         columnHelper.accessor('report_status'),
         columnHelper.accessor('err_message'),

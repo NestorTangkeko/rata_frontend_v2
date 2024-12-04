@@ -30,7 +30,7 @@ export const asciiSlice = apiSlice.injectEndpoints({
                 url:`/v2/ascii/transport`,
                 method: 'POST',
                 params:{
-                    ...params.query
+                    ...params
                 },
                 responseHandler:(res) => res.blob(),
                 cache: 'no-cache',

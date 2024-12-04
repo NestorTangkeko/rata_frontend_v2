@@ -1,6 +1,13 @@
 import moment from 'moment';
 import * as Yup from 'yup';
 
+export const transmittalSchema = Yup.object().shape({
+    from: Yup.string().required('Required'),
+    to: Yup.string().required('Required'),
+    location: Yup.object().nullable(),
+    contract_type: Yup.object().nullable().required('Required')
+})
+
 export const tariffSchema = Yup.object().shape({
     tariff_id:          Yup.string().required('required'),
     tariff_desc:        Yup.string().required('required'),
