@@ -1,6 +1,6 @@
 import React from 'react'
-import { Paginated } from 'components/table';
-import { createColumnHelper } from '@tanstack/react-table'
+import {Paginated} from 'components/table';
+import {createColumnHelper} from '@tanstack/react-table'
 import {useParams} from 'react-router-dom';
 
 const CRDetailTable = () => {
