@@ -12,7 +12,7 @@ const SoUpload = () => {
     const exportDisclosure = useDisclosure();
 
     return (<>
-        <SubHeader title={'Confirmation Receipt Upload'}>
+        <SubHeader title={'Sales Order Upload'}>
             <Button size={'sm'} colorScheme='orange' onClick={onOpen}>
                 Upload
             </Button>
