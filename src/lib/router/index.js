@@ -1,6 +1,6 @@
 import App from 'App';
 import {createBrowserRouter} from 'react-router-dom';
-import {Login} from 'features/authentication';
+import {ForgotPassword, Login, NewUser} from 'features/authentication';
 import {
     TransportContract,
     TransportContractDTL,
@@ -229,6 +229,14 @@ const router = createBrowserRouter([
         path:'/login',
         element:<Login/>
     },
+    {
+        path:'/new-user',
+        element: <NewUser/>
+    },
+    {
+        path:'/forgot-password',
+        element: <ForgotPassword/>
+    }
 ])
 
 export default router

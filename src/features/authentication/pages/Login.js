@@ -39,7 +39,7 @@ const Login = () => {
                 justifyContent={'center'}
                 >
                     <LoginForm/>
-            
+                    
             </Box>
         </Box>
   )

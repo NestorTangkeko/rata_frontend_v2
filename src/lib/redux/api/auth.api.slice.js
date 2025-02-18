@@ -36,6 +36,23 @@ export const authSlice = apiSlice.injectEndpoints({
                 method:'POST',
             })
         }),
+        getSession: builder.query({
+            query:() => ({
+                url: '/v2/authentication/session',
+                method: 'GET'
+            }),
+            providesTags:['Auth']
+        }),
+        forgotPassword: builder.mutation({
+            query: (email) => ({
+                url:'/v2/authentication/forgot-password',
+                method:'POST',
+                body: {
+                    email
+                },
+            }),
+            invalidatesTags:['Auth']
+        })
     })
 })
 
@@ -43,5 +60,7 @@ export const {
     useLogoutMutation,
     useLoginMutation,
     useAccountUpdateMutation,
-    useAccessQuery
+    useAccessQuery,
+    useGetSessionQuery,
+    useForgotPasswordMutation
 } = authSlice

@@ -6,9 +6,24 @@ import { useSelector } from 'react-redux';
 import {Header} from 'layouts';
 import { Box } from '@chakra-ui/react';
 import 'react-toastify/dist/ReactToastify.css';
+import { useGetSessionQuery } from 'lib/redux/api/auth.api.slice';
+import moment from 'moment';
 
 function App() {
-    const token = useSelector(selectToken)
+    const token = useSelector(selectToken);
+    const {data, isSuccess,isLoading} = useGetSessionQuery();
+    
+    if(!isLoading && isSuccess) {
+        const {is_reset, password_expiry} = data;
+
+        if(moment(password_expiry).isBefore(moment())){
+            return <Navigate to='/new-user' replace/>
+        }
+
+        if(is_reset === 1) {
+            return <Navigate to='/new-user' replace/>
+        }
+    }
 
     if(!token) {
         return <Navigate to='/login'/>

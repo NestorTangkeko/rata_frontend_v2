@@ -35,10 +35,10 @@ const Header = () => {
 
   	const handleLogout = async() => {
 		await logOut() 
-		.unwrap()
-		.then(()=> {
-		dispatch(setLogOut())
-		navigate('/login')
+			.unwrap()
+			.then(()=> {
+			dispatch(setLogOut())
+			navigate('/login')
 		})
   	}
 
