@@ -5,7 +5,7 @@ export const soUploadSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getSOTemplate: builder.mutation({
             query: (params) => ({
-                url: 'v2/so-upload/template',
+                url: '/v2/so-upload/template',
                 method:'POST',
                 responseHandler:(res) => res.blob(),
                 cache: 'no-cache'
@@ -17,7 +17,7 @@ export const soUploadSlice = apiSlice.injectEndpoints({
         }),
         uploadSO: builder.mutation({
             query: (data) => ({
-                url:'v2/so-upload',
+                url:'/v2/so-upload',
                 method: 'POST',
                 body: data,
                 responseHandler:(res) => res.blob(),
@@ -31,7 +31,7 @@ export const soUploadSlice = apiSlice.injectEndpoints({
         }),
         getSoHeader: builder.query({
             query: (id) => ({
-                url:'v2/so-upload/header/'+id,
+                url:'/v2/so-upload/header/'+id,
                 method:'GET'
             })
         }),
