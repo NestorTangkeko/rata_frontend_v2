@@ -125,6 +125,7 @@ const Filter = ({column}) => {
 
 				/>
 			</WrapItem>
+
 			case 'STATUS': return <WrapItem>
 				<LocalSelect label ='Status' type={'cr_status'} value={columnFilterValue} onChange={handleChange}/>
 			</WrapItem>
@@ -132,6 +133,27 @@ const Filter = ({column}) => {
 			case 'cleared_date': return <WrapItem>
 				<DateRangePicker label={'RUD Cleared'} handleChange={handleChange}/>
 			</WrapItem>
+
+			case 'SO_DATE' : return <WrapItem>
+			<DateRangePicker label={'SO Date'} handleChange={handleChange}/>
+			</WrapItem>
+			
+			case 'CUSTOMER_CODE': return <WrapItem>
+			<Flex direction='column'>
+				<Text fontSize={'sm'} as='b'>Customer Code</Text>
+				<Input placeholder='Customer Code' onChange={(e) => {
+					handleChange(e.target.value)
+				}} />
+			</Flex>
+			</WrapItem>
+
+		
+			case 'SO_STATUS': return <WrapItem>
+			<LocalSelect label ='Status' type={'so_status'} value={columnFilterValue} onChange={handleChange}/>
+			</WrapItem>
+
+
+
 
 			default :
 			return null

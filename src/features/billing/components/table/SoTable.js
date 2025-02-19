@@ -25,7 +25,7 @@ const SoTable = () => {
         columnHelper.accessor('REF_EUPO'),
         columnHelper.accessor('REF_CROSS'),
         columnHelper.accessor('SO_AMT'),
-        columnHelper.accessor('STATUS'),
+        columnHelper.accessor('SO_STATUS'),
         columnHelper.accessor('uploaded_by',{
             header:'UPLOADED BY'
         }),
@@ -40,7 +40,7 @@ const SoTable = () => {
             title={'Sales Order'}
             columns={columns}
             route={'/v2/so-upload'}
-            //showFilters
+            showFilters
         />
     </>)
 }
