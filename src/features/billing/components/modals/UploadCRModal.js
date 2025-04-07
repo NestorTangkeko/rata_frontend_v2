@@ -10,7 +10,6 @@ import { useGetCRTemplateMutation, useUploadCRMutation } from 'lib/redux/api/cr_
 const crUploadSchema = Yup.object().shape({
   file: Yup.mixed().required('Please upload a file').test("fileSize", "Max allowed size is 1mb",
   value => {
-	console.log(value.size)
 	if (value) {
 		return value.size <= 1000000;
 	  }

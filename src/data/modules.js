@@ -95,6 +95,12 @@ const modules = [
                 id:'cr_upload',
                 label:'Confirmation Receipt Upload',
                 path:'/cr-upload'
+            },
+            {
+                sequence_no: 2, 
+                id: 'so_upload',
+                label: 'Sales Order Upload',
+                path: '/so-upload'
             }
         ]
     },

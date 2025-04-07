@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Input, VStack,Text} from '@chakra-ui/react';
+import {Button, Input, VStack,Text, Box} from '@chakra-ui/react';
 import {Field}      from 'formik';
 import {authSchema} from '../validations';
 import Form         from 'components/form/Form';
@@ -23,8 +23,12 @@ const LoginForm = () => {
         .unwrap()
         .then(result => {
             dispatch(setLogIn(result.token))
-            navigate('/')
+            return navigate('/')
         })
+    }
+
+    const onForgotPassword = () => {
+        navigate('/forgot-password')
     }
 
     return (
@@ -47,16 +51,19 @@ const LoginForm = () => {
                             placeholder='email'
                         />
                     </FormControl>
-                    <FormControl label={'Password'} id='password' error={errors.password} touched={touched.password}>
-                        <Field
-                            as={Input}
-                            id='password'
-                            name='password'
-                            placeholder='Password'
-                            type='password'
-                        />
-                    </FormControl>
+                        <FormControl label={'Password'} id='password' error={errors.password} touched={touched.password}>
+                            <Field
+                                as={Input}
+                                id='password'
+                                name='password'
+                                placeholder='Password'
+                                type='password'
+                            />
+                        </FormControl>
                     <Button type='submit' colorScheme={'orange'} width='100%' isLoading={loginProps.isLoading}>Login</Button>
+                    <Box width={'100%'} flex>
+                        <Button type='button' variant='link' onClick={onForgotPassword}>Forgot Password</Button>
+                    </Box>
                 </VStack>
             )}
         </Form>

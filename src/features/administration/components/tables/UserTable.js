@@ -5,6 +5,7 @@ import { Flex, Button,useDisclosure } from '@chakra-ui/react';
 import {useUpdateAdminDataMutation} from 'lib/redux/api/administration.api.slice';
 import { toast } from 'react-toastify';
 import UserRoleModal from '../modals/UserRoleModal';
+import {FaLock} from 'react-icons/fa';
 
 const UserTable = ({hasEdit}) => {
     const [updateUser, updateUserProps] = useUpdateAdminDataMutation();
@@ -34,7 +35,7 @@ const UserTable = ({hasEdit}) => {
                    roleModal.onOpen();
                 }
 
-                return hasEdit ? <Button isLoading={updateUserProps.isLoading} colorScheme={'telegram'} onClick={handleClick}>
+                return hasEdit ? <Button size={'sm'} isLoading={updateUserProps.isLoading} colorScheme={'telegram'} onClick={handleClick}>
                     {props.getValue()}
                 </Button> : props.getValue()
             }
@@ -45,8 +46,18 @@ const UserTable = ({hasEdit}) => {
         columnHelper.accessor('last_name',{
             header:'Last Name'
         }),
+        columnHelper.accessor('password_expiry',{
+            header:'Password Expiry'
+        }),
         columnHelper.accessor('status',{
             header:'Status'
+        }),
+        columnHelper.accessor('is_lock', {
+            header: 'Lock Status',
+            cell: props => {
+                const value = props.getValue();
+                return value === 1 ? <FaLock color='red'/> : ''
+            }
         }),
         columnHelper.display({
             header:'Action',
@@ -74,18 +85,29 @@ const UserTable = ({hasEdit}) => {
                     })
                     .unwrap()
                     .then(()=>{
-                        toast.success("Password has been reset!")
+                        toast.success("Password has been reset")
                     })
+                }
+
+                const unlockAccount = async()=> {
+                    await updateUser({
+                        route:`user/${data.id}/unlock`
+                    })
+                    .unwrap()
+                    .then(() => 
+                        toast.success('Account Unlocked!')
+                    )
                 }
 
                 return (<Flex gap={2}>
                     {
                         data.status === 'ACTIVE' ? 
-                        <Button isLoading={updateUserProps.isLoading} colorScheme={'red'}   onClick={()=>updateStatus('INACTIVE')} isDisabled={!hasEdit}>Deactivate</Button> : 
-                        <Button isLoading={updateUserProps.isLoading} colorScheme={'green'} onClick={()=>updateStatus('ACTIVE')} isDisabled={!hasEdit}>Activate</Button>
+                        <Button size={'sm'} isLoading={updateUserProps.isLoading} colorScheme={'red'}   onClick={()=>updateStatus('INACTIVE')} isDisabled={!hasEdit}>Deactivate</Button> : 
+                        <Button size={'sm'} isLoading={updateUserProps.isLoading} colorScheme={'green'} onClick={()=>updateStatus('ACTIVE')} isDisabled={!hasEdit}>Activate</Button>
                     }
                     
-                    <Button isLoading={updateUserProps.isLoading} colorScheme={'yellow'} onClick={resetPassword} isDisabled={!hasEdit}>Reset Password</Button>
+                    <Button size={'sm'} isLoading={updateUserProps.isLoading} colorScheme={'yellow'} onClick={resetPassword} isDisabled={!hasEdit}>Reset Password</Button>
+                    <Button size={'sm'} disabled={data.is_lock !== 1} colorScheme='orange' onClick={unlockAccount}>Unlock</Button>
                 </Flex>)
             }
         })

@@ -400,3 +400,14 @@ export const cr_status = [
         value:'CR_FAILED'
     }
 ]
+
+export const so_status = [
+    {
+        label:'SO CREATED',
+        value:'SO_CREATED'
+    },
+    {
+        label:'SO FAILED',
+        value:'SO_FAILED'
+    }
+]

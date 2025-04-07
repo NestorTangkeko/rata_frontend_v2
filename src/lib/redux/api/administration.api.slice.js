@@ -34,6 +34,15 @@ export const administrationSlice = apiSlice.injectEndpoints({
                 }
             }),
             invalidatesTags:['Administration','Pagination']
+        }),
+        updateUserPassword: builder.mutation({
+            query: (params) => ({
+                url: `v2/administration/user/password`,
+                method:'PUT',
+                body:{
+                    ...params.body
+                }
+            })
         })
         
     })
@@ -42,5 +51,6 @@ export const administrationSlice = apiSlice.injectEndpoints({
 export const {
     useGetAdminDataQuery,
     useCreateAdminDataMutation,
-    useUpdateAdminDataMutation
+    useUpdateAdminDataMutation,
+    useUpdateUserPasswordMutation
 } = administrationSlice

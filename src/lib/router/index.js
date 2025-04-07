@@ -1,6 +1,6 @@
 import App from 'App';
 import {createBrowserRouter} from 'react-router-dom';
-import {Login} from 'features/authentication';
+import {ForgotPassword, Login, NewUser} from 'features/authentication';
 import {
     TransportContract,
     TransportContractDTL,
@@ -20,10 +20,10 @@ import {
 } from 'features/warehouse';
 import {Role, RoleAccess, Scheduler, User} from 'features/administration';
 import ShipPoint from 'features/data-management/pages/ShipPoint';
-import { BillingCreate, BillingTransport } from 'features/billing';
+import { BillingCreate, BillingTransport, SODetails } from 'features/billing';
 import CostAllocation from 'features/data-management/pages/CostAllocation/CostAllocation';
 import { AccrualReports, ReportDetails, Reports } from 'features/reports';
-import {CRUpload, CRDetails} from 'features/billing';
+import {CRUpload, CRDetails, SOUpload} from 'features/billing';
 
 const router = createBrowserRouter([
     {
@@ -222,6 +222,19 @@ const router = createBrowserRouter([
                         element:<CRDetails/>
                     }
                 ]
+            },
+            {
+                path:'/so-upload',
+                children:[
+                    {
+                        index:true,
+                        element: <SOUpload/>
+                    },
+                    {
+                        path:':id',
+                        element: <SODetails/>
+                    }
+                ]
             }
         ] 
     },
@@ -229,6 +242,14 @@ const router = createBrowserRouter([
         path:'/login',
         element:<Login/>
     },
+    {
+        path:'/new-user',
+        element: <NewUser/>
+    },
+    {
+        path:'/forgot-password',
+        element: <ForgotPassword/>
+    }
 ])
 
 export default router

@@ -11,7 +11,6 @@ const useSetAccess = () => {
     const [modules,setModules]=React.useState(defaultModules);
 
     React.useEffect(() => {
-        console.log(defaultModules)
         let temp = [];
         if(isSuccess) {
             defaultModules.map(def => {
