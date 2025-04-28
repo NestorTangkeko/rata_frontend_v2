@@ -105,7 +105,26 @@ const modules = [
         ]
     },
     {
-        sequence_no:4,
+        sequence_no: 4,
+        id: 'tur_expense',
+        label: 'TUR Expense',
+        children: [
+            {
+                sequence_no:1,
+                id:'jv_creation',
+                label:'JV Creation',
+                path:'/jv-creation'
+            },
+            {
+                sequence_no: 2, 
+                id: 'jv_reversal',
+                label: 'JV Reversal',
+                path: '/jv-reversal'
+            }
+        ]
+    },
+    {
+        sequence_no:5,
         id:'data_management',
         label:'Data Management',
         children:[
@@ -172,7 +191,7 @@ const modules = [
         ]
     },
     {
-        sequence_no:5,
+        sequence_no:6,
         id:'administration',
         label:'Administration',
         children:[
@@ -197,7 +216,7 @@ const modules = [
         ]
     },
     {
-        sequence_no:6,
+        sequence_no:7,
         id:'reports',
         label:'Reports',
         children:[

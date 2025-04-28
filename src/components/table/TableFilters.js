@@ -152,7 +152,18 @@ const Filter = ({column}) => {
 			<LocalSelect label ='Status' type={'so_status'} value={columnFilterValue} onChange={handleChange}/>
 			</WrapItem>
 
+			case 'jvc_db_date' : return <WrapItem>
+			<DateRangePicker label={'Draft Bill Date Range'} handleChange={handleChange}/>
+			</WrapItem>
 
+			case 'jvc_customer': return <WrapItem>
+			<Flex direction='column'>
+				<Text fontSize={'sm'} as='b'> Customer</Text>
+				<Input placeholder='Customer' onChange={(e) => {
+					handleChange(e.target.value)
+				}} />
+			</Flex>
+			</WrapItem>
 
 
 			default :
