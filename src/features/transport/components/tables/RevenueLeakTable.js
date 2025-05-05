@@ -10,12 +10,14 @@ const RevenueLeakTable = ({handleOpen}) => {
         columnHelper.accessor('tms_reference_no',{
             header:'Reference No',
             cell: props => {
-                const value = props.getValue();
+                const data = props.row.original
                 const onClick = () => {
-                    handleOpen(value)
+                    handleOpen({
+                        tms_reference_no: data.tms_reference_no,
+                        draft_bill_type: data.draft_bill_type
+                    })
                 }
-                // 
-                return <Button variant='link' size={'sm'} onClick={onClick}>{value}</Button>
+                return <Button variant='link' size={'sm'} onClick={onClick}>{props.getValue()}</Button>
             }
         }),
         columnHelper.accessor('draft_bill_type',{
