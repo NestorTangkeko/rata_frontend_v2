@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, forwardRef } from 'react';
+import React from 'react';
 import { Table,
     Thead,
     Tbody,
@@ -23,7 +23,7 @@ import {
 
 import TableFilters from '../../../../components/table/TableFilters';
 import DebounceInput from '../../../../components/input/DebounceInput';
-import {useGetDataQuery} from '../../../../lib/redux/api/table.api.slice';
+import {useGetDataQuery} from 'lib/redux/api/table.api.slice';
 
 const pageSizes = [
     5,
@@ -33,7 +33,8 @@ const pageSizes = [
     100
 ]
 
-const CustomPaginated = forwardRef(({title, columns, route, showFilters, customFilters, selectedRows}, ref) => {
+// This is essentially a clone of the Paginated component with the ability to expose the selection reset
+const JVPaginated = ({title, columns, route, showFilters, customFilters, selectedRows, resetSelectionRef}) => {
     const [page, setPage] = React.useState({
         pageSize: 10,
         pageIndex: 0
@@ -79,17 +80,7 @@ const CustomPaginated = forwardRef(({title, columns, route, showFilters, customF
         onRowSelectionChange: setRowSelection
     })
 
-    // Expose methods via ref
-    useImperativeHandle(ref, () => ({
-        clearSelection: () => {
-            setRowSelection({});
-        },
-        getTable: () => table,
-        getRowSelection: () => rowSelection,
-        setRowSelection
-    }));
-
-    //clear selectedRows
+    // Clear selectedRows
     React.useEffect(() => {
         setRowSelection({})
     }, [page, columnFilters, globalFilter])
@@ -105,9 +96,17 @@ const CustomPaginated = forwardRef(({title, columns, route, showFilters, customF
                 selectedRows([])
             }
         }
-        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [rowSelection])
+
+    // Expose the resetSelection function to the parent component via ref
+    React.useEffect(() => {
+        if (resetSelectionRef && typeof resetSelectionRef === 'object') {
+            resetSelectionRef.current = () => {
+                setRowSelection({});
+            };
+        }
+    }, [resetSelectionRef]);
 
     return (
         <Box borderWidth={'1px'} rounded='sm' width={'full'}>
@@ -140,7 +139,13 @@ const CustomPaginated = forwardRef(({title, columns, route, showFilters, customF
                         <Tr key={headerGroup.id}>
                             {
                                 headerGroup.headers.map(header=> (
-                                    <Th key={header.id}>
+                                    <Th 
+                                        key={header.id}
+                                        position={header.column.columnDef.meta?.sticky ? 'sticky' : undefined}
+                                        left={header.column.columnDef.meta?.sticky ? 0 : undefined}
+                                        zIndex={header.column.columnDef.meta?.sticky ? 2 : undefined}
+                                        backgroundColor={header.column.columnDef.meta?.sticky ? 'white' : undefined}
+                                    >
                                         {
                                             flexRender(
                                                 header.column.columnDef.header,
@@ -157,7 +162,14 @@ const CustomPaginated = forwardRef(({title, columns, route, showFilters, customF
                     {table.getRowModel().rows.map(row => (
                         <Tr key={row.id}>
                             {row.getVisibleCells().map(cell => (
-                                <Td key={cell.id} fontSize='small'>
+                                <Td
+                                    key={cell.id}
+                                    fontSize='small'
+                                    position={cell.column.columnDef.meta?.sticky ? 'sticky' : undefined}
+                                    left={cell.column.columnDef.meta?.sticky ? 0 : undefined}
+                                    zIndex={cell.column.columnDef.meta?.sticky ? 1 : undefined}
+                                    backgroundColor={cell.column.columnDef.meta?.sticky ? 'white' : undefined}
+                                >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </Td>
                             ))}
@@ -197,10 +209,6 @@ const CustomPaginated = forwardRef(({title, columns, route, showFilters, customF
         </Box>
     </Box>
     )
-});
-
-CustomPaginated.defaultProps = {
- 
 }
 
-export default CustomPaginated;
+export default JVPaginated;

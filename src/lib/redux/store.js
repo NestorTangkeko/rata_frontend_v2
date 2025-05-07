@@ -18,6 +18,7 @@ import geoSlice from './geo.slice';
 import tariffSlice from './tariff.slice';
 import transmittalSice from './transmittal.slice';
 import jvCreationSlice from './jvCreation.slice';
+import jvReversalSlice from './jvReversal.slice';
 
 const reducers = combineReducers({
     [apiSlice.reducerPath]: apiSlice.reducer,
@@ -25,6 +26,7 @@ const reducers = combineReducers({
     tariff: tariffSlice,
     transmittal: transmittalSice,
     jvCreation: jvCreationSlice,
+    jvReversal: jvReversalSlice,
     auth:persistReducer({
         key:'auth',
         storage

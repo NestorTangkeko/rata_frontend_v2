@@ -1,33 +1,21 @@
 import React from 'react'
-import { Paginated, IndeterminateCheckbox } from 'components/table';
-import CustomPaginated  from './CustomPaginated';
+import { IndeterminateCheckbox } from 'components/table';
+import JVPaginated  from './JVPaginated';
 import { createColumnHelper } from '@tanstack/react-table';
-import { Button } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {setJVCSelectedRows} from 'lib/redux';
 
-const JVCreationTable = React.forwardRef(({ onSelectedRowsChange }, ref) => {
-    const navigate = useNavigate();
+const JVCreationTable = ({ onSelectedRowsChange, onClearSelectionCallback }) => {
     const dispatch = useDispatch();
-    const [selectedRowsData, setSelectedRowsData] = React.useState([]);
-    const tableRef = React.useRef(null);
 
-    // Expose clear method to parent
-    React.useImperativeHandle(ref, () => ({
-        clearSelection: () => {
-            if (tableRef.current) {
-                tableRef.current.clearSelection();
-            }
-        }
-    }));
-
-    const columnHelper = createColumnHelper();
+    const resetSelectionRef = React.useRef(null);
 
     const numberFormatter = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
+
+    const columnHelper = createColumnHelper();
 
     const columns = React.useMemo(() => [
         {
@@ -50,7 +38,8 @@ const JVCreationTable = React.forwardRef(({ onSelectedRowsChange }, ref) => {
                         onChange: row.getToggleSelectedHandler(),
                     }}
                 />
-            )
+            ),
+            meta: { sticky: true }
         },
         columnHelper.accessor('jvc_db_no',{
             header:'Draft Bill No.'
@@ -99,26 +88,32 @@ const JVCreationTable = React.forwardRef(({ onSelectedRowsChange }, ref) => {
             }
         }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    ],[])
+    ],[]);
+
+    // Expose the resetSelection function to the parent
+    React.useEffect(() => {
+        if (onClearSelectionCallback && resetSelectionRef.current) {
+            onClearSelectionCallback(resetSelectionRef.current);
+        }
+    }, [onClearSelectionCallback, resetSelectionRef.current]);
 
     // When Paginated calls this, update local state and notify parent
     const handleSelectedRows = React.useCallback((rows = []) => {
-        // Optional filtering logic
         dispatch(setJVCSelectedRows(rows));
     }, [dispatch]);
 
     return (
         <>
-            <CustomPaginated
-                ref={tableRef}
+            <JVPaginated
                 title={'Draft Bill'}
                 columns={columns}
                 route={'/v2/jv-creation'}
                 selectedRows={handleSelectedRows}
+                resetSelectionRef={resetSelectionRef}
                 showFilters
             />
         </>
     )
-});
+};
 
-export default JVCreationTable
+export default JVCreationTable;

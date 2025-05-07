@@ -24,7 +24,7 @@ import { BillingCreate, BillingTransport, SODetails } from 'features/billing';
 import CostAllocation from 'features/data-management/pages/CostAllocation/CostAllocation';
 import { AccrualReports, ReportDetails, Reports } from 'features/reports';
 import {CRUpload, CRDetails, SOUpload} from 'features/billing';
-import { JVCreation } from 'features/tur-expense';
+import { JVCreation, JVReversal } from 'features/tur-expense';
 
 const router = createBrowserRouter([
     {
@@ -240,6 +240,10 @@ const router = createBrowserRouter([
             {
                 path:'/jv-creation',
                 element:<JVCreation/>
+            },
+            {
+                path:'/jv-reversal',
+                element:<JVReversal/>
             },
         ] 
     },

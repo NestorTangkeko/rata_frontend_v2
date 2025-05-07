@@ -9,15 +9,22 @@ import { getJVCreationState, setJVCSelectedRows } from 'lib/redux';
 import { useGenerateJVMutation } from 'lib/redux/api/jv_creation.api.slice';
 
 const JVCreation = () => {
-    const {onClose,isOpen,onOpen} = useDisclosure();
+    const {onClose, isOpen, onOpen} = useDisclosure();
     const exportDisclosure = useDisclosure();
     const dispatch = useDispatch();
-    const toast = useToast()
-    const tableRef = React.useRef(null);
+    const toast = useToast();
 
-    const [generateJV,{isLoading}] = useGenerateJVMutation();
+    // Function to reset the table selection
+    const [resetTableSelection, setResetTableSelection] = React.useState(null);
+
+    const [generateJV, {isLoading}] = useGenerateJVMutation();
 
     const selectedRows = useSelector(getJVCreationState).selectedRows;
+
+    // Get the reset function from the table component
+    const handleClearSelectionCallback = React.useCallback((resetFn) => {
+        setResetTableSelection(() => resetFn);
+    }, []);
 
     const handleGenerate = async () => {
         const ids = selectedRows.map(row => row.jvc_db_no);
@@ -28,13 +35,14 @@ const JVCreation = () => {
                 ids: selectedRows.map(row => row.jvc_db_no)
             }).unwrap();
             console.log(result);
-
-            if (tableRef.current) {
-                tableRef.current.clearSelection();
-            }
             
-            // Also update Redux state
+            // Clear Redux state
             dispatch(setJVCSelectedRows([]));
+            
+            // Reset the visual selection in the table
+            if (resetTableSelection) {
+                resetTableSelection();
+            }
             
             toast({
                 title: "Success",
@@ -63,10 +71,10 @@ const JVCreation = () => {
             </Button>
         </SubHeader>
         <Container>
-            <JVCreationTable ref={tableRef}/>
+            <JVCreationTable onClearSelectionCallback={handleClearSelectionCallback} />
         </Container>
     </>
   )
 }
 
-export default JVCreation
+export default JVCreation;
