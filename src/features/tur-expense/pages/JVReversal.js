@@ -28,7 +28,6 @@ const JVReversal = () => {
 
     const handleReverse = async () => {
         const data = selectedRows;
-        console.log("selected rows:", data);
 
         try {
             const result = await reverseJV({
