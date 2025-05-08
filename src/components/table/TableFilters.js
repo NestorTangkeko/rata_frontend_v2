@@ -165,6 +165,32 @@ const Filter = ({column}) => {
 			</Flex>
 			</WrapItem>
 
+			case 'jv_status': return <WrapItem>
+			<LocalSelect label ='Status' type={'jv_status'} value={columnFilterValue} onChange={handleChange}/>
+			</WrapItem>
+
+			case 'jv_actual_vendor': return <WrapItem>
+			<Flex direction='column'>
+				<Text fontSize={'sm'} as='b'> Actual Vendor</Text>
+				<Input placeholder='Actual Vendor' onChange={(e) => {
+					handleChange(e.target.value)
+				}} />
+			</Flex>
+			</WrapItem>
+			
+			case 'jv_create_ref_no': return <WrapItem>
+			<Flex direction='column'>
+				<Text fontSize={'sm'} as='b'> JV Number</Text>
+				<Input placeholder='JV Number' onChange={(e) => {
+					handleChange(e.target.value)
+				}} />
+			</Flex>
+			</WrapItem>
+
+			case 'jv_actual_cr': return <WrapItem>
+			<LocalSelect label ='With CR' type={'jv_with_cr'} value={columnFilterValue} onChange={handleChange}/>
+			</WrapItem>
+
 
 			default :
 			return null

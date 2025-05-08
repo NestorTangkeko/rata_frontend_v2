@@ -411,3 +411,25 @@ export const so_status = [
         value:'SO_FAILED'
     }
 ]
+
+export const jv_status = [
+    {
+        label:'For Creation',
+        value:'For Creation'
+    },
+    {
+        label:'For Reversal',
+        value:'For Reversal'
+    }
+]
+
+export const jv_with_cr = [
+    {
+        label:'Yes',
+        value:true
+    },
+    {
+        label:'No',
+        value:false
+    }
+]
