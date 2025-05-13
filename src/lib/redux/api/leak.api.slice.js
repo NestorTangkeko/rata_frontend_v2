@@ -3,8 +3,11 @@ import {apiSlice} from '../api.slice';
 export const leakSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getDetails: builder.query({
-            query:(br_no) => ({
-                url:'/v2/revenue-leak/'+br_no,
+            query:(args) => ({
+                url:'/v2/revenue-leak/'+args.tms_reference_no,
+                params:{
+                    draft_bill_type: args.draft_bill_type
+                },
                 method:'GET'
             })
         }),
