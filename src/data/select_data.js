@@ -426,10 +426,10 @@ export const jv_status = [
 export const jv_with_cr = [
     {
         label:'Yes',
-        value:true
+        value:'with_cr'
     },
     {
         label:'No',
-        value:false
+        value:'no_cr'
     }
 ]

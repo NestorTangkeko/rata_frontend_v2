@@ -106,8 +106,8 @@ const modules = [
     },
     {
         sequence_no: 4,
-        id: 'tur_expense',
-        label: 'TUR Expense',
+        id: 'df_operations',
+        label: 'Domestic Freight Operations',
         children: [
             {
                 sequence_no:1,

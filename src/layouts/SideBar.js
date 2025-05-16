@@ -40,7 +40,7 @@ const SideBar = ({
 			<DrawerOverlay/>
 			<DrawerContent>
 				<DrawerHeader borderBottomWidth='1px'>Kerry Logistikus</DrawerHeader>
-				<Accordion defaultIndex={null} allowMultiple>
+				<Accordion defaultIndex={null} allowToggle>
 					{drawerItems()}
 				</Accordion>
 			</DrawerContent>
