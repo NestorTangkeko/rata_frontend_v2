@@ -39,7 +39,7 @@ const SideBar = ({
 		<Drawer isOpen={isOpen} onClose={onClose} placement='left'>
 			<DrawerOverlay/>
 			<DrawerContent>
-				<DrawerHeader borderBottomWidth='1px'>Kerry Logistikus</DrawerHeader>
+				<DrawerHeader borderBottomWidth='1px'>K-Logistikus</DrawerHeader>
 				<Accordion defaultIndex={[0]} allowMultiple>
 					{drawerItems()}
 				</Accordion>
