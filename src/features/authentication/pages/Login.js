@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Flex,
     Box,
     Image,
 } from '@chakra-ui/react';
@@ -7,7 +8,7 @@ import LoginForm from '../forms/LoginForm';
 import {selectToken} from 'lib/redux'
 import { useSelector } from 'react-redux';
 
-import bg from 'assets/kli_bg.png';
+import bg from 'assets/logo.png';
 import { Navigate } from 'react-router-dom';
 
 const Login = () => {
@@ -18,15 +19,26 @@ const Login = () => {
     }
 
     return (
-        <Box>
-            <Image height={{base:'100vh'}} objectFit={'cover'} src={bg} alt='LI Background'/>
-            <Box boxShadow='dark-lg'
-                position={'absolute'} 
-                top='0' 
-                right={'0'}
+        <Flex>
+            <Box 
+                flex
+                justifyContent={'center'}
+                alignContent={'center'}
                 width={{
-                    base:'xl',
-                    xl:'xl',
+                    base:'0',
+                    md:'100%',
+                    sm:'0'
+                }}
+                >
+                <Image src={bg} alt='LI Background'/>
+            </Box>
+           
+            <Box boxShadow='dark-lg'
+                //position={'absolute'} 
+                // top='0' 
+                // right={'0'}
+                width={{
+                    base: '100%',
                     md:'100%', 
                     sm:'100%'
                 }}
@@ -41,7 +53,7 @@ const Login = () => {
                     <LoginForm/>
                     
             </Box>
-        </Box>
+        </Flex>
   )
 }
 
