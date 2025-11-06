@@ -82,6 +82,14 @@ export const revenue_leak = [
         value:'Not Billable'.toUpperCase()
     },
     {
+        label:'Not Billable Expense',
+        value:'Not Billable Expense'.toUpperCase()
+    },
+    {
+        label:'Not Billable Revenue',
+        value:'Not Billable Revenue'.toUpperCase()
+    },
+    {
         label:'No Contract',
         value:'No Contract'.toUpperCase()
     },
