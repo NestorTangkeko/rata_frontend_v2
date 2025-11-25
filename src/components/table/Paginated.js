@@ -24,6 +24,7 @@ import {
 import TableFilters from './TableFilters';
 import DebounceInput from '../input/DebounceInput';
 import {useGetDataQuery} from 'lib/redux/api/table.api.slice';
+import { SubHeader } from 'layouts';
 const pageSizes = [
     5,
     10,
@@ -32,7 +33,7 @@ const pageSizes = [
     100
 ]
 
-const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows}) => {
+const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows,handleFilter}) => {
     const [page,setPage] = React.useState({
         pageSize:10,
         pageIndex:0
@@ -73,10 +74,20 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
         manualFiltering:        true,
         enableRowSelection:     true,
         onPaginationChange:     setPage,
-        onColumnFiltersChange:  setColumnFilters,
+        onColumnFiltersChange:  (updater) => {
+            const nextFilters = typeof updater === "function" ? updater(columnFilters) : updater;
+            setColumnFilters(nextFilters);
+            handleFilter?.(nextFilters);
+        },
         onGlobalFilterChange:   setGlobalFilter,
         onRowSelectionChange:   setRowSelection
     })
+
+    const clearFilters = () => {
+        setColumnFilters([]);
+        handleFilter?.([]);
+        table.resetColumnFilters();
+    }
 
     //clear selectedRows
     React.useEffect(() => {
@@ -101,16 +112,21 @@ const Paginated = ({title,columns,route,showFilters,customFilters,selectedRows})
     return (
         <Box borderWidth={'1px'} rounded='sm' width={'full'}>
         <Box display={'flex'} p='1' flexDirection={'column'} gap='2'>
-            <Box fontWeight={'semibold'} as='h4'>{title}</Box>
+            <SubHeader title={<Box fontWeight={'semibold'} as='h4'>{title}</Box>} as='h4'>
+                <Button onClick={clearFilters}>Clear Filters</Button>
+            </SubHeader>
+            {/* <Box fontWeight={'semibold'} as='h4'>{title}</Box> */}
             <Flex gap={1}>
                 {
                     showFilters ? 
-                    table.getHeaderGroups().map(headerGroup => 
-                        headerGroup.headers.map(header => {
+                    table.getHeaderGroups().map(headerGroup => {
+                        const columnFilters = table.getState().columnFilters;
+                        return headerGroup.headers.map(header => {
                             return (header.column.getCanFilter() ? 
                             <TableFilters key={header.column.id} column={header.column} table={table}/> : null)
                             
                         })
+                        }
                     ): null
                 }
             </Flex>

@@ -1,11 +1,18 @@
 import { Box,Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDatePicker from './ReactDatePicker';
 import moment from 'moment';
 
 const DateInput = ({start,end,handleChange,label}) => {
-    const [startDate,setStartDate] = React.useState(null)
-    const [endDate,setEndDate] = React.useState(null)
+    const [startDate,setStartDate] = React.useState(start)
+    const [endDate,setEndDate] = React.useState(end)
+
+    useEffect(() => {
+        setStartDate(start);
+        setEndDate(end);
+
+        return () => {}
+    }, [start, end]);
 
     const onChange = dates => {
         let [start, end] = dates;
@@ -23,8 +30,8 @@ const DateInput = ({start,end,handleChange,label}) => {
                 <Text fontSize={'sm'} as='b'>{label}</Text>
                 <ReactDatePicker
                     selectsRange
-                    startDate={startDate}
-                    endDate={endDate}
+                    startDate={startDate ? new Date(startDate) : null}
+                    endDate={endDate? new Date(endDate) : null}
                     onChange={onChange}
                     placeholder='RDD'
                     isClearable

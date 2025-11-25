@@ -4,6 +4,7 @@ import DraftBillTable from '../../components/tables/DraftBillTable';
 import { Button, useDisclosure } from '@chakra-ui/react';
 import DraftBillModal from 'features/transport/components/modals/DraftBillModal';
 import DraftBillExport from 'features/transport/components/modals/DraftBillExport';
+import DraftBillExport2 from 'features/transport/components/modals/DraftBillExport2';
 import {useCheckAccess} from 'hooks'
 
 const DraftBill = () => {
@@ -11,12 +12,16 @@ const DraftBill = () => {
     const {isOpen,onClose,onOpen} =useDisclosure();
     const exportModal = useDisclosure();
     const [draftBillDetails, setDraftBillDetails] = React.useState(null)
+    const [filters, setFilters] = React.useState([])
 
     const handleGetDetails = (data) => {
         setDraftBillDetails(data)
         onOpen()
     }
 
+    const handleFilter = (filters) => {
+        setFilters(filters)
+    }
     
 
     return (
@@ -37,11 +42,12 @@ const DraftBill = () => {
             <Container>
                 <DraftBillTable 
                     handleGetDetails = {handleGetDetails}
+                    handleFilter = { handleFilter }
                 />
 
             </Container>
             <DraftBillModal isOpen={isOpen} onClose={onClose} data={draftBillDetails}/>
-            <DraftBillExport isOpen={exportModal.isOpen} onClose={exportModal.onClose}/>
+            <DraftBillExport2 isOpen={exportModal.isOpen} onClose={exportModal.onClose} filters={filters}/>
         </>
     )
 }
