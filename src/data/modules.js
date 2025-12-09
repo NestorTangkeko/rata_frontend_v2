@@ -168,7 +168,13 @@ const modules = [
                 id:'data_upload',
                 label:'Data Upload',
                 path:'/data-upload'
-            }    
+            },
+            {
+                sequence_no:11,
+                id:'vendor_groups',
+                label:'Vendor Groups',
+                path:'/vendor-groups'
+            },
         ]
     },
     {
