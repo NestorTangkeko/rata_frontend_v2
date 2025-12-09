@@ -13,7 +13,7 @@ import {
     Invoices,
     TransmittalDetails,
 } from 'features/transport';
-import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit, VehicleTypes} from 'features/data-management';
+import {Vendors,DataUpload, Geography, Location, QuickCode, Principal, Algorithm, CreateAlgo, ShipPointEdit, VehicleTypes, VendorGroupDTL} from 'features/data-management';
 import {
     WarehouseDraftBill,
     WarehouseTransmittal
@@ -137,6 +137,15 @@ const router = createBrowserRouter([
             {
                 path:'/vendors',
                 element:<Vendors/>
+            },
+            {
+                path:'/vendor-groups',
+                children: [
+                    {
+                        path:':group_id',
+                        element:<VendorGroupDTL/>
+                    }
+                ]
             },
             {
                 path:'/algorithm',
