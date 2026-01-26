@@ -6,6 +6,7 @@ import { Flex, Input, WrapItem, Text } from '@chakra-ui/react';
 
 const Filter = ({column}) => {
 	const columnFilterValue = column.getFilterValue();
+	const dateRanges = ['trip_date', 'draft_bill_date'];
 	const handleChange = (selected) => {
 		column.setFilterValue(selected)
 	}
@@ -15,6 +16,11 @@ const Filter = ({column}) => {
 	}
 
 	const renderFilters = () => {
+        let [startDate, endDate] = [null, null];
+        if (columnFilterValue && dateRanges.includes(column.id)) {
+            [startDate, endDate] = columnFilterValue.split(',');
+        }
+
 		switch(column.id) {
 			case 'location':		return <WrapItem>
 				<Select route={'location'} label='Location' value={columnFilterValue} onChange={handleChange}/>
@@ -49,11 +55,11 @@ const Filter = ({column}) => {
 			</WrapItem>
 
 			case 'trip_date': 	return <WrapItem>
-			<DateRangePicker label={'Trip Date'} handleChange={handleChange}/>
+			<DateRangePicker label={'Trip Date'} start={startDate} end={endDate} handleChange={handleChange}/>
 			</WrapItem>
 
 			case 'draft_bill_date': return <WrapItem>
-				<DateRangePicker label={'Draft Bill Date'} handleChange={handleChange}/>
+				<DateRangePicker label={'Draft Bill Date'} start={startDate} end={endDate} handleChange={handleChange}/>
 			</WrapItem>
 			
 			case 'tariff_status': 	return <WrapItem>

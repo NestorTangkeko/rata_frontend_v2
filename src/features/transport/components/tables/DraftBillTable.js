@@ -3,7 +3,7 @@ import {createColumnHelper} from '@tanstack/react-table';
 import {Button} from '@chakra-ui/react';
 import {Paginated} from 'components/table';
 
-const DraftBillTable = ({handleGetDetails}) => {
+const DraftBillTable = ({handleGetDetails, handleFilter}) => {
     const columnHelper = createColumnHelper();
     const columns = [
         columnHelper.accessor('draft_bill_no',{
@@ -90,6 +90,7 @@ const DraftBillTable = ({handleGetDetails}) => {
             columns={columns}
             route={'/v2/draft-bill'}
             showFilters
+            handleFilter={handleFilter}
         />
     )
 }
